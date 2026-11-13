@@ -1,0 +1,16 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { CONTACT_EMAIL, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { P } from '../../lib/params';
+const lang = 'en';
+---
+<PageLayout title={`Editorial policy – ${SITE_NAMES[lang]}`} description="How Ceny Paliw Jutro checks its figures: official notices only, an item number and date on every price, automated tests, and forecasts published only with their past error." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Editorial policy</h1>
+    <h2>Sources</h2><p>Primary sources only: Minister of Energy notices in Monitor Polski and the ministry’s announcements on gov.pl for maximum prices, the Journal of Laws for VAT, excise and the price-cap rule, Monitor Polski for the fuel levy, and the European Commission Weekly Oil Bulletin for average and EU prices. A blog, a price comparison app or an oil company’s page is never a source. Fixed rules sit in a parameter file with the date they were read ({P.retrieved_at}).</p>
+    <h2>What we do not publish</h2><p>A value we could not read in an official source does not appear: no prices by voivodeship, no prices by station brand, no wholesale prices whose terms forbid reuse. A forecast of the next notice is published only for fuels where, in a back-test, it beats the plain assumption that “the price stays the same”. We rank no stations and take no money to mention anyone.</p>
+    <h2>Checks</h2><p>The sums are tested at each release with hand-made cases and the real data: every notice’s VAT-inclusive price against its net price, the days of validity against the dates given by the ministry, a tax breakdown that adds up to the notice and a back-test that never uses the point being tested. If a source cannot be read, the previous version stays and the date shown is that of the data read.</p>
+    <h2>Corrections</h2><p>Errors are fixed as soon as they are confirmed. Write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. More in <a href={route('method', lang)}>method and sources</a> and <a href={route('about', lang)}>about</a>.</p>
+  </div>
+</PageLayout>

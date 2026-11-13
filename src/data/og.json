@@ -1,0 +1,20 @@
+{
+ "accent": "#B3122E",
+ "symbol": "zł/l",
+ "variants": [
+  {
+   "file": "og-pl.png",
+   "title": "Ceny paliw dziś i jutro\ncena maksymalna z Monitora Polskiego",
+   "subtitle": "Pb95 · Pb98 · ON · LPG · koszt tankowania · CPN 2027",
+   "badge": "Każde obwieszczenie Ministra Energii od 30.03.2026",
+   "brand": "Ceny Paliw Jutro"
+  },
+  {
+   "file": "og-en.png",
+   "title": "Fuel prices in Poland\ntoday and tomorrow",
+   "subtitle": "Petrol 95 · 98 · diesel · LPG · cost of a tank · after CPN",
+   "badge": "Every official maximum price since 30 March 2026",
+   "brand": "Ceny Paliw Jutro"
+  }
+ ]
+}

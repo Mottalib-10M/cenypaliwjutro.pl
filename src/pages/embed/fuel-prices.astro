@@ -1,0 +1,23 @@
+---
+/** Page pour iframe : le calculateur sans navigation. noindex, hors sitemap (astro.config). */
+import '../../styles/global.css';
+import DzisCalc from '../../components/calc/DzisCalc';
+import { SITE_URL } from '../../data/site-config';
+import { toolProps } from '../../lib/tool-props';
+const p: any = toolProps('dzis');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maximum fuel price in Poland today – Ceny Paliw Jutro</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`${SITE_URL}/en/`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-white p-2 text-navy-900">
+    <DzisCalc client:load lang="en" {...p} />
+    <p class="mt-2 text-center text-xs text-navy-600"><a href={`${SITE_URL}/en/`} target="_blank" rel="noopener" class="underline">Ceny Paliw Jutro · Maximum fuel price in Poland today</a></p>
+    <p class="mt-1 text-center text-xs text-navy-600">LPG average: European Commission, Weekly Oil Bulletin, licence <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" class="underline">CC BY 4.0</a>, adapted: converted to zloty (calculations by Radif Partners).</p>
+  </body>
+</html>

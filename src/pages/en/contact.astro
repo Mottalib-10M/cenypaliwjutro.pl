@@ -1,0 +1,17 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { CONTACT_EMAIL, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Contact – ${SITE_NAMES[lang]}`} description="Contact Ceny Paliw Jutro: report a maximum price, a date or a calculation that looks wrong. We answer by e-mail and every correction is dated on the page. No phone line." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Contact</h1>
+    <p>Write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. We read everything about the prices and the sums. There is no phone line and we call no one.</p>
+    <h2>Report an error</h2>
+    <p>A maximum price differs from the notice, a date looks wrong, or a calculator gives an odd result? Tell us the page, the fuel and the day. Maximum prices are copied from Monitor Polski: if the ministry corrects a notice, we follow the correction.</p>
+    <h2>What we cannot do</h2>
+    <p>We sell no fuel and cannot take complaints against a station. A station charging more than the maximum price should be reported to the National Revenue Administration (KAS), which carries out checks; keep the receipt.</p>
+    <h2>Embed the calculator</h2><p>The code is on the <a href={route('widget', lang)}>embed page</a>. Publisher and hosting: <a href={route('terms', lang)}>legal notice</a>.</p>
+  </div>
+</PageLayout>

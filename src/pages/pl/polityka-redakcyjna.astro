@@ -1,0 +1,16 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { CONTACT_EMAIL, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { P } from '../../lib/params';
+const lang = 'pl';
+---
+<PageLayout title={`Polityka redakcyjna – ${SITE_NAMES[lang]}`} description="Jak Ceny Paliw Jutro sprawdza liczby: tylko źródła urzędowe, numer pozycji i data przy każdej cenie, testy automatyczne, prognozy publikowane wyłącznie z ich błędem." lang={lang} noindex={true} breadcrumbs={[{ label: 'Polityka redakcyjna' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Polityka redakcyjna</h1>
+    <h2>Źródła</h2><p>Tylko źródła pierwotne: obwieszczenia Ministra Energii w Monitorze Polskim i komunikaty ministerstwa na gov.pl dla cen maksymalnych, Dziennik Ustaw dla VAT, akcyzy i zasad ceny maksymalnej, Monitor Polski dla opłaty paliwowej oraz Weekly Oil Bulletin Komisji Europejskiej dla średnich i cen w UE. Blog, aplikacja z cenami czy strona koncernu nigdy nie są źródłem. Stałe reguły są w pliku parametrów z datą odczytu ({P.retrieved_at}).</p>
+    <h2>Czego nie publikujemy</h2><p>Wartości, której nie odczytaliśmy w źródle urzędowym, nie ma w serwisie: żadnych cen w województwach, żadnych cen według marki stacji, żadnych cen hurtowych, których warunki zabraniają ponownego wykorzystania. Prognozę następnego ogłoszenia publikujemy tylko dla paliw, dla których w teście wstecznym wygrała z założeniem „cena się nie zmieni”. Nie tworzymy rankingów stacji i nie bierzemy pieniędzy za wzmianki.</p>
+    <h2>Kontrola</h2><p>Obliczenia są testowane przy każdym wydaniu na przypadkach liczonych ręcznie i na prawdziwych danych: cena z VAT każdego obwieszczenia wobec ceny netto, dni obowiązywania wobec dat podanych przez ministerstwo, skład ceny sumujący się do obwieszczenia i test wsteczny, który nigdy nie używa testowanego punktu. Jeśli źródła nie da się odczytać, zostaje poprzednia wersja, a widoczna data to data odczytanych danych.</p>
+    <h2>Poprawki</h2><p>Błędy poprawiamy, gdy tylko je potwierdzimy. Napisz: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Więcej: <a href={route('method', lang)}>metodologia i źródła</a> oraz <a href={route('about', lang)}>o nas</a>.</p>
+  </div>
+</PageLayout>

@@ -1,0 +1,91 @@
+---
+/** Metodologia (page de confiance, RECETTE §8.2) : sources, règle légale, validité, prévision et son rétro-test, taxes, limites. */
+import PageLayout from '../layouts/PageLayout.astro';
+import { route, type Locale } from '../i18n/routes';
+import { P } from '../lib/params';
+import { LISTA, PIERWSZA, OSTATNIA, OSTATNIA_MP, OKRESY, WOB, WOB_OST, PALIWA, NAZWA, prog, widelki, PLN_ZA_EUR } from '../lib/dane';
+import { formatNumber, displayDate } from '../lib/format';
+import { breadcrumbSchema, webPageSchema, faqSchema } from '../lib/seo';
+import { CONTACT_EMAIL } from '../data/site-config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const pl = lang === 'pl';
+const n = (x: number, d = 0) => formatNumber(x, d, lang);
+const d = (iso: string) => (pl ? `${displayDate(iso, 'pl')} r.` : displayDate(iso, 'en'));
+const g = (x: number) => `${n(x * 100, 1)} gr`;
+const title = pl ? 'Metodologia: skąd ceny maksymalne paliw i jak liczymy' : 'Method: where Poland’s maximum fuel prices come from';
+const description = pl ? 'Skąd bierzemy ceny maksymalne paliw, jak ustalamy dzień ich obowiązywania, jak liczymy widełki następnego ogłoszenia, skład ceny i średnie z biuletynu UE.' : 'Where the maximum fuel prices come from, how we set the days each applies, how the range for the next notice is worked out, and how taxes and EU data are used.';
+const h1 = pl ? 'Metodologia i źródła' : 'Method and sources';
+const path = route('method', lang);
+const mp = LISTA.filter((o) => o.src === 'mp').length, gov = LISTA.length - mp;
+const linhas = PALIWA.map((p) => ({ p, f: prog(p), w1: widelki(p, 1), w5: widelki(p, 5) }));
+const sources = Object.values(P.sources);
+const okr = OKRESY.map((o) => `${displayDate(o.od, lang)} – ${displayDate(o.do, lang)}`).join(pl ? '; ' : '; ');
+const faqs = pl ? [
+  { q: 'Dlaczego nie podajecie prognozy dla benzyny 98 i oleju napędowego?', a: 'Bo w teście wstecznym prosta reguła myliła się bardziej niż założenie, że cena się nie zmieni. Publikujemy przewidywany kierunek tylko wtedy, gdy wygrywa z tym punktem odniesienia. Zamiast niego zawsze pokazujemy widełki: o ile zmieniała się cena w ośmiu przypadkach na dziesięć.' },
+  { q: 'Co, jeśli minister nie ogłosi ceny na jutro?', a: 'Nic nie dopisujemy. Ostatnia znana cena obowiązuje tylko w dniach, które wynikają z art. 34a ust. 6. Po tym terminie kalkulator mówi, że ceny na ten dzień jeszcze nie znamy, i odsyła do obwieszczeń w Monitorze Polskim. Nie przedłużamy starej ceny na zapas.' },
+  { q: 'Czy zapisujecie to, co wpisuję w kalkulatory?', a: 'Nie. Obliczenia odbywają się w Twojej przeglądarce na danych, które strona już zawiera. Nie ma konta ani formularza. Jeśli użyjesz linku do udostępnienia, Twoje liczby trafiają tylko do adresu strony, który sam przekazujesz dalej. Po zamknięciu strony liczby znikają z przeglądarki.' },
+] : [
+  { q: 'Why is there no forecast for petrol 98 and diesel?', a: 'Because in the back-test the simple rule missed by more than the assumption that the price stays the same. We publish an expected direction only when it beats that benchmark. Instead, we always show the range: how far the price moved in eight cases out of ten.' },
+  { q: 'What if the minister does not announce tomorrow’s price?', a: 'We add nothing. The last known price is shown only for the days that follow from Article 34a(6). After that, the calculator says the price for that day is not known yet and points to the notices in Monitor Polski, the official gazette.' },
+  { q: 'Do you store what I type into the calculators?', a: 'No. Sums run in your browser on data the page already holds. There is no account and no form. If you use the share link, your figures go only into the page address that you choose to pass on to someone else.' },
+];
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: h1, description, path, lang }), breadcrumbSchema([{ name: pl ? 'Start' : 'Home', path: route('home', lang) }, { name: h1, path }]), faqSchema(faqs, lang)]} faqs={faqs} breadcrumbs={[{ label: h1 }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">{h1}</h1></header>
+  {pl ? (
+  <div class="prose prose-slate max-w-none">
+    <p>Ceny Paliw Jutro opiera się na trzech rodzajach źródeł. Ceny maksymalne to obwieszczenia Ministra Energii wydawane na podstawie art. 34a ustawy o zapasach ropy naftowej, produktów naftowych i gazu ziemnego. Wykaz pozycji Monitora Polskiego pobieramy przez API ELI Kancelarii Sejmu, a z każdego pliku PDF odczytujemy cenę netto i cenę z VAT dla benzyny 95, benzyny 98 i oleju napędowego. Mamy {n(mp)} obwieszczeń z Monitora Polskiego i {n(gov)} {gov === 1 ? 'komunikat' : 'komunikaty'} z gov.pl, opublikowane przed wpisem do dziennika; pierwsze ogłoszenie pochodzi z {d(PIERWSZA.ogl)}, ostatnie z {d(OSTATNIA.ogl)}. Średnie ceny na stacjach i ceny w innych krajach Unii pochodzą z Weekly Oil Bulletin Komisji Europejskiej (ostatni tydzień: od {d(WOB_OST.d)}). Stawki VAT, akcyzy i opłaty paliwowej przepisaliśmy z Dziennika Ustaw i Monitora Polskiego {d(P.retrieved_at)}.</p>
+    <h2>Jak powstaje cena maksymalna</h2>
+    <p>Art. 34a ust. 2 ustawy o zapasach, dodany ustawą z 27 marca 2026 r. (Dz.U. 2026 poz. 415): cena maksymalna netto = średnia hurtowa cena pięciu największych dostawców z poprzedniego dnia roboczego, z akcyzą i opłatą paliwową, + {n(P.cena_maksymalna.koszty_operacyjne, 2)} zł za litr kosztów stacji. Cena brutto to netto powiększone o VAT. Cena maksymalna obowiązuje tylko w okresach obniżonej stawki VAT na paliwa: {okr}. Poza nimi stacje ustalają ceny swobodnie.</p>
+    <h2>W jakie dni obowiązuje dana cena</h2>
+    <p>Cena obowiązuje od dnia następującego po ogłoszeniu. Cena ogłoszona przed sobotą, niedzielą lub świętem obowiązuje do najbliższego dnia roboczego włącznie (art. 34a ust. 6). Dla ostatniego ogłoszenia nie zakładamy, że minister nic więcej nie ogłosi: pokazujemy je tylko dla dni, które wynikają z tej reguły. Pierwsze obwieszczenie (M.P. 2026 poz. 342) nie jest ceną netto pomnożoną przez 1,08; przepisujemy je tak, jak zostało ogłoszone. Każda cena w serwisie ma odnośnik do swojej pozycji w Monitorze Polskim albo do komunikatu na gov.pl.</p>
+    <h2>Widełki następnego ogłoszenia</h2>
+    <p>Bierzemy wszystkie zmiany ceny między kolejnymi ogłoszeniami w tym samym okresie obowiązywania (wznowienie po przerwie nie jest zmianą rynkową) i liczymy, w jakim przedziale mieściło się 8 przypadków na 10: dolna granica to 10. percentyl, górna to 90. percentyl. Dla pięciu ogłoszeń naprzód sumujemy pięć kolejnych zmian.</p>
+    <h2>Prognoza i test wsteczny</h2>
+    <p>Przewidywana zmiana = średnia k ostatnich zmian × α, gdzie k ∈ {'{'}1, 3, 5{'}'} i α ∈ {'{'}0,5; 1{'}'}. Regułę wybieramy wyłącznie na danych sprzed prognozowanego punktu (test „krokowy”), po co najmniej 10 punktach nauki. Punktem odniesienia jest założenie „cena się nie zmieni”. Prognozę publikujemy tylko wtedy, gdy jej średni błąd jest mniejszy.</p>
+    <div class="overflow-x-auto"><table><thead><tr><th>Paliwo</th><th>Punkty testu</th><th>Błąd reguły</th><th>Błąd „bez zmian”</th><th>Publikowana</th><th>Widełki 1 / 5 ogłoszeń</th></tr></thead><tbody>
+      {linhas.map(({ p, f, w1, w5 }) => <tr><td>{NAZWA.pl[p]}</td><td>{n(f.ocena.n)}</td><td>{g(f.ocena.mae)}</td><td>{g(f.ocena.maeStale)}</td><td>{f.publikowana ? 'tak' : 'nie'}</td><td>{g(w1.dol)} / +{g(w1.gora)} · {g(w5.dol)} / +{g(w5.gora)}</td></tr>)}
+    </tbody></table></div>
+    <p>Przewaga reguły, jeśli jest, wynosi ułamek grosza. Traktuj prognozę jako wskazówkę kierunku, a widełki jako rzeczywistą niepewność. Hurtowych cen ORLEN nie używamy: ich warunki nie pozwalają na ponowne wykorzystanie.</p>
+    <h2>Skład ceny</h2>
+    <p>Z ostatniej ceny netto w Monitorze Polskim (M.P. 2026 poz. {OSTATNIA_MP.poz}) odejmujemy {n(P.cena_maksymalna.koszty_operacyjne, 2)} zł kosztów stacji, akcyzę (obniżoną do {n(P.akcyza.pb_obnizona)} zł za 1000 l benzyny i {n(P.akcyza.on_obnizona)} zł za 1000 l oleju napędowego do {d(P.akcyza.obnizona_do)}) oraz opłatę paliwową 2026 ({n(P.oplata_paliwowa.pb_2026, 2)} i {n(P.oplata_paliwowa.on_2026, 2)} zł za 1000 l). Reszta to cena hurtowa paliwa, w której są też opłata emisyjna i koszt zapasów obowiązkowych. Scenariusz na 2027 r. stosuje tę samą cenę hurtową, akcyzę ustawową ({n(P.akcyza.pb_ustawowa)} i {n(P.akcyza.on_ustawowa)} zł), opłatę paliwową 2027 i VAT 23 %.</p>
+    <h2>Średnie z Weekly Oil Bulletin</h2>
+    <p>Biuletyn podaje ceny w euro za 1000 litrów i kurs złotego z tego samego tygodnia. Przeliczamy: zł/l = euro za 1000 l ÷ kurs ÷ 1000; dziś 1 € = {n(PLN_ZA_EUR, 3)} zł. Mamy {n(WOB.pl.length)} tygodni dla Polski i ostatni tydzień dla {n(WOB.kraje.length)} krajów. To średnie krajowe z poniedziałku, przekazywane przez państwa członkowskie, nie ceny konkretnej stacji.</p>
+    <h2>Czego serwis nie liczy</h2>
+    <p>Rabatów z kart i aplikacji, cen dla flot, oleju opałowego, cen na stacjach przy autostradach w podziale na operatora ani cen w województwach: nie ma oficjalnego, otwartego źródła z takimi danymi. Wszystkie wyniki mają charakter informacyjny; wiążące są obwieszczenie i cena na dystrybutorze.</p>
+    <h2>Aktualizacja</h2>
+    <p>Dane odświeżamy skryptem, który ponownie czyta wykaz Monitora Polskiego i biuletyn; strona pokazuje datę ostatniego ogłoszenia, które faktycznie odczytaliśmy. Nie obiecujemy aktualizacji co do minuty: przed tankowaniem sprawdź datę.</p>
+    <h2>Źródła</h2>
+    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.pl}</a></li>)}</ul>
+    <p>Widzisz błąd? Napisz: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+  </div>
+  ) : (
+  <div class="prose prose-slate max-w-none">
+    <p>Ceny Paliw Jutro rests on three kinds of source. Maximum prices are the Minister of Energy notices issued under Article 34a of the Act on stocks of crude oil, petroleum products and natural gas. We fetch the list of Monitor Polski items, the official gazette, through the Sejm Chancellery ELI API and read the net and VAT-inclusive price for petrol 95, petrol 98 and diesel from each PDF. We hold {n(mp)} notices from Monitor Polski and {n(gov)} {gov === 1 ? 'announcement' : 'announcements'} from gov.pl published before the gazette entry; the first notice dates from {d(PIERWSZA.ogl)}, the latest from {d(OSTATNIA.ogl)}. Average pump prices and prices in other EU countries come from the European Commission Weekly Oil Bulletin (latest week: from {d(WOB_OST.d)}). VAT, excise and fuel levy rates were copied from the Journal of Laws and Monitor Polski on {d(P.retrieved_at)}.</p>
+    <h2>How the maximum price is set</h2>
+    <p>Article 34a(2) of the Stocks Act, added by the Act of 27 March 2026 (Journal of Laws 2026 item 415): net maximum price = average wholesale price of the five largest suppliers on the previous working day, including excise and fuel levy, + PLN {n(P.cena_maksymalna.koszty_operacyjne, 2)} a litre for station costs. The gross price is the net price plus VAT. A maximum price applies only while the reduced VAT rate on fuel is in force: {okr}. Outside these periods stations set prices freely.</p>
+    <h2>Which days a price applies</h2>
+    <p>A price applies from the day after it is announced. A price announced before a Saturday, Sunday or public holiday applies up to and including the next working day (Article 34a(6)). For the latest notice we do not assume the minister will announce nothing more: it is shown only for the days that follow from this rule. The first notice (M.P. 2026 item 342) is not the net price times 1.08; we copy it as announced. Every price on the site links to its Monitor Polski item or to the gov.pl announcement.</p>
+    <h2>Range for the next notice</h2>
+    <p>We take every price change between consecutive notices within the same period (a restart after a break is not a market move) and find the band that held 8 cases out of 10: the low end is the 10th percentile, the high end the 90th. For five notices ahead we add up five consecutive changes.</p>
+    <h2>Forecast and back-test</h2>
+    <p>Expected change = average of the last k changes × α, with k ∈ {'{'}1, 3, 5{'}'} and α ∈ {'{'}0.5, 1{'}'}. The rule is picked using only data before the point being forecast (a walk-forward test), after at least 10 learning points. The benchmark is “the price will not change”. A forecast is published only when its average error is smaller.</p>
+    <div class="overflow-x-auto"><table><thead><tr><th>Fuel</th><th>Test points</th><th>Rule error</th><th>“No change” error</th><th>Published</th><th>Range 1 / 5 notices</th></tr></thead><tbody>
+      {linhas.map(({ p, f, w1, w5 }) => <tr><td>{NAZWA.en[p]}</td><td>{n(f.ocena.n)}</td><td>{g(f.ocena.mae)}</td><td>{g(f.ocena.maeStale)}</td><td>{f.publikowana ? 'yes' : 'no'}</td><td>{g(w1.dol)} / +{g(w1.gora)} · {g(w5.dol)} / +{g(w5.gora)}</td></tr>)}
+    </tbody></table></div>
+    <p>The rule’s edge, where there is one, is a fraction of a grosz (1 grosz = PLN 0.01). Read the forecast as a hint of direction and the range as the real uncertainty. We do not use ORLEN wholesale prices: their terms do not allow reuse.</p>
+    <h2>Price breakdown</h2>
+    <p>From the latest net price in Monitor Polski (M.P. 2026 item {OSTATNIA_MP.poz}) we subtract PLN {n(P.cena_maksymalna.koszty_operacyjne, 2)} of station costs, excise (cut to PLN {n(P.akcyza.pb_obnizona)} per 1,000 l of petrol and PLN {n(P.akcyza.on_obnizona)} per 1,000 l of diesel until {d(P.akcyza.obnizona_do)}) and the 2026 fuel levy (PLN {n(P.oplata_paliwowa.pb_2026, 2)} and {n(P.oplata_paliwowa.on_2026, 2)} per 1,000 l). The rest is the wholesale fuel price, which also carries the emission fee and the cost of compulsory stocks. The 2027 scenario uses the same wholesale price, statutory excise (PLN {n(P.akcyza.pb_ustawowa)} and {n(P.akcyza.on_ustawowa)}), the 2027 fuel levy and 23% VAT.</p>
+    <h2>Weekly Oil Bulletin averages</h2>
+    <p>The bulletin gives prices in euros per 1,000 litres and the zloty rate for the same week. We convert: PLN/l = euros per 1,000 l ÷ rate ÷ 1,000; today €1 = PLN {n(PLN_ZA_EUR, 3)}. We hold {n(WOB.pl.length)} weeks for Poland and the latest week for {n(WOB.kraje.length)} countries. These are Monday national averages reported by member states, not the price at a given station.</p>
+    <h2>What the site does not calculate</h2>
+    <p>Card and app discounts, fleet prices, heating oil, motorway prices by operator, or prices by voivodeship (region): no official open source publishes them. Every result is for information; the notice and the price on the pump are what count.</p>
+    <h2>Updates</h2>
+    <p>Data are refreshed by a script that re-reads the Monitor Polski list and the bulletin; pages show the date of the latest notice actually read. We do not promise minute-by-minute updates: check the date before you fill up.</p>
+    <h2>Sources</h2>
+    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.en}</a></li>)}</ul>
+    <p>Spotted an error? Write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+  </div>
+  )}
+</PageLayout>

@@ -1,0 +1,125 @@
+{
+  "_lisezmoi": "Règles fixes du site (RECETTE §4). Les prix maximaux et les moyennes hebdomadaires ne sont pas ici : ils viennent de scripts/build-data.py (ceny.json, wob.json). Chaque valeur ci-dessous a été lue sur le texte officiel le jour indiqué par retrieved_at (PDF du Dziennik Ustaw et du Monitor Polski par l'API ELI de la Chancellerie du Sejm).",
+  "year": 2026,
+  "retrieved_at": "2026-11-13",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "vat": {
+    "obnizony": 0.08,
+    "podstawowy": 0.23,
+    "_zrodlo": "Rozporządzenie MFiG z 2 października 2026 r. (Dz.U. 2026 poz. 1288), § 11c : 8 % od 3 października do 31 grudnia 2026 r. ; poza tym okresem stawka podstawowa 23 % ustawy o VAT"
+  },
+  "akcyza": {
+    "_jednostka": "zł za 1000 litrów",
+    "pb_obnizona": 1239,
+    "on_obnizona": 880,
+    "obnizona_od": "2026-10-03",
+    "obnizona_do": "2026-12-31",
+    "pb_ustawowa": 1529,
+    "on_ustawowa": 1160,
+    "_zrodlo": "Rozporządzenie MFiG z 2 października 2026 r. (Dz.U. 2026 poz. 1289), § 1 ; art. 89 ust. 1 pkt 2 i 6 ustawy o podatku akcyzowym (Dz.U. 2026 poz. 412)"
+  },
+  "oplata_paliwowa": {
+    "_jednostka": "zł za 1000 litrów",
+    "pb_2026": 210.29,
+    "on_2026": 453.52,
+    "lpg_2026_za_1000kg": 256.75,
+    "pb_2027": 216.39,
+    "on_2027": 466.68,
+    "lpg_2027_za_1000kg": 264.2,
+    "_zrodlo": "Obwieszczenia Ministra Infrastruktury : M.P. 2025 poz. 1238 (rok 2026) i M.P. 2026 poz. 1132 (rok 2027)"
+  },
+  "cena_maksymalna": {
+    "koszty_operacyjne": 0.3,
+    "kara_max": 1000000,
+    "_zrodlo": "Art. 34a ust. 2 pkt 2 (0,30 zł/l) i art. 63 ust. 18 (kara do 1 000 000 zł) ustawy o zapasach, w brzmieniu ustawy z 27 marca 2026 r. (Dz.U. 2026 poz. 415)"
+  },
+  "przyklady": {
+    "_nota": "Valeurs par défaut des calculateurs : des exemples que le visiteur change, jamais présentés comme des moyennes nationales.",
+    "bak_l": 50,
+    "km_rok": 15000,
+    "spalanie_pb": 6.5,
+    "spalanie_on": 5.5,
+    "spalanie_lpg": 8.5,
+    "trasa_km": 300
+  },
+  "sources": {
+    "mpObw": {
+      "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1121/text.pdf",
+      "label": {
+        "pl": "Monitor Polski 2026 poz. 1121: obwieszczenie Ministra Energii z 10 listopada 2026 r. w sprawie maksymalnej ceny paliw ciekłych",
+        "en": "Monitor Polski 2026 item 1121: Minister of Energy notice of 10 November 2026 on the maximum price of liquid fuels"
+      }
+    },
+    "eliMp": {
+      "url": "https://api.sejm.gov.pl/eli/acts/MP/2026",
+      "label": {
+        "pl": "Kancelaria Sejmu, API ELI: wykaz pozycji Monitora Polskiego 2026",
+        "en": "Chancellery of the Sejm, ELI API: list of Monitor Polski 2026 items"
+      }
+    },
+    "ustawa415": {
+      "url": "https://api.sejm.gov.pl/eli/acts/DU/2026/415/text.pdf",
+      "label": {
+        "pl": "Ustawa z 27 marca 2026 r. (Dz.U. 2026 poz. 415): art. 34a ustawy o zapasach, cena maksymalna paliw",
+        "en": "Act of 27 March 2026 (Journal of Laws 2026 item 415): Article 34a of the Stocks Act, maximum fuel price"
+      }
+    },
+    "vat1288": {
+      "url": "https://api.sejm.gov.pl/eli/acts/DU/2026/1288/text.pdf",
+      "label": {
+        "pl": "Rozporządzenie MFiG z 2 października 2026 r. (Dz.U. 2026 poz. 1288): VAT 8 % na paliwa do 31 grudnia 2026 r.",
+        "en": "Finance Minister regulation of 2 October 2026 (Journal of Laws 2026 item 1288): 8% VAT on fuel until 31 December 2026"
+      }
+    },
+    "akcyza1289": {
+      "url": "https://api.sejm.gov.pl/eli/acts/DU/2026/1289/text.pdf",
+      "label": {
+        "pl": "Rozporządzenie MFiG z 2 października 2026 r. (Dz.U. 2026 poz. 1289): obniżona akcyza na benzynę i olej napędowy",
+        "en": "Finance Minister regulation of 2 October 2026 (Journal of Laws 2026 item 1289): reduced excise on petrol and diesel"
+      }
+    },
+    "akcyzaUstawa": {
+      "url": "https://api.sejm.gov.pl/eli/acts/DU/2026/412/text.pdf",
+      "label": {
+        "pl": "Ustawa o podatku akcyzowym, tekst jednolity (Dz.U. 2026 poz. 412), art. 89 ust. 1: stawki na paliwa",
+        "en": "Excise Duty Act, consolidated text (Journal of Laws 2026 item 412), Article 89(1): fuel rates"
+      }
+    },
+    "oplata2026": {
+      "url": "https://api.sejm.gov.pl/eli/acts/MP/2025/1238/text.pdf",
+      "label": {
+        "pl": "Obwieszczenie Ministra Infrastruktury (M.P. 2025 poz. 1238): opłata paliwowa na rok 2026",
+        "en": "Minister of Infrastructure notice (Monitor Polski 2025 item 1238): fuel levy for 2026"
+      }
+    },
+    "oplata2027": {
+      "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1132/text.pdf",
+      "label": {
+        "pl": "Obwieszczenie Ministra Infrastruktury (M.P. 2026 poz. 1132): opłata paliwowa na rok 2027",
+        "en": "Minister of Infrastructure notice (Monitor Polski 2026 item 1132): fuel levy for 2027"
+      }
+    },
+    "govplEnergia": {
+      "url": "https://www.gov.pl/web/energia/wiadomosci",
+      "label": {
+        "pl": "Ministerstwo Energii, gov.pl: komunikaty o maksymalnej cenie detalicznej paliw",
+        "en": "Ministry of Energy, gov.pl: announcements of the maximum retail fuel price"
+      }
+    },
+    "wob": {
+      "url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
+      "label": {
+        "pl": "Komisja Europejska, Weekly Oil Bulletin: tygodniowe ceny paliw w państwach UE (CC BY 4.0)",
+        "en": "European Commission, Weekly Oil Bulletin: weekly fuel prices in EU countries (CC BY 4.0)"
+      }
+    },
+    "ecLicencja": {
+      "url": "https://commission.europa.eu/legal-notice_en",
+      "label": {
+        "pl": "Komisja Europejska, nota prawna: ponowne wykorzystanie treści (decyzja 2011/833/UE, CC BY 4.0)",
+        "en": "European Commission, legal notice: reuse of content (Decision 2011/833/EU, CC BY 4.0)"
+      }
+    }
+  }
+}

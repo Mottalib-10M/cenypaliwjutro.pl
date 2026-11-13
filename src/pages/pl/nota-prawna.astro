@@ -1,0 +1,29 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { LEGAL, AUTHOR_NAME, CLARITY_ID, CONTACT_EMAIL, GA4_ID, LAST_UPDATED, SITE_NAMES, SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { displayDate } from '../../lib/format';
+const lang = 'pl';
+---
+<PageLayout title={`Nota prawna – ${SITE_NAMES[lang]}`} description="Nota prawna serwisu Ceny Paliw Jutro: wydawca, hosting, odpowiedzialność, prawa autorskie, skąd pochodzą dane z Monitora Polskiego i Komisji Europejskiej, prawo właściwe." lang={lang} noindex={true} breadcrumbs={[{ label: 'Nota prawna' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Nota prawna</h1>
+    <h2>Wydawca</h2>
+    <LegalIdentity lang="en" />
+    <p>Odpowiedzialny za treść {SITE_URL}: {AUTHOR_NAME}. Kontakt: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Hosting</h2>
+    <p>Strony Ceny Paliw Jutro udostępnia {LEGAL.hosting.name}, {LEGAL.hosting.address} (<a href={LEGAL.hosting.url} rel="nofollow noopener" target="_blank">{LEGAL.hosting.url}</a>); serwer przekazuje gotowe pliki i nie widzi liczb wpisanych w kalkulatory.</p>
+    <h2>Czym jest serwis</h2>
+    <p>Ceny Paliw Jutro pokazuje maksymalne ceny detaliczne paliw ogłaszane przez Ministra Energii w Monitorze Polskim, dni ich obowiązywania, widełki następnego ogłoszenia, koszty jazdy i porównania z Unią. Wyniki mają <strong>charakter informacyjny i szacunkowy</strong>: wiążące są obwieszczenie i cena na dystrybutorze. Serwis jest niezależny i nie ma związku z Ministerstwem Energii, Krajową Administracją Skarbową (KAS), Komisją Europejską ani żadną stacją czy koncernem. Metoda i ograniczenia: <a href={route('method', lang)}>metodologia i źródła</a>.</p>
+    <h2>Skąd pochodzą dane</h2>
+    <p>Ceny maksymalne: obwieszczenia Ministra Energii w Monitorze Polskim, odczytywane przez API ELI Kancelarii Sejmu, oraz komunikaty Ministerstwa Energii na gov.pl; dokumenty urzędowe nie są przedmiotem prawa autorskiego (art. 4 ustawy o prawie autorskim i prawach pokrewnych). Średnie tygodniowe i ceny w UE: Weekly Oil Bulletin Komisji Europejskiej, licencja CC BY 4.0, © Unia Europejska.</p>
+    <h2>Odpowiedzialność</h2>
+    <p>Dane są ponownie odczytywane, a obliczenia testowane automatycznie, ale nie możemy zagwarantować braku błędów ani tego, że od ostatniej aktualizacji nie ukazało się nowsze obwieszczenie. Wydawca nie odpowiada za decyzje podjęte wyłącznie na podstawie szacunku. Błędy można zgłosić na <a href={route('contact', lang)}>stronie kontaktowej</a>.</p>
+    <h2>Prawa autorskie</h2>
+    <p>Teksty, wykresy i kod serwisu należą do wydawcy; dane urzędowe do ich instytucji. Kalkulator można bezpłatnie osadzić z widocznym linkiem: zobacz <a href={route('widget', lang)}>widget</a>.</p>
+    <h2>Dane osobowe i cookies</h2>
+    {GA4_ID ? (<p>To, co wpisujesz w kalkulatory, nie opuszcza przeglądarki. Serwis zapisuje pliki cookie pomiaru oglądalności Google Analytics (<code>_ga</code>, <code>_ga_{GA4_ID.replace('G-', '')}</code>, najwyżej 13 miesięcy), bez reklam{CLARITY_ID && '; stabilność stron mierzymy Microsoft Clarity bez plików cookie'}. Szczegóły: <a href={route('privacy', lang)}>polityka prywatności</a> i <a href={route('cookies', lang)}>cookies</a>.</p>) : (<p>To, co wpisujesz w kalkulatory, nie opuszcza przeglądarki, a serwis nie zapisuje plików cookie{CLARITY_ID && '; stabilność stron mierzymy anonimowo Microsoft Clarity bez plików cookie'}. Zobacz <a href={route('privacy', lang)}>politykę prywatności</a> i stronę <a href={route('cookies', lang)}>cookies</a>.</p>)}
+    <h2>Prawo właściwe</h2><p>Prawo francuskie, właściwe dla siedziby wydawcy, bez uszczerbku dla ochrony, jaką prawo polskie przyznaje konsumentom mieszkającym w Polsce. Aktualizacja: <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'pl-PL')}</time>.</p>
+  </div>
+</PageLayout>

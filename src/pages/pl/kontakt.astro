@@ -1,0 +1,17 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { CONTACT_EMAIL, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'pl';
+---
+<PageLayout title={`Kontakt – ${SITE_NAMES[lang]}`} description="Kontakt z Ceny Paliw Jutro: zgłoś cenę maksymalną, datę lub wynik obliczenia, który wygląda na błędny. Odpowiadamy e-mailem, a każda poprawka ma datę. Bez telefonu." lang={lang} noindex={true} breadcrumbs={[{ label: 'Kontakt' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Kontakt</h1>
+    <p>Napisz na <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Czytamy wszystko, co dotyczy cen i obliczeń. Nie mamy telefonu i do nikogo nie dzwonimy.</p>
+    <h2>Zgłoś błąd</h2>
+    <p>Cena maksymalna różni się od obwieszczenia, data wygląda źle albo kalkulator daje dziwny wynik? Podaj stronę, paliwo i dzień. Ceny maksymalne przepisujemy z Monitora Polskiego: jeśli ministerstwo poprawi obwieszczenie, uwzględnimy poprawkę.</p>
+    <h2>Czego nie możemy zrobić</h2>
+    <p>Nie sprzedajemy paliwa i nie przyjmujemy skarg na stacje. Stację, która sprzedaje drożej niż cena maksymalna, zgłoś do Krajowej Administracji Skarbowej (KAS), która prowadzi kontrole; zachowaj paragon.</p>
+    <h2>Osadź kalkulator</h2><p>Kod znajdziesz na <a href={route('widget', lang)}>stronie widgetu</a>. Wydawca i hosting: <a href={route('terms', lang)}>nota prawna</a>.</p>
+  </div>
+</PageLayout>

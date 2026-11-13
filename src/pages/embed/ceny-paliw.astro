@@ -1,0 +1,23 @@
+---
+/** Page pour iframe : le calculateur sans navigation. noindex, hors sitemap (astro.config). */
+import '../../styles/global.css';
+import DzisCalc from '../../components/calc/DzisCalc';
+import { SITE_URL } from '../../data/site-config';
+import { toolProps } from '../../lib/tool-props';
+const p: any = toolProps('dzis');
+---
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cena maksymalna paliw dziś – Ceny Paliw Jutro</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`${SITE_URL}/pl/`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-white p-2 text-navy-900">
+    <DzisCalc client:load lang="pl" {...p} />
+    <p class="mt-2 text-center text-xs text-navy-600"><a href={`${SITE_URL}/pl/`} target="_blank" rel="noopener" class="underline">Ceny Paliw Jutro · Cena maksymalna paliw dziś</a></p>
+    <p class="mt-1 text-center text-xs text-navy-600">Średnia LPG: Komisja Europejska, Weekly Oil Bulletin, licencja <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" class="underline">CC BY 4.0</a>, przeliczona na złote (obliczenia Radif Partners).</p>
+  </body>
+</html>

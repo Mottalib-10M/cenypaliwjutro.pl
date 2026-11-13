@@ -1,0 +1,50 @@
+---
+/** O nas (page de confiance, RECETTE §8.2) : qui publie, pourquoi ce site, comment il se finance. */
+import PageLayout from '../layouts/PageLayout.astro';
+import LegalIdentity from './LegalIdentity.astro';
+import { route, type Locale } from '../i18n/routes';
+import { P } from '../lib/params';
+import { LISTA, WOB } from '../lib/dane';
+import { formatNumber, displayDate } from '../lib/format';
+import { breadcrumbSchema, profilePageSchema } from '../lib/seo';
+import { CONTACT_EMAIL } from '../data/site-config';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const pl = lang === 'pl';
+const title = pl ? 'Ceny Paliw Jutro: kto publikuje ceny maksymalne i po co' : 'Ceny Paliw Jutro: who publishes these fuel price tools';
+const description = pl ? 'Radif Partners publikuje Ceny Paliw Jutro na podstawie obwieszczeń w Monitorze Polskim i danych Komisji Europejskiej, bez sprzedaży paliwa, bez zbierania danych' : 'Radif Partners publishes Ceny Paliw Jutro from Monitor Polski notices and European Commission data, selling no fuel, with no station deals, no data collection.';
+const h1 = pl ? 'O nas' : 'About Ceny Paliw Jutro';
+const path = route('about', lang);
+const n = formatNumber(LISTA.length, 0, lang), t = formatNumber(WOB.pl.length, 0, lang);
+const dr = displayDate(P.retrieved_at, lang);
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={[profilePageSchema({ path, lang }), breadcrumbSchema([{ name: pl ? 'Start' : 'Home', path: route('home', lang) }, { name: h1, path }])]} breadcrumbs={[{ label: h1 }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">{h1}</h1></header>
+  {pl ? (
+  <div class="prose prose-slate max-w-none">
+    <p>Ceny Paliw Jutro publikuje Radif Partners, niezależny wydawca kalkulatorów i praktycznych poradników. Serwis odpowiada na pytania, które kierowcy w Polsce zadają od wprowadzenia cen maksymalnych: ile najwięcej może dziś kosztować litr, co będzie jutro, ile zapłacę za bak i co się stanie, gdy pakiet CPN się skończy. Obwieszczenia ministra są publiczne, ale rozproszone w setkach plików PDF Monitora Polskiego; tutaj każda cena ma datę, numer pozycji i kalkulator obok.</p>
+    <h2>Co robimy inaczej</h2>
+    <p>Odczytaliśmy {n} ogłoszeń cen maksymalnych od pierwszego obwieszczenia i dla każdego ustaliliśmy dni obowiązywania zgodnie z ustawą. Liczymy widełki następnego ogłoszenia z rzeczywistych zmian, a prognozę pokazujemy tylko tam, gdzie w teście wstecznym była lepsza od założenia „bez zmian”, i podajemy jej błąd. Dodajemy {t} tygodni średnich cen z biuletynu Komisji Europejskiej, ceny w 27 krajach Unii, skład ceny i scenariusz na 2027 r. Wszystko po polsku i po angielsku.</p>
+    <h2>Finansowanie i niezależność</h2>
+    <p>Serwis nie sprzedaje paliwa, nie ma kart rabatowych, nie pobiera prowizji od stacji ani koncernów i nie zbiera danych kontaktowych. Może wyświetlać reklamy, najwyżej trzy na stronie, nigdy nad kalkulatorem i nigdy od firmy z branży, która mogłaby wpływać na liczby. Żadna stacja nie może zapłacić za lepsze miejsce.</p>
+    <h2>Jak pracujemy</h2>
+    <p>Skrypt pobiera wykaz Monitora Polskiego, pliki obwieszczeń i biuletyn Komisji Europejskiej, a następnie przebudowuje serwis. Teksty nie zawierają liczb wpisanych ręcznie: liczy je ten sam kod, który napędza kalkulatory. Stałe reguły, takie jak stawki VAT i akcyzy, są w jednym pliku z datą ostatniego odczytu ({dr}). Szczegóły: <a href={route('method', lang)}>metodologia i źródła</a> oraz <a href={route('editorial', lang)}>polityka redakcyjna</a>.</p>
+    <h2>Kto odpowiada</h2>
+    <LegalIdentity lang={lang} />
+    <p>Zgłoś błąd: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+  </div>
+  ) : (
+  <div class="prose prose-slate max-w-none">
+    <p>Ceny Paliw Jutro is published by Radif Partners, an independent publisher of calculators and practical guides. The site answers the questions drivers in Poland have asked since maximum fuel prices were introduced: what is the most a litre can cost today, what happens tomorrow, what does a full tank cost, and what changes when the CPN package ends. The minister’s notices are public but scattered across hundreds of PDF files in Monitor Polski, the official gazette; here each price has a date, an item number and a calculator beside it, in Polish and in English for residents and visitors.</p>
+    <h2>What we do differently</h2>
+    <p>We have read {n} maximum price notices since the first one and worked out the days each applied under the law. We compute the range for the next notice from real changes, show a forecast only where it beat “no change” in a back-test, and publish its error. We add {t} weeks of average prices from the European Commission bulletin, prices in 27 EU countries, the price breakdown and a 2027 scenario.</p>
+    <h2>Funding and independence</h2>
+    <p>The site sells no fuel, offers no discount cards, takes no commission from stations or oil companies and collects no contact details. It may show advertising, at most three slots a page, never above the calculator and never from a company in the sector that could influence the figures. No station can pay for a better placing.</p>
+    <h2>How we work</h2>
+    <p>A script fetches the Monitor Polski list, the notice files and the European Commission bulletin, then rebuilds the site. The texts carry no hand-typed figures: they are worked out by the same code as the calculators. Fixed rules such as VAT and excise rates sit in one file with the date they were last read ({dr}). Details in <a href={route('method', lang)}>method and sources</a> and the <a href={route('editorial', lang)}>editorial policy</a>.</p>
+    <h2>Who is responsible</h2>
+    <LegalIdentity lang={lang} />
+    <p>To report an error: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+  </div>
+  )}
+</PageLayout>

@@ -1,0 +1,9 @@
+---
+/** Pages de contenu (pl) : un fichier de `src/content/strony/` = une page. */
+import ContentPage from '../../components/ContentPage.astro';
+import { PAGES } from '../../lib/strony';
+import type { PageDef } from '../../lib/strona-typy';
+export function getStaticPaths() { return PAGES.map((page) => ({ params: { slug: page.pl.slug }, props: { page } })); }
+const { page } = Astro.props as { page: PageDef };
+---
+<ContentPage page={page} lang="pl" />

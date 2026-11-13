@@ -1,0 +1,47 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { CLARITY_ID, CONTACT_EMAIL, GA4_ID, LAST_UPDATED, LEGAL, SITE_NAMES, SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'pl';
+const title = `Polityka prywatności – ${SITE_NAMES[lang]}`;
+const description = GA4_ID ? 'Pomiar oglądalności Google Analytics z plikami cookie, bez reklam; to, co wpisujesz, zostaje w przeglądarce; logi serwera; Twoje prawa według RODO i organ nadzorczy.' : 'To, co wpisujesz, zostaje w przeglądarce, bez plików cookie, tylko logi serwera: jak serwis traktuje dane, Twoje prawa według RODO i organ nadzorczy w Polsce i UE.';
+---
+<PageLayout title={title} description={description} lang={lang} noindex={true} breadcrumbs={[{ label: 'Polityka prywatności' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Polityka prywatności</h1>
+    <p>Ta strona opisuje przetwarzanie danych osobowych związane z korzystaniem z {SITE_URL}, zgodnie z art. 12–14 rozporządzenia (UE) 2016/679 (RODO).</p>
+    <h2>1. Administrator</h2>
+    <LegalIdentity lang="en" />
+    <p>W sprawach danych: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Nie wyznaczono inspektora ochrony danych, ponieważ nie są spełnione warunki z art. 37 RODO.</p>
+    <h2>2. To, co wpisujesz, zostaje w przeglądarce</h2>
+    <p>Obliczenia odbywają się w Twojej przeglądarce. Litry, kilometry, ceny i daty, które wpisujesz, <strong>nie są wysyłane na żaden serwer</strong>, nie są zapisywane i nie są łączone z żadnym identyfikatorem. Serwis nie prosi o konto, imię ani adres e-mail. Link do udostępnienia zawiera Twoje liczby w adresie strony: przekazuj go tylko wybranym osobom.</p>
+    <h2>3. Przetwarzanie</h2>
+    <h3>Logi serwera</h3>
+    <p>Dostawca hostingu zapisuje przy każdym żądaniu adres IP, datę i godzinę, adres strony, przeglądarkę i stronę odsyłającą. Cel: bezpieczeństwo i diagnoza błędów. Podstawa prawna: prawnie uzasadniony interes wydawcy (art. 6 ust. 1 lit. f RODO). Okres przechowywania: według zasad dostawcy.</p>
+    {GA4_ID ? (<>
+    <h3>Pomiar oglądalności Google Analytics</h3>
+    <p>Serwis używa Google Analytics 4, aby liczyć wizyty i wiedzieć, które strony są przydatne: odsłony, strona odsyłająca, czas wizyty, typ urządzenia i przeglądarki, przybliżony kraj i miasto. Google Analytics zapisuje dwa pliki cookie: <code>_ga</code>, który odróżnia odwiedzających losowym identyfikatorem, i <code>_ga_{GA4_ID.replace('G-', '')}</code>, który przechowuje stan wizyty. Ich ważność jest ograniczona do 13 miesięcy (390 dni).</p>
+    <p>Google Analytics 4 nie zapisuje adresów IP. Adres strony jest wysyłany bez parametrów, więc liczby z linku do udostępnienia nie trafiają do Google. Pamięć reklamowa, personalizacja reklam i sygnały Google są wyłączone. Cel: pomiar oglądalności. Podstawa: prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO). Dostawca: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irlandia. Przechowywanie u Google: 14 miesięcy.</p>
+    </>) : (<>
+    <h3>Brak pomiaru oglądalności</h3>
+    <p>Serwis nie zapisuje plików cookie i nie używa narzędzi analitycznych ani reklamowych.</p>
+    </>)}
+    {CLARITY_ID && (<>
+    <h3>Pomiar stabilności Microsoft Clarity, bez plików cookie</h3>
+    <p>Aby wykrywać błędy, wolne strony i niedziałające przyciski, serwis używa Microsoft Clarity w trybie bez plików cookie: osobny identyfikator dla każdej odsłony, tekst strony zamaskowany. Podstawa: prawnie uzasadniony interes. Dostawca: Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Irlandia. Przechowywanie: 30 dni dla nagrań, najwyżej 13 miesięcy dla danych zbiorczych.</p>
+    </>)}
+    <h3>Wiadomości do nas</h3>
+    <p>Jeśli napiszesz na adres kontaktowy, Twój adres e-mail i wiadomość przechowujemy tak długo, jak to potrzebne do odpowiedzi i ewentualnej poprawki, najdłużej trzy lata od ostatniej wymiany. Podstawa: prawnie uzasadniony interes.</p>
+    <h2>4. Odbiorcy</h2>
+    <p>Danych nie sprzedajemy, nie wynajmujemy i nie przekazujemy. Dostęp ma tylko dostawca hostingu{GA4_ID && ', Google Ireland Limited (Google Analytics)'}{CLARITY_ID && ', Microsoft Ireland Operations Limited (Clarity)'}, jako podmioty przetwarzające w rozumieniu art. 28 RODO.</p>
+    <h2>5. Przekazywanie poza Unię Europejską</h2>
+    <p>Logi serwera mogą być przetwarzane w Stanach Zjednoczonych.{GA4_ID && ' Dane Google Analytics mogą trafiać do Google LLC w USA.'}{CLARITY_ID && ' Dane Clarity mogą trafiać do Microsoft Corporation w USA.'} Podstawą są EU–U.S. Data Privacy Framework i standardowe klauzule umowne Komisji Europejskiej.</p>
+    <h2>6. Twoje prawa</h2>
+    <p>Masz prawo dostępu, sprostowania, usunięcia, ograniczenia, sprzeciwu i przenoszenia danych (art. 15–22 RODO). Napisz na <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>; odpowiadamy w ciągu miesiąca. Ponieważ nie ma kont, najpewniej nie mamy danych, które Cię identyfikują, i to Ci potwierdzimy.</p>
+    <p>Możesz złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO, <a href="https://uodo.gov.pl" rel="nofollow noopener" target="_blank">uodo.gov.pl</a>) albo do organu nadzorczego wydawcy: {LEGAL.supervisoryAuthority} (<a href={LEGAL.supervisoryAuthorityUrl} rel="nofollow noopener" target="_blank">{LEGAL.supervisoryAuthorityUrl}</a>).</p>
+    <h2>7. Brak zautomatyzowanych decyzji</h2>
+    <p>Kalkulatory cen paliw tylko porównują Twoje liczby z ogłoszonymi cenami maksymalnymi. Ich wynik nie rodzi skutków prawnych wobec Ciebie, więc nie jest decyzją opartą wyłącznie na zautomatyzowanym przetwarzaniu (art. 22 RODO). Nie budujemy profili kierowców.</p>
+    <p>Zobacz też stronę <a href={route('cookies', lang)}>cookies</a>. Aktualizacja: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

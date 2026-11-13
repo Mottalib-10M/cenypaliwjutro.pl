@@ -1,0 +1,2088 @@
+{
+"odczyt": "2026-11-13",
+"okresy": [
+{
+"od": "2026-03-31",
+"do": "2026-06-30",
+"akty": [
+"Dz.U. 2026 poz. 417",
+"poz. 573",
+"poz. 642",
+"poz. 699",
+"poz. 771"
+]
+},
+{
+"od": "2026-08-17",
+"do": "2026-08-31",
+"akty": [
+"Dz.U. 2026 poz. 1095"
+]
+},
+{
+"od": "2026-10-03",
+"do": "2026-12-31",
+"akty": [
+"Dz.U. 2026 poz. 1288"
+]
+}
+],
+"ceny": [
+{
+"src": "mp",
+"poz": 342,
+"ogl": "2026-03-30",
+"net": {
+"pb95": 5.42,
+"pb98": 5.98,
+"on": 6.76
+},
+"brutto": {
+"pb95": 6.16,
+"pb98": 6.76,
+"on": 7.6
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/342/text.pdf",
+"od": "2026-03-31",
+"do": "2026-03-31",
+"okres": 0,
+"ogl_dzien": "2026-03-30"
+},
+{
+"src": "mp",
+"poz": 344,
+"ogl": "2026-03-31",
+"net": {
+"pb95": 5.75,
+"pb98": 6.31,
+"on": 7.1
+},
+"brutto": {
+"pb95": 6.21,
+"pb98": 6.81,
+"on": 7.66
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/344/text.pdf",
+"od": "2026-04-01",
+"do": "2026-04-01",
+"okres": 0,
+"ogl_dzien": "2026-03-31"
+},
+{
+"src": "mp",
+"poz": 348,
+"ogl": "2026-04-01",
+"net": {
+"pb95": 5.77,
+"pb98": 6.33,
+"on": 7.08
+},
+"brutto": {
+"pb95": 6.23,
+"pb98": 6.84,
+"on": 7.65
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/348/text.pdf",
+"od": "2026-04-02",
+"do": "2026-04-02",
+"okres": 0,
+"ogl_dzien": "2026-04-01"
+},
+{
+"src": "mp",
+"poz": 352,
+"ogl": "2026-04-02",
+"net": {
+"pb95": 5.73,
+"pb98": 6.3,
+"on": 7.07
+},
+"brutto": {
+"pb95": 6.19,
+"pb98": 6.8,
+"on": 7.64
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/352/text.pdf",
+"od": "2026-04-03",
+"do": "2026-04-03",
+"okres": 0,
+"ogl_dzien": "2026-04-02"
+},
+{
+"src": "mp",
+"poz": 355,
+"ogl": "2026-04-03",
+"net": {
+"pb95": 5.75,
+"pb98": 6.32,
+"on": 7.29
+},
+"brutto": {
+"pb95": 6.21,
+"pb98": 6.82,
+"on": 7.87
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/355/text.pdf",
+"od": "2026-04-04",
+"do": "2026-04-07",
+"okres": 0,
+"ogl_dzien": "2026-04-03"
+},
+{
+"src": "mp",
+"poz": 357,
+"ogl": "2026-04-07",
+"net": {
+"pb95": 5.75,
+"pb98": 6.32,
+"on": 7.29
+},
+"brutto": {
+"pb95": 6.21,
+"pb98": 6.82,
+"on": 7.87
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/357/text.pdf",
+"od": "2026-04-08",
+"do": "2026-04-08",
+"okres": 0,
+"ogl_dzien": "2026-04-07"
+},
+{
+"src": "mp",
+"poz": 360,
+"ogl": "2026-04-08",
+"net": {
+"pb95": 5.81,
+"pb98": 6.37,
+"on": 7.25
+},
+"brutto": {
+"pb95": 6.27,
+"pb98": 6.88,
+"on": 7.83
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/360/text.pdf",
+"od": "2026-04-09",
+"do": "2026-04-09",
+"okres": 0,
+"ogl_dzien": "2026-04-08"
+},
+{
+"src": "mp",
+"poz": 363,
+"ogl": "2026-04-09",
+"net": {
+"pb95": 5.71,
+"pb98": 6.27,
+"on": 7.1
+},
+"brutto": {
+"pb95": 6.17,
+"pb98": 6.77,
+"on": 7.66
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/363/text.pdf",
+"od": "2026-04-10",
+"do": "2026-04-10",
+"okres": 0,
+"ogl_dzien": "2026-04-09"
+},
+{
+"src": "mp",
+"poz": 366,
+"ogl": "2026-04-10",
+"net": {
+"pb95": 5.69,
+"pb98": 6.23,
+"on": 7.11
+},
+"brutto": {
+"pb95": 6.14,
+"pb98": 6.73,
+"on": 7.68
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/366/text.pdf",
+"od": "2026-04-11",
+"do": "2026-04-13",
+"okres": 0,
+"ogl_dzien": "2026-04-10"
+},
+{
+"src": "mp",
+"poz": 372,
+"ogl": "2026-04-13",
+"net": {
+"pb95": 5.66,
+"pb98": 6.2,
+"on": 7.02
+},
+"brutto": {
+"pb95": 6.12,
+"pb98": 6.7,
+"on": 7.58
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/372/text.pdf",
+"od": "2026-04-14",
+"do": "2026-04-14",
+"okres": 0,
+"ogl_dzien": "2026-04-13"
+},
+{
+"src": "mp",
+"poz": 376,
+"ogl": "2026-04-14",
+"net": {
+"pb95": 5.71,
+"pb98": 6.2,
+"on": 6.86
+},
+"brutto": {
+"pb95": 6.16,
+"pb98": 6.7,
+"on": 7.41
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/376/text.pdf",
+"od": "2026-04-15",
+"do": "2026-04-15",
+"okres": 0,
+"ogl_dzien": "2026-04-14"
+},
+{
+"src": "mp",
+"poz": 381,
+"ogl": "2026-04-15",
+"net": {
+"pb95": 5.63,
+"pb98": 6.12,
+"on": 6.7
+},
+"brutto": {
+"pb95": 6.08,
+"pb98": 6.61,
+"on": 7.23
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/381/text.pdf",
+"od": "2026-04-16",
+"do": "2026-04-16",
+"okres": 0,
+"ogl_dzien": "2026-04-15"
+},
+{
+"src": "mp",
+"poz": 383,
+"ogl": "2026-04-16",
+"net": {
+"pb95": 5.59,
+"pb98": 6.1,
+"on": 6.65
+},
+"brutto": {
+"pb95": 6.04,
+"pb98": 6.59,
+"on": 7.18
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/383/text.pdf",
+"od": "2026-04-17",
+"do": "2026-04-17",
+"okres": 0,
+"ogl_dzien": "2026-04-16"
+},
+{
+"src": "mp",
+"poz": 395,
+"ogl": "2026-04-17",
+"net": {
+"pb95": 5.59,
+"pb98": 6.09,
+"on": 6.55
+},
+"brutto": {
+"pb95": 6.03,
+"pb98": 6.57,
+"on": 7.07
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/395/text.pdf",
+"od": "2026-04-18",
+"do": "2026-04-20",
+"okres": 0,
+"ogl_dzien": "2026-04-17"
+},
+{
+"src": "mp",
+"poz": 399,
+"ogl": "2026-04-20",
+"net": {
+"pb95": 5.55,
+"pb98": 6.05,
+"on": 6.4
+},
+"brutto": {
+"pb95": 6.0,
+"pb98": 6.54,
+"on": 6.92
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/399/text.pdf",
+"od": "2026-04-21",
+"do": "2026-04-21",
+"okres": 0,
+"ogl_dzien": "2026-04-20"
+},
+{
+"src": "mp",
+"poz": 400,
+"ogl": "2026-04-21",
+"net": {
+"pb95": 5.51,
+"pb98": 6.02,
+"on": 6.25
+},
+"brutto": {
+"pb95": 5.95,
+"pb98": 6.5,
+"on": 6.75
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/400/text.pdf",
+"od": "2026-04-22",
+"do": "2026-04-22",
+"okres": 0,
+"ogl_dzien": "2026-04-21"
+},
+{
+"src": "mp",
+"poz": 407,
+"ogl": "2026-04-22",
+"net": {
+"pb95": 5.53,
+"pb98": 6.08,
+"on": 6.21
+},
+"brutto": {
+"pb95": 5.97,
+"pb98": 6.56,
+"on": 6.71
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/407/text.pdf",
+"od": "2026-04-23",
+"do": "2026-04-23",
+"okres": 0,
+"ogl_dzien": "2026-04-22"
+},
+{
+"src": "mp",
+"poz": 409,
+"ogl": "2026-04-23",
+"net": {
+"pb95": 5.58,
+"pb98": 6.13,
+"on": 6.29
+},
+"brutto": {
+"pb95": 6.03,
+"pb98": 6.62,
+"on": 6.79
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/409/text.pdf",
+"od": "2026-04-24",
+"do": "2026-04-24",
+"okres": 0,
+"ogl_dzien": "2026-04-23"
+},
+{
+"src": "mp",
+"poz": 411,
+"ogl": "2026-04-24",
+"net": {
+"pb95": 5.72,
+"pb98": 6.22,
+"on": 6.49
+},
+"brutto": {
+"pb95": 6.17,
+"pb98": 6.71,
+"on": 7.01
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/411/text.pdf",
+"od": "2026-04-25",
+"do": "2026-04-27",
+"okres": 0,
+"ogl_dzien": "2026-04-24"
+},
+{
+"src": "mp",
+"poz": 414,
+"ogl": "2026-04-27",
+"net": {
+"pb95": 5.75,
+"pb98": 6.22,
+"on": 6.6
+},
+"brutto": {
+"pb95": 6.21,
+"pb98": 6.72,
+"on": 7.12
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/414/text.pdf",
+"od": "2026-04-28",
+"do": "2026-04-28",
+"okres": 0,
+"ogl_dzien": "2026-04-27"
+},
+{
+"src": "mp",
+"poz": 418,
+"ogl": "2026-04-28",
+"net": {
+"pb95": 5.77,
+"pb98": 6.23,
+"on": 6.68
+},
+"brutto": {
+"pb95": 6.23,
+"pb98": 6.73,
+"on": 7.22
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/418/text.pdf",
+"od": "2026-04-29",
+"do": "2026-04-29",
+"okres": 0,
+"ogl_dzien": "2026-04-28"
+},
+{
+"src": "mp",
+"poz": 422,
+"ogl": "2026-04-29",
+"net": {
+"pb95": 5.81,
+"pb98": 6.27,
+"on": 6.61
+},
+"brutto": {
+"pb95": 6.28,
+"pb98": 6.77,
+"on": 7.14
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/422/text.pdf",
+"od": "2026-04-30",
+"do": "2026-04-30",
+"okres": 0,
+"ogl_dzien": "2026-04-29"
+},
+{
+"src": "mp",
+"poz": 429,
+"ogl": "2026-04-30",
+"net": {
+"pb95": 5.98,
+"pb98": 6.44,
+"on": 6.77
+},
+"brutto": {
+"pb95": 6.46,
+"pb98": 6.96,
+"on": 7.31
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/429/text.pdf",
+"od": "2026-05-01",
+"do": "2026-05-04",
+"okres": 0,
+"ogl_dzien": "2026-04-30"
+},
+{
+"src": "mp",
+"poz": 434,
+"ogl": "2026-05-04",
+"net": {
+"pb95": 6.01,
+"pb98": 6.47,
+"on": 6.76
+},
+"brutto": {
+"pb95": 6.49,
+"pb98": 6.99,
+"on": 7.31
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/434/text.pdf",
+"od": "2026-05-05",
+"do": "2026-05-05",
+"okres": 0,
+"ogl_dzien": "2026-05-04"
+},
+{
+"src": "mp",
+"poz": 437,
+"ogl": "2026-05-05",
+"net": {
+"pb95": 6.01,
+"pb98": 6.47,
+"on": 6.76
+},
+"brutto": {
+"pb95": 6.49,
+"pb98": 6.99,
+"on": 7.31
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/437/text.pdf",
+"od": "2026-05-06",
+"do": "2026-05-06",
+"okres": 0,
+"ogl_dzien": "2026-05-05"
+},
+{
+"src": "mp",
+"poz": 438,
+"ogl": "2026-05-06",
+"net": {
+"pb95": 5.99,
+"pb98": 6.44,
+"on": 6.73
+},
+"brutto": {
+"pb95": 6.46,
+"pb98": 6.95,
+"on": 7.26
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/438/text.pdf",
+"od": "2026-05-07",
+"do": "2026-05-07",
+"okres": 0,
+"ogl_dzien": "2026-05-06"
+},
+{
+"src": "mp",
+"poz": 446,
+"ogl": "2026-05-07",
+"net": {
+"pb95": 5.94,
+"pb98": 6.39,
+"on": 6.64
+},
+"brutto": {
+"pb95": 6.41,
+"pb98": 6.9,
+"on": 7.17
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/446/text.pdf",
+"od": "2026-05-08",
+"do": "2026-05-08",
+"okres": 0,
+"ogl_dzien": "2026-05-07"
+},
+{
+"src": "mp",
+"poz": 448,
+"ogl": "2026-05-08",
+"net": {
+"pb95": 5.88,
+"pb98": 6.35,
+"on": 6.51
+},
+"brutto": {
+"pb95": 6.35,
+"pb98": 6.85,
+"on": 7.03
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/448/text.pdf",
+"od": "2026-05-09",
+"do": "2026-05-11",
+"okres": 0,
+"ogl_dzien": "2026-05-08"
+},
+{
+"src": "mp",
+"poz": 450,
+"ogl": "2026-05-11",
+"net": {
+"pb95": 5.83,
+"pb98": 6.31,
+"on": 6.41
+},
+"brutto": {
+"pb95": 6.3,
+"pb98": 6.81,
+"on": 6.93
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/450/text.pdf",
+"od": "2026-05-12",
+"do": "2026-05-12",
+"okres": 0,
+"ogl_dzien": "2026-05-11"
+},
+{
+"src": "mp",
+"poz": 458,
+"ogl": "2026-05-12",
+"net": {
+"pb95": 5.82,
+"pb98": 6.36,
+"on": 6.33
+},
+"brutto": {
+"pb95": 6.28,
+"pb98": 6.87,
+"on": 6.84
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/458/text.pdf",
+"od": "2026-05-13",
+"do": "2026-05-13",
+"okres": 0,
+"ogl_dzien": "2026-05-12"
+},
+{
+"src": "mp",
+"poz": 460,
+"ogl": "2026-05-13",
+"net": {
+"pb95": 5.91,
+"pb98": 6.46,
+"on": 6.41
+},
+"brutto": {
+"pb95": 6.39,
+"pb98": 6.98,
+"on": 6.92
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/460/text.pdf",
+"od": "2026-05-14",
+"do": "2026-05-14",
+"okres": 0,
+"ogl_dzien": "2026-05-13"
+},
+{
+"src": "mp",
+"poz": 466,
+"ogl": "2026-05-14",
+"net": {
+"pb95": 5.92,
+"pb98": 6.46,
+"on": 6.34
+},
+"brutto": {
+"pb95": 6.39,
+"pb98": 6.98,
+"on": 6.85
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/466/text.pdf",
+"od": "2026-05-15",
+"do": "2026-05-15",
+"okres": 0,
+"ogl_dzien": "2026-05-14"
+},
+{
+"src": "mp",
+"poz": 479,
+"ogl": "2026-05-15",
+"net": {
+"pb95": 5.9,
+"pb98": 6.41,
+"on": 6.31
+},
+"brutto": {
+"pb95": 6.37,
+"pb98": 6.93,
+"on": 6.82
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/479/text.pdf",
+"od": "2026-05-16",
+"do": "2026-05-18",
+"okres": 0,
+"ogl_dzien": "2026-05-15"
+},
+{
+"src": "mp",
+"poz": 494,
+"ogl": "2026-05-18",
+"net": {
+"pb95": 5.94,
+"pb98": 6.45,
+"on": 6.34
+},
+"brutto": {
+"pb95": 6.42,
+"pb98": 6.97,
+"on": 6.85
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/494/text.pdf",
+"od": "2026-05-19",
+"do": "2026-05-19",
+"okres": 0,
+"ogl_dzien": "2026-05-18"
+},
+{
+"src": "mp",
+"poz": 497,
+"ogl": "2026-05-19",
+"net": {
+"pb95": 6.04,
+"pb98": 6.55,
+"on": 6.48
+},
+"brutto": {
+"pb95": 6.52,
+"pb98": 7.07,
+"on": 7.0
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/497/text.pdf",
+"od": "2026-05-20",
+"do": "2026-05-20",
+"okres": 0,
+"ogl_dzien": "2026-05-19"
+},
+{
+"src": "mp",
+"poz": 502,
+"ogl": "2026-05-20",
+"net": {
+"pb95": 6.02,
+"pb98": 6.54,
+"on": 6.45
+},
+"brutto": {
+"pb95": 6.5,
+"pb98": 7.06,
+"on": 6.97
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/502/text.pdf",
+"od": "2026-05-21",
+"do": "2026-05-21",
+"okres": 0,
+"ogl_dzien": "2026-05-20"
+},
+{
+"src": "mp",
+"poz": 514,
+"ogl": "2026-05-21",
+"net": {
+"pb95": 6.0,
+"pb98": 6.53,
+"on": 6.4
+},
+"brutto": {
+"pb95": 6.48,
+"pb98": 7.06,
+"on": 6.91
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/514/text.pdf",
+"od": "2026-05-22",
+"do": "2026-05-22",
+"okres": 0,
+"ogl_dzien": "2026-05-21"
+},
+{
+"src": "mp",
+"poz": 516,
+"ogl": "2026-05-22",
+"net": {
+"pb95": 5.98,
+"pb98": 6.48,
+"on": 6.35
+},
+"brutto": {
+"pb95": 6.46,
+"pb98": 7.0,
+"on": 6.85
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/516/text.pdf",
+"od": "2026-05-23",
+"do": "2026-05-25",
+"okres": 0,
+"ogl_dzien": "2026-05-22"
+},
+{
+"src": "mp",
+"poz": 518,
+"ogl": "2026-05-25",
+"net": {
+"pb95": 5.94,
+"pb98": 6.44,
+"on": 6.25
+},
+"brutto": {
+"pb95": 6.42,
+"pb98": 6.96,
+"on": 6.75
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/518/text.pdf",
+"od": "2026-05-26",
+"do": "2026-05-26",
+"okres": 0,
+"ogl_dzien": "2026-05-25"
+},
+{
+"src": "mp",
+"poz": 525,
+"ogl": "2026-05-26",
+"net": {
+"pb95": 5.94,
+"pb98": 6.44,
+"on": 6.25
+},
+"brutto": {
+"pb95": 6.42,
+"pb98": 6.96,
+"on": 6.75
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/525/text.pdf",
+"od": "2026-05-27",
+"do": "2026-05-27",
+"okres": 0,
+"ogl_dzien": "2026-05-26"
+},
+{
+"src": "mp",
+"poz": 532,
+"ogl": "2026-05-27",
+"net": {
+"pb95": 5.85,
+"pb98": 6.36,
+"on": 6.09
+},
+"brutto": {
+"pb95": 6.31,
+"pb98": 6.86,
+"on": 6.57
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/532/text.pdf",
+"od": "2026-05-28",
+"do": "2026-05-28",
+"okres": 0,
+"ogl_dzien": "2026-05-27"
+},
+{
+"src": "mp",
+"poz": 536,
+"ogl": "2026-05-28",
+"net": {
+"pb95": 5.7,
+"pb98": 6.23,
+"on": 5.89
+},
+"brutto": {
+"pb95": 6.16,
+"pb98": 6.73,
+"on": 6.37
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/536/text.pdf",
+"od": "2026-05-29",
+"do": "2026-05-29",
+"okres": 0,
+"ogl_dzien": "2026-05-28"
+},
+{
+"src": "mp",
+"poz": 540,
+"ogl": "2026-05-29",
+"net": {
+"pb95": 5.6,
+"pb98": 6.14,
+"on": 5.87
+},
+"brutto": {
+"pb95": 6.05,
+"pb98": 6.63,
+"on": 6.34
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/540/text.pdf",
+"od": "2026-05-30",
+"do": "2026-06-01",
+"okres": 0,
+"ogl_dzien": "2026-05-29"
+},
+{
+"src": "mp",
+"poz": 545,
+"ogl": "2026-06-01",
+"net": {
+"pb95": 5.51,
+"pb98": 6.06,
+"on": 5.8
+},
+"brutto": {
+"pb95": 5.95,
+"pb98": 6.54,
+"on": 6.26
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/545/text.pdf",
+"od": "2026-06-02",
+"do": "2026-06-03",
+"okres": 0,
+"ogl_dzien": "2026-06-01"
+},
+{
+"src": "mp",
+"poz": 552,
+"ogl": "2026-06-03",
+"net": {
+"pb95": 5.51,
+"pb98": 6.06,
+"on": 5.93
+},
+"brutto": {
+"pb95": 5.95,
+"pb98": 6.54,
+"on": 6.4
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/552/text.pdf",
+"od": "2026-06-04",
+"do": "2026-06-04",
+"okres": 0,
+"ogl_dzien": "2026-06-03"
+},
+{
+"src": "mp",
+"poz": 557,
+"ogl": "2026-06-04",
+"net": {
+"pb95": 5.5,
+"pb98": 6.03,
+"on": 5.93
+},
+"brutto": {
+"pb95": 5.94,
+"pb98": 6.52,
+"on": 6.4
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/557/text.pdf",
+"od": "2026-06-05",
+"do": "2026-06-05",
+"okres": 0,
+"ogl_dzien": "2026-06-04"
+},
+{
+"src": "mp",
+"poz": 561,
+"ogl": "2026-06-05",
+"net": {
+"pb95": 5.56,
+"pb98": 6.14,
+"on": 6.0
+},
+"brutto": {
+"pb95": 6.0,
+"pb98": 6.63,
+"on": 6.48
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/561/text.pdf",
+"od": "2026-06-06",
+"do": "2026-06-08",
+"okres": 0,
+"ogl_dzien": "2026-06-05"
+},
+{
+"src": "mp",
+"poz": 566,
+"ogl": "2026-06-08",
+"net": {
+"pb95": 5.49,
+"pb98": 6.08,
+"on": 5.97
+},
+"brutto": {
+"pb95": 5.93,
+"pb98": 6.57,
+"on": 6.45
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/566/text.pdf",
+"od": "2026-06-09",
+"do": "2026-06-09",
+"okres": 0,
+"ogl_dzien": "2026-06-08"
+},
+{
+"src": "mp",
+"poz": 572,
+"ogl": "2026-06-09",
+"net": {
+"pb95": 5.52,
+"pb98": 6.12,
+"on": 5.98
+},
+"brutto": {
+"pb95": 5.96,
+"pb98": 6.61,
+"on": 6.46
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/572/text.pdf",
+"od": "2026-06-10",
+"do": "2026-06-10",
+"okres": 0,
+"ogl_dzien": "2026-06-09"
+},
+{
+"src": "mp",
+"poz": 575,
+"ogl": "2026-06-10",
+"net": {
+"pb95": 5.48,
+"pb98": 6.08,
+"on": 5.95
+},
+"brutto": {
+"pb95": 5.92,
+"pb98": 6.56,
+"on": 6.43
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/575/text.pdf",
+"od": "2026-06-11",
+"do": "2026-06-11",
+"okres": 0,
+"ogl_dzien": "2026-06-10"
+},
+{
+"src": "mp",
+"poz": 589,
+"ogl": "2026-06-11",
+"net": {
+"pb95": 5.54,
+"pb98": 6.06,
+"on": 5.9
+},
+"brutto": {
+"pb95": 5.98,
+"pb98": 6.55,
+"on": 6.37
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/589/text.pdf",
+"od": "2026-06-12",
+"do": "2026-06-11",
+"okres": 0,
+"ogl_dzien": "2026-06-11"
+},
+{
+"src": "mp",
+"poz": 601,
+"ogl": "2026-06-11",
+"net": {
+"pb95": 5.59,
+"pb98": 6.09,
+"on": 5.93
+},
+"brutto": {
+"pb95": 6.04,
+"pb98": 6.58,
+"on": 6.4
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/601/text.pdf",
+"od": "2026-06-12",
+"do": "2026-06-15",
+"okres": 0,
+"ogl_dzien": "2026-06-11"
+},
+{
+"src": "mp",
+"poz": 604,
+"ogl": "2026-06-15",
+"net": {
+"pb95": 5.53,
+"pb98": 6.04,
+"on": 5.9
+},
+"brutto": {
+"pb95": 5.97,
+"pb98": 6.52,
+"on": 6.37
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/604/text.pdf",
+"od": "2026-06-16",
+"do": "2026-06-16",
+"okres": 0,
+"ogl_dzien": "2026-06-15"
+},
+{
+"src": "mp",
+"poz": 614,
+"ogl": "2026-06-16",
+"net": {
+"pb95": 5.65,
+"pb98": 6.25,
+"on": 5.97
+},
+"brutto": {
+"pb95": 6.1,
+"pb98": 6.75,
+"on": 6.44
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/614/text.pdf",
+"od": "2026-06-17",
+"do": "2026-06-17",
+"okres": 0,
+"ogl_dzien": "2026-06-16"
+},
+{
+"src": "mp",
+"poz": 618,
+"ogl": "2026-06-17",
+"net": {
+"pb95": 5.61,
+"pb98": 6.22,
+"on": 5.89
+},
+"brutto": {
+"pb95": 6.06,
+"pb98": 6.72,
+"on": 6.36
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/618/text.pdf",
+"od": "2026-06-18",
+"do": "2026-06-18",
+"okres": 0,
+"ogl_dzien": "2026-06-17"
+},
+{
+"src": "mp",
+"poz": 619,
+"ogl": "2026-06-18",
+"net": {
+"pb95": 5.56,
+"pb98": 6.17,
+"on": 5.74
+},
+"brutto": {
+"pb95": 6.0,
+"pb98": 6.66,
+"on": 6.2
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/619/text.pdf",
+"od": "2026-06-19",
+"do": "2026-06-19",
+"okres": 0,
+"ogl_dzien": "2026-06-18"
+},
+{
+"src": "mp",
+"poz": 627,
+"ogl": "2026-06-19",
+"net": {
+"pb95": 5.5,
+"pb98": 6.12,
+"on": 5.66
+},
+"brutto": {
+"pb95": 5.94,
+"pb98": 6.61,
+"on": 6.12
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/627/text.pdf",
+"od": "2026-06-20",
+"do": "2026-06-22",
+"okres": 0,
+"ogl_dzien": "2026-06-19"
+},
+{
+"src": "mp",
+"poz": 629,
+"ogl": "2026-06-22",
+"net": {
+"pb95": 5.54,
+"pb98": 6.19,
+"on": 5.66
+},
+"brutto": {
+"pb95": 5.98,
+"pb98": 6.69,
+"on": 6.11
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/629/text.pdf",
+"od": "2026-06-23",
+"do": "2026-06-23",
+"okres": 0,
+"ogl_dzien": "2026-06-22"
+},
+{
+"src": "mp",
+"poz": 631,
+"ogl": "2026-06-23",
+"net": {
+"pb95": 5.53,
+"pb98": 6.18,
+"on": 5.66
+},
+"brutto": {
+"pb95": 5.97,
+"pb98": 6.68,
+"on": 6.11
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/631/text.pdf",
+"od": "2026-06-24",
+"do": "2026-06-24",
+"okres": 0,
+"ogl_dzien": "2026-06-23"
+},
+{
+"src": "mp",
+"poz": 633,
+"ogl": "2026-06-24",
+"net": {
+"pb95": 5.52,
+"pb98": 6.17,
+"on": 5.66
+},
+"brutto": {
+"pb95": 5.96,
+"pb98": 6.67,
+"on": 6.11
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/633/text.pdf",
+"od": "2026-06-25",
+"do": "2026-06-25",
+"okres": 0,
+"ogl_dzien": "2026-06-24"
+},
+{
+"src": "mp",
+"poz": 640,
+"ogl": "2026-06-25",
+"net": {
+"pb95": 5.51,
+"pb98": 6.16,
+"on": 5.67
+},
+"brutto": {
+"pb95": 5.95,
+"pb98": 6.65,
+"on": 6.12
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/640/text.pdf",
+"od": "2026-06-26",
+"do": "2026-06-26",
+"okres": 0,
+"ogl_dzien": "2026-06-25"
+},
+{
+"src": "mp",
+"poz": 641,
+"ogl": "2026-06-26",
+"net": {
+"pb95": 5.57,
+"pb98": 6.2,
+"on": 5.71
+},
+"brutto": {
+"pb95": 6.02,
+"pb98": 6.7,
+"on": 6.17
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/641/text.pdf",
+"od": "2026-06-27",
+"do": "2026-06-29",
+"okres": 0,
+"ogl_dzien": "2026-06-26"
+},
+{
+"src": "mp",
+"poz": 644,
+"ogl": "2026-06-29",
+"net": {
+"pb95": 5.56,
+"pb98": 6.18,
+"on": 5.73
+},
+"brutto": {
+"pb95": 6.0,
+"pb98": 6.68,
+"on": 6.19
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/644/text.pdf",
+"od": "2026-06-30",
+"do": "2026-06-30",
+"okres": 0,
+"ogl_dzien": "2026-06-29"
+},
+{
+"src": "mp",
+"poz": 798,
+"ogl": "2026-08-14",
+"net": {
+"pb95": 5.93,
+"pb98": 6.67,
+"on": 6.83
+},
+"brutto": {
+"pb95": 6.41,
+"pb98": 7.2,
+"on": 7.37
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/798/text.pdf",
+"od": "2026-08-17",
+"do": "2026-08-17",
+"okres": 1,
+"ogl_dzien": "2026-08-14"
+},
+{
+"src": "mp",
+"poz": 799,
+"ogl": "2026-08-17",
+"net": {
+"pb95": 5.93,
+"pb98": 6.67,
+"on": 6.83
+},
+"brutto": {
+"pb95": 6.41,
+"pb98": 7.2,
+"on": 7.37
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/799/text.pdf",
+"od": "2026-08-18",
+"do": "2026-08-18",
+"okres": 1,
+"ogl_dzien": "2026-08-17"
+},
+{
+"src": "mp",
+"poz": 809,
+"ogl": "2026-08-18",
+"net": {
+"pb95": 5.98,
+"pb98": 6.72,
+"on": 6.92
+},
+"brutto": {
+"pb95": 6.46,
+"pb98": 7.26,
+"on": 7.47
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/809/text.pdf",
+"od": "2026-08-19",
+"do": "2026-08-19",
+"okres": 1,
+"ogl_dzien": "2026-08-18"
+},
+{
+"src": "mp",
+"poz": 821,
+"ogl": "2026-08-19",
+"net": {
+"pb95": 6.01,
+"pb98": 6.76,
+"on": 6.96
+},
+"brutto": {
+"pb95": 6.49,
+"pb98": 7.3,
+"on": 7.52
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/821/text.pdf",
+"od": "2026-08-20",
+"do": "2026-08-20",
+"okres": 1,
+"ogl_dzien": "2026-08-19"
+},
+{
+"src": "mp",
+"poz": 837,
+"ogl": "2026-08-20",
+"net": {
+"pb95": 6.04,
+"pb98": 6.79,
+"on": 7.0
+},
+"brutto": {
+"pb95": 6.52,
+"pb98": 7.33,
+"on": 7.56
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/837/text.pdf",
+"od": "2026-08-21",
+"do": "2026-08-21",
+"okres": 1,
+"ogl_dzien": "2026-08-20"
+},
+{
+"src": "mp",
+"poz": 850,
+"ogl": "2026-08-21",
+"net": {
+"pb95": 6.05,
+"pb98": 6.81,
+"on": 7.03
+},
+"brutto": {
+"pb95": 6.54,
+"pb98": 7.36,
+"on": 7.59
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/850/text.pdf",
+"od": "2026-08-22",
+"do": "2026-08-24",
+"okres": 1,
+"ogl_dzien": "2026-08-21"
+},
+{
+"src": "mp",
+"poz": 855,
+"ogl": "2026-08-24",
+"net": {
+"pb95": 6.08,
+"pb98": 6.85,
+"on": 7.05
+},
+"brutto": {
+"pb95": 6.57,
+"pb98": 7.4,
+"on": 7.61
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/855/text.pdf",
+"od": "2026-08-25",
+"do": "2026-08-25",
+"okres": 1,
+"ogl_dzien": "2026-08-24"
+},
+{
+"src": "mp",
+"poz": 867,
+"ogl": "2026-08-25",
+"net": {
+"pb95": 6.1,
+"pb98": 6.85,
+"on": 6.99
+},
+"brutto": {
+"pb95": 6.58,
+"pb98": 7.4,
+"on": 7.54
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/867/text.pdf",
+"od": "2026-08-26",
+"do": "2026-08-26",
+"okres": 1,
+"ogl_dzien": "2026-08-25"
+},
+{
+"src": "mp",
+"poz": 873,
+"ogl": "2026-08-26",
+"net": {
+"pb95": 6.09,
+"pb98": 6.85,
+"on": 6.92
+},
+"brutto": {
+"pb95": 6.57,
+"pb98": 7.39,
+"on": 7.47
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/873/text.pdf",
+"od": "2026-08-27",
+"do": "2026-08-27",
+"okres": 1,
+"ogl_dzien": "2026-08-26"
+},
+{
+"src": "mp",
+"poz": 878,
+"ogl": "2026-08-27",
+"net": {
+"pb95": 6.09,
+"pb98": 6.83,
+"on": 6.82
+},
+"brutto": {
+"pb95": 6.57,
+"pb98": 7.37,
+"on": 7.36
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/878/text.pdf",
+"od": "2026-08-28",
+"do": "2026-08-28",
+"okres": 1,
+"ogl_dzien": "2026-08-27"
+},
+{
+"src": "mp",
+"poz": 882,
+"ogl": "2026-08-28",
+"net": {
+"pb95": 6.15,
+"pb98": 6.91,
+"on": 6.77
+},
+"brutto": {
+"pb95": 6.64,
+"pb98": 7.46,
+"on": 7.31
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/882/text.pdf",
+"od": "2026-08-29",
+"do": "2026-08-31",
+"okres": 1,
+"ogl_dzien": "2026-08-28"
+},
+{
+"src": "mp",
+"poz": 964,
+"ogl": "2026-10-02",
+"net": {
+"pb95": 6.23,
+"pb98": 7.03,
+"on": 7.3
+},
+"brutto": {
+"pb95": 6.73,
+"pb98": 7.59,
+"on": 7.88
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/964/text.pdf",
+"od": "2026-10-03",
+"do": "2026-10-05",
+"okres": 2,
+"ogl_dzien": "2026-10-02"
+},
+{
+"src": "mp",
+"poz": 968,
+"ogl": "2026-10-05",
+"net": {
+"pb95": 6.29,
+"pb98": 7.09,
+"on": 7.24
+},
+"brutto": {
+"pb95": 6.79,
+"pb98": 7.66,
+"on": 7.82
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/968/text.pdf",
+"od": "2026-10-06",
+"do": "2026-10-06",
+"okres": 2,
+"ogl_dzien": "2026-10-05"
+},
+{
+"src": "mp",
+"poz": 974,
+"ogl": "2026-10-06",
+"net": {
+"pb95": 6.35,
+"pb98": 7.16,
+"on": 7.22
+},
+"brutto": {
+"pb95": 6.86,
+"pb98": 7.74,
+"on": 7.8
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/974/text.pdf",
+"od": "2026-10-07",
+"do": "2026-10-07",
+"okres": 2,
+"ogl_dzien": "2026-10-06"
+},
+{
+"src": "mp",
+"poz": 978,
+"ogl": "2026-10-07",
+"net": {
+"pb95": 6.32,
+"pb98": 7.14,
+"on": 7.16
+},
+"brutto": {
+"pb95": 6.83,
+"pb98": 7.71,
+"on": 7.74
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/978/text.pdf",
+"od": "2026-10-08",
+"do": "2026-10-08",
+"okres": 2,
+"ogl_dzien": "2026-10-07"
+},
+{
+"src": "mp",
+"poz": 983,
+"ogl": "2026-10-08",
+"net": {
+"pb95": 6.39,
+"pb98": 7.2,
+"on": 7.24
+},
+"brutto": {
+"pb95": 6.9,
+"pb98": 7.77,
+"on": 7.82
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/983/text.pdf",
+"od": "2026-10-09",
+"do": "2026-10-09",
+"okres": 2,
+"ogl_dzien": "2026-10-08"
+},
+{
+"src": "mp",
+"poz": 985,
+"ogl": "2026-10-09",
+"net": {
+"pb95": 6.45,
+"pb98": 7.27,
+"on": 7.46
+},
+"brutto": {
+"pb95": 6.97,
+"pb98": 7.85,
+"on": 8.06
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/985/text.pdf",
+"od": "2026-10-10",
+"do": "2026-10-12",
+"okres": 2,
+"ogl_dzien": "2026-10-09"
+},
+{
+"src": "mp",
+"poz": 991,
+"ogl": "2026-10-12",
+"net": {
+"pb95": 6.54,
+"pb98": 7.36,
+"on": 7.42
+},
+"brutto": {
+"pb95": 7.06,
+"pb98": 7.95,
+"on": 8.02
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/991/text.pdf",
+"od": "2026-10-13",
+"do": "2026-10-13",
+"okres": 2,
+"ogl_dzien": "2026-10-12"
+},
+{
+"src": "mp",
+"poz": 996,
+"ogl": "2026-10-13",
+"net": {
+"pb95": 6.59,
+"pb98": 7.42,
+"on": 7.39
+},
+"brutto": {
+"pb95": 7.11,
+"pb98": 8.01,
+"on": 7.98
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/996/text.pdf",
+"od": "2026-10-14",
+"do": "2026-10-14",
+"okres": 2,
+"ogl_dzien": "2026-10-13"
+},
+{
+"src": "mp",
+"poz": 1000,
+"ogl": "2026-10-14",
+"net": {
+"pb95": 6.49,
+"pb98": 7.25,
+"on": 7.45
+},
+"brutto": {
+"pb95": 7.01,
+"pb98": 7.83,
+"on": 8.05
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1000/text.pdf",
+"od": "2026-10-15",
+"do": "2026-10-15",
+"okres": 2,
+"ogl_dzien": "2026-10-14"
+},
+{
+"src": "mp",
+"poz": 1006,
+"ogl": "2026-10-15",
+"net": {
+"pb95": 6.43,
+"pb98": 7.19,
+"on": 7.44
+},
+"brutto": {
+"pb95": 6.95,
+"pb98": 7.76,
+"on": 8.03
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1006/text.pdf",
+"od": "2026-10-16",
+"do": "2026-10-16",
+"okres": 2,
+"ogl_dzien": "2026-10-15"
+},
+{
+"src": "mp",
+"poz": 1011,
+"ogl": "2026-10-16",
+"net": {
+"pb95": 6.38,
+"pb98": 7.11,
+"on": 7.41
+},
+"brutto": {
+"pb95": 6.89,
+"pb98": 7.68,
+"on": 8.0
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1011/text.pdf",
+"od": "2026-10-17",
+"do": "2026-10-19",
+"okres": 2,
+"ogl_dzien": "2026-10-16"
+},
+{
+"src": "mp",
+"poz": 1015,
+"ogl": "2026-10-19",
+"net": {
+"pb95": 6.29,
+"pb98": 7.0,
+"on": 7.38
+},
+"brutto": {
+"pb95": 6.79,
+"pb98": 7.56,
+"on": 7.97
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1015/text.pdf",
+"od": "2026-10-20",
+"do": "2026-10-20",
+"okres": 2,
+"ogl_dzien": "2026-10-19"
+},
+{
+"src": "mp",
+"poz": 1022,
+"ogl": "2026-10-20",
+"net": {
+"pb95": 6.2,
+"pb98": 6.88,
+"on": 7.39
+},
+"brutto": {
+"pb95": 6.7,
+"pb98": 7.43,
+"on": 7.98
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1022/text.pdf",
+"od": "2026-10-21",
+"do": "2026-10-21",
+"okres": 2,
+"ogl_dzien": "2026-10-20"
+},
+{
+"src": "mp",
+"poz": 1023,
+"ogl": "2026-10-21",
+"net": {
+"pb95": 6.14,
+"pb98": 6.82,
+"on": 7.43
+},
+"brutto": {
+"pb95": 6.63,
+"pb98": 7.37,
+"on": 8.02
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1023/text.pdf",
+"od": "2026-10-22",
+"do": "2026-10-22",
+"okres": 2,
+"ogl_dzien": "2026-10-21"
+},
+{
+"src": "mp",
+"poz": 1029,
+"ogl": "2026-10-22",
+"net": {
+"pb95": 6.07,
+"pb98": 6.74,
+"on": 7.4
+},
+"brutto": {
+"pb95": 6.56,
+"pb98": 7.28,
+"on": 7.99
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1029/text.pdf",
+"od": "2026-10-23",
+"do": "2026-10-23",
+"okres": 2,
+"ogl_dzien": "2026-10-22"
+},
+{
+"src": "mp",
+"poz": 1034,
+"ogl": "2026-10-23",
+"net": {
+"pb95": 6.02,
+"pb98": 6.67,
+"on": 7.4
+},
+"brutto": {
+"pb95": 6.51,
+"pb98": 7.21,
+"on": 7.99
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1034/text.pdf",
+"od": "2026-10-24",
+"do": "2026-10-23",
+"okres": 2,
+"ogl_dzien": "2026-10-23"
+},
+{
+"src": "mp",
+"poz": 1036,
+"ogl": "2026-10-23",
+"net": {
+"pb95": 6.09,
+"pb98": 6.73,
+"on": 7.57
+},
+"brutto": {
+"pb95": 6.58,
+"pb98": 7.27,
+"on": 8.18
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1036/text.pdf",
+"od": "2026-10-24",
+"do": "2026-10-27",
+"okres": 2,
+"ogl_dzien": "2026-10-23"
+},
+{
+"src": "mp",
+"poz": 1039,
+"ogl": "2026-10-27",
+"net": {
+"pb95": 6.07,
+"pb98": 6.71,
+"on": 7.67
+},
+"brutto": {
+"pb95": 6.55,
+"pb98": 7.24,
+"on": 8.28
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1039/text.pdf",
+"od": "2026-10-28",
+"do": "2026-10-28",
+"okres": 2,
+"ogl_dzien": "2026-10-27"
+},
+{
+"src": "mp",
+"poz": 1045,
+"ogl": "2026-10-28",
+"net": {
+"pb95": 6.05,
+"pb98": 6.83,
+"on": 7.59
+},
+"brutto": {
+"pb95": 6.53,
+"pb98": 7.37,
+"on": 8.2
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1045/text.pdf",
+"od": "2026-10-29",
+"do": "2026-10-29",
+"okres": 2,
+"ogl_dzien": "2026-10-28"
+},
+{
+"src": "mp",
+"poz": 1050,
+"ogl": "2026-10-29",
+"net": {
+"pb95": 6.03,
+"pb98": 6.81,
+"on": 7.58
+},
+"brutto": {
+"pb95": 6.51,
+"pb98": 7.36,
+"on": 8.19
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1050/text.pdf",
+"od": "2026-10-30",
+"do": "2026-10-30",
+"okres": 2,
+"ogl_dzien": "2026-10-29"
+},
+{
+"src": "mp",
+"poz": 1056,
+"ogl": "2026-10-30",
+"net": {
+"pb95": 6.0,
+"pb98": 6.77,
+"on": 7.55
+},
+"brutto": {
+"pb95": 6.48,
+"pb98": 7.32,
+"on": 8.15
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1056/text.pdf",
+"od": "2026-10-31",
+"do": "2026-11-02",
+"okres": 2,
+"ogl_dzien": "2026-10-30"
+},
+{
+"src": "mp",
+"poz": 1065,
+"ogl": "2026-11-02",
+"net": {
+"pb95": 5.98,
+"pb98": 6.77,
+"on": 7.53
+},
+"brutto": {
+"pb95": 6.45,
+"pb98": 7.31,
+"on": 8.14
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1065/text.pdf",
+"od": "2026-11-03",
+"do": "2026-11-03",
+"okres": 2,
+"ogl_dzien": "2026-11-02"
+},
+{
+"src": "mp",
+"poz": 1072,
+"ogl": "2026-11-03",
+"net": {
+"pb95": 5.9,
+"pb98": 6.7,
+"on": 7.46
+},
+"brutto": {
+"pb95": 6.37,
+"pb98": 7.24,
+"on": 8.05
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1072/text.pdf",
+"od": "2026-11-04",
+"do": "2026-11-04",
+"okres": 2,
+"ogl_dzien": "2026-11-03"
+},
+{
+"src": "mp",
+"poz": 1083,
+"ogl": "2026-11-04",
+"net": {
+"pb95": 5.83,
+"pb98": 6.57,
+"on": 7.38
+},
+"brutto": {
+"pb95": 6.29,
+"pb98": 7.1,
+"on": 7.97
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1083/text.pdf",
+"od": "2026-11-05",
+"do": "2026-11-05",
+"okres": 2,
+"ogl_dzien": "2026-11-04"
+},
+{
+"src": "mp",
+"poz": 1099,
+"ogl": "2026-11-05",
+"net": {
+"pb95": 5.74,
+"pb98": 6.42,
+"on": 7.33
+},
+"brutto": {
+"pb95": 6.2,
+"pb98": 6.93,
+"on": 7.91
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1099/text.pdf",
+"od": "2026-11-06",
+"do": "2026-11-06",
+"okres": 2,
+"ogl_dzien": "2026-11-05"
+},
+{
+"src": "mp",
+"poz": 1101,
+"ogl": "2026-11-06",
+"net": {
+"pb95": 5.67,
+"pb98": 6.29,
+"on": 7.25
+},
+"brutto": {
+"pb95": 6.12,
+"pb98": 6.8,
+"on": 7.83
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1101/text.pdf",
+"od": "2026-11-07",
+"do": "2026-11-09",
+"okres": 2,
+"ogl_dzien": "2026-11-06"
+},
+{
+"src": "mp",
+"poz": 1108,
+"ogl": "2026-11-09",
+"net": {
+"pb95": 5.6,
+"pb98": 6.18,
+"on": 7.16
+},
+"brutto": {
+"pb95": 6.04,
+"pb98": 6.67,
+"on": 7.74
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1108/text.pdf",
+"od": "2026-11-10",
+"do": "2026-11-10",
+"okres": 2,
+"ogl_dzien": "2026-11-09"
+},
+{
+"src": "mp",
+"poz": 1121,
+"ogl": "2026-11-10",
+"net": {
+"pb95": 5.65,
+"pb98": 6.21,
+"on": 7.09
+},
+"brutto": {
+"pb95": 6.1,
+"pb98": 6.7,
+"on": 7.66
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1121/text.pdf",
+"od": "2026-11-11",
+"do": "2026-11-12",
+"okres": 2,
+"ogl_dzien": "2026-11-10"
+},
+{
+"src": "govpl",
+"poz": null,
+"ogl": "2026-11-12",
+"net": null,
+"brutto": {
+"pb95": 6.06,
+"pb98": 6.68,
+"on": 7.54
+},
+"url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-13-listopada-2026-r",
+"od": "2026-11-13",
+"do": null,
+"okres": 2,
+"ogl_dzien": "2026-11-12"
+}
+]
+}

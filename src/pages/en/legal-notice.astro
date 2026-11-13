@@ -1,0 +1,29 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CLARITY_ID, CONTACT_EMAIL, GA4_ID, LAST_UPDATED, SITE_NAMES, SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+---
+<PageLayout title={`Legal notice – ${SITE_NAMES[lang]}`} description="Legal notice for Ceny Paliw Jutro: publisher, hosting, liability, intellectual property, where the Monitor Polski and European Commission data come from, applicable law." lang={lang} noindex={true} breadcrumbs={[{ label: 'Legal notice' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Legal notice</h1>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>Responsible for the content of {SITE_URL}: {AUTHOR_NAME}. Contact: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Hosting</h2>
+    <LegalIdentity mode="hosting" lang={lang} />
+    <h2>What the site does</h2>
+    <p>Ceny Paliw Jutro shows the maximum retail fuel prices the Polish Minister of Energy announces in Monitor Polski, the days each applies, a range for the next notice, fuel costs and EU comparisons. Results are <strong>information and estimates</strong>: the notice and the price on the pump are what count. The site is independent and has no link with the Ministry of Energy, the National Revenue Administration (KAS), the European Commission or any station or oil company. Method and limits: <a href={route('method', lang)}>method and sources</a>.</p>
+    <h2>Where the data come from</h2>
+    <p>Maximum prices: Minister of Energy notices in Monitor Polski, read through the Sejm Chancellery ELI API, and Ministry of Energy announcements on gov.pl; official documents are not protected by copyright (Article 4 of the Polish Copyright Act). Weekly averages and EU prices: European Commission Weekly Oil Bulletin, CC BY 4.0 licence, © European Union.</p>
+    <h2>Liability</h2>
+    <p>Data are re-read and the sums tested automatically, but we cannot guarantee the absence of errors or that a newer notice has not been published since the last update. The publisher is not liable for decisions taken on the basis of an estimate alone. Errors can be reported on the <a href={route('contact', lang)}>contact page</a>.</p>
+    <h2>Intellectual property</h2>
+    <p>The site’s text, charts and code belong to the publisher; the official data belong to their bodies. The calculator may be embedded free of charge with a visible link: see <a href={route('widget', lang)}>embed the calculator</a>.</p>
+    <h2>Personal data and cookies</h2>
+    {GA4_ID ? (<p>What you type into the calculators never leaves your browser. The site sets Google Analytics audience-measurement cookies (<code>_ga</code>, <code>_ga_{GA4_ID.replace('G-', '')}</code>, 13 months at most), with no advertising{CLARITY_ID && '; page stability is measured with Microsoft Clarity, without cookies'}. Details: <a href={route('privacy', lang)}>privacy policy</a> and <a href={route('cookies', lang)}>cookies</a>.</p>) : (<p>What you type into the calculators never leaves your browser and the site sets no cookies{CLARITY_ID && '; page stability is measured anonymously with Microsoft Clarity, without cookies'}. See the <a href={route('privacy', lang)}>privacy policy</a> and the <a href={route('cookies', lang)}>cookies</a> page.</p>)}
+    <h2>Applicable law</h2><p>French law, where the publisher is established, without prejudice to the protection Polish law gives consumers resident in Poland. Updated on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>.</p>
+  </div>
+</PageLayout>

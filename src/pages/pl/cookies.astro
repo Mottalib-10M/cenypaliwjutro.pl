@@ -1,0 +1,30 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { CLARITY_ID, CONTACT_EMAIL, GA4_ID, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'pl';
+const title = `Pliki cookie – ${SITE_NAMES[lang]}`;
+const description = GA4_ID ? 'Tylko pliki cookie pomiaru oglądalności Google Analytics: nazwy, cel, ważność najwyżej 13 miesięcy, dostawca i jak się sprzeciwić w ustawieniach przeglądarki.' : 'Serwis nie zapisuje plików cookie: to, co wpisujesz w kalkulatory cen paliw, zostaje w Twojej przeglądarce i nic nie trafia na Twoje urządzenie. Szczegóły i kontakt.';
+---
+<PageLayout title={title} description={description} lang={lang} noindex={true} breadcrumbs={[{ label: 'Cookies' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Pliki cookie</h1>
+    {GA4_ID ? (<>
+    <p>Serwis zapisuje wyłącznie pliki cookie pomiaru oglądalności Google Analytics: żadnych reklamowych ani społecznościowych. Szczegóły w <a href={route('privacy', lang)}>polityce prywatności</a>.</p>
+    <h2>Zapisywane pliki</h2>
+    <table><thead><tr><th>Nazwa</th><th>Dostawca</th><th>Cel</th><th>Ważność</th></tr></thead><tbody>
+    <tr><td><code>_ga</code></td><td>Google Analytics</td><td>Odróżnia odwiedzających losowym identyfikatorem</td><td>najwyżej 13 miesięcy (390 dni)</td></tr>
+    <tr><td><code>_ga_{GA4_ID.replace('G-', '')}</code></td><td>Google Analytics</td><td>Przechowuje stan bieżącej wizyty</td><td>najwyżej 13 miesięcy (390 dni)</td></tr>
+    </tbody></table>
+    <p>Cel: pomiar oglądalności. Google Analytics 4 nie zapisuje adresów IP; pamięć reklamowa, personalizacja reklam i sygnały Google są wyłączone. Dostawca: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irlandia. Podstawa: prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO).</p>
+    <h2>Jak się sprzeciwić</h2>
+    <p>Zablokuj lub usuń pliki cookie w ustawieniach przeglądarki albo zainstaluj <a href="https://tools.google.com/dlpage/gaoptout" rel="nofollow noopener" target="_blank">dodatek blokujący Google Analytics</a>. Serwis i kalkulatory działają tak samo.</p>
+    </>) : (<>
+    <p>Serwis <strong>nie zapisuje plików cookie</strong>. Szczegóły w <a href={route('privacy', lang)}>polityce prywatności</a>.</p>
+    </>)}
+    {CLARITY_ID && (<><h2>Microsoft Clarity, bez plików cookie</h2><p>Stabilność stron mierzymy Microsoft Clarity w trybie bez plików cookie: jednorazowy identyfikator dla każdej odsłony, treść zamaskowana. Zablokowanie <code>clarity.ms</code> wyłącza pomiar.</p></>)}
+    <h2>To, co wpisujesz</h2>
+    <p>Obliczenia odbywają się w przeglądarce: to, co wpisujesz, nie jest wysyłane na serwer i znika po zamknięciu strony.</p>
+    <p>Pytania: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Aktualizacja: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

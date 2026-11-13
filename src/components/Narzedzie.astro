@@ -1,0 +1,39 @@
+---
+/** Le calculateur d'une page, choisi par `tool`, avec ses props calculées au build (lib/tool-props.ts). */
+import DzisCalc from './calc/DzisCalc';
+import DataCalc from './calc/DataCalc';
+import JutroCalc from './calc/JutroCalc';
+import PrognozaCalc from './calc/PrognozaCalc';
+import KosztCalc from './calc/KosztCalc';
+import RoznicaCalc from './calc/RoznicaCalc';
+import LpgCalc from './calc/LpgCalc';
+import Po2027Calc from './calc/Po2027Calc';
+import CpnCalc from './calc/CpnCalc';
+import SkladCalc from './calc/SkladCalc';
+import TrasaCalc from './calc/TrasaCalc';
+import EuropaCalc from './calc/EuropaCalc';
+import HistoriaCalc from './calc/HistoriaCalc';
+import KontrolaCalc from './calc/KontrolaCalc';
+import SredniaCalc from './calc/SredniaCalc';
+import { toolProps } from '../lib/tool-props';
+import type { Locale } from '../i18n/routes';
+interface Props { tool: string; lang: Locale; opts?: Record<string, string | number | undefined>; methodHref: string }
+const { tool, lang, opts = {}, methodHref } = Astro.props;
+const p: any = toolProps(tool);
+const o: any = opts;
+---
+{tool === 'dzis' && <DzisCalc client:load lang={lang} {...p} paliwo={o.paliwo} methodHref={methodHref} />}
+{tool === 'data' && <DataCalc client:load lang={lang} {...p} methodHref={methodHref} />}
+{tool === 'jutro' && <JutroCalc client:load lang={lang} {...p} paliwo={o.paliwo} methodHref={methodHref} />}
+{tool === 'prognoza' && <PrognozaCalc client:load lang={lang} {...p} paliwo={o.paliwo} methodHref={methodHref} />}
+{tool === 'koszt' && <KosztCalc client:load lang={lang} {...p} paliwo={o.paliwo} methodHref={methodHref} />}
+{tool === 'roznica' && <RoznicaCalc client:load lang={lang} {...p} methodHref={methodHref} />}
+{tool === 'lpg' && <LpgCalc client:load lang={lang} {...p} methodHref={methodHref} />}
+{tool === 'po2027' && <Po2027Calc client:load lang={lang} {...p} paliwo={o.paliwo} methodHref={methodHref} />}
+{tool === 'cpn' && <CpnCalc client:load lang={lang} {...p} paliwo={o.paliwo} methodHref={methodHref} />}
+{tool === 'sklad' && <SkladCalc client:load lang={lang} {...p} paliwo={o.paliwo} methodHref={methodHref} />}
+{tool === 'trasa' && <TrasaCalc client:load lang={lang} {...p} methodHref={methodHref} />}
+{tool === 'europa' && <EuropaCalc client:load lang={lang} {...p} methodHref={methodHref} />}
+{tool === 'historia' && <HistoriaCalc client:load lang={lang} {...p} paliwo={o.paliwo} methodHref={methodHref} />}
+{tool === 'kontrola' && <KontrolaCalc client:load lang={lang} {...p} methodHref={methodHref} />}
+{tool === 'srednia' && <SredniaCalc client:load lang={lang} {...p} methodHref={methodHref} />}
