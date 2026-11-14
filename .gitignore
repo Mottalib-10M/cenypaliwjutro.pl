@@ -4,3 +4,4 @@ dist/
 data-raw/
 .DS_Store
 logs/
+__pycache__/
