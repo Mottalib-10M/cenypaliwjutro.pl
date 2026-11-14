@@ -3,7 +3,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import { route, type Locale } from '../i18n/routes';
 import { P } from '../lib/params';
-import { LISTA, PIERWSZA, OSTATNIA, OSTATNIA_MP, OKRESY, WOB, WOB_OST, PALIWA, NAZWA, prog, widelki, PLN_ZA_EUR } from '../lib/dane';
+import { LISTA, PIERWSZA, OSTATNIA, OKRESY, WOB, WOB_OST, PALIWA, NAZWA, prog, widelki, PLN_ZA_EUR } from '../lib/dane';
 import { formatNumber, displayDate } from '../lib/format';
 import { breadcrumbSchema, webPageSchema, faqSchema } from '../lib/seo';
 import { CONTACT_EMAIL } from '../data/site-config';
@@ -12,6 +12,8 @@ const { lang } = Astro.props;
 const pl = lang === 'pl';
 const n = (x: number, d = 0) => formatNumber(x, d, lang);
 const d = (iso: string) => (pl ? `${displayDate(iso, 'pl')} r.` : displayDate(iso, 'en'));
+/** Date en fin de phrase : « 13 listopada 2026 r. » sans second point. */
+const dK = (iso: string) => (pl ? `${displayDate(iso, 'pl')} r.` : `${displayDate(iso, 'en')}.`);
 const g = (x: number) => `${n(x * 100, 1)} gr`;
 const title = pl ? 'Metodologia: skąd ceny maksymalne paliw i jak liczymy' : 'Method: where Poland’s maximum fuel prices come from';
 const description = pl ? 'Skąd bierzemy ceny maksymalne paliw, jak ustalamy dzień ich obowiązywania, jak liczymy widełki następnego ogłoszenia, skład ceny i średnie z biuletynu UE.' : 'Where the maximum fuel prices come from, how we set the days each applies, how the range for the next notice is worked out, and how taxes and EU data are used.';
@@ -35,7 +37,7 @@ const faqs = pl ? [
   <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">{h1}</h1></header>
   {pl ? (
   <div class="prose prose-slate max-w-none">
-    <p>Ceny Paliw Jutro opiera się na trzech rodzajach źródeł. Ceny maksymalne to obwieszczenia Ministra Energii wydawane na podstawie art. 34a ustawy o zapasach ropy naftowej, produktów naftowych i gazu ziemnego. Wykaz pozycji Monitora Polskiego pobieramy przez API ELI Kancelarii Sejmu, a z każdego pliku PDF odczytujemy cenę netto i cenę z VAT dla benzyny 95, benzyny 98 i oleju napędowego. Mamy {n(mp)} obwieszczeń z Monitora Polskiego i {n(gov)} {gov === 1 ? 'komunikat' : 'komunikaty'} z gov.pl, opublikowane przed wpisem do dziennika; pierwsze ogłoszenie pochodzi z {d(PIERWSZA.ogl)}, ostatnie z {d(OSTATNIA.ogl)}. Średnie ceny na stacjach i ceny w innych krajach Unii pochodzą z Weekly Oil Bulletin Komisji Europejskiej (ostatni tydzień: od {d(WOB_OST.d)}). Stawki VAT, akcyzy i opłaty paliwowej przepisaliśmy z Dziennika Ustaw i Monitora Polskiego {d(P.retrieved_at)}.</p>
+    <p>Ceny Paliw Jutro opiera się na trzech rodzajach źródeł. Ceny maksymalne to obwieszczenia Ministra Energii wydawane na podstawie art. 34a ustawy o zapasach ropy naftowej, produktów naftowych i gazu ziemnego. Wykaz pozycji Monitora Polskiego pobieramy przez API ELI Kancelarii Sejmu, a z każdego pliku PDF odczytujemy cenę netto i cenę z VAT dla benzyny 95, benzyny 98 i oleju napędowego. Mamy {n(mp)} obwieszczeń z Monitora Polskiego i {n(gov)} {gov === 1 ? 'komunikat' : 'komunikaty'} z gov.pl, opublikowane przed wpisem do dziennika; pierwsze ogłoszenie pochodzi z {d(PIERWSZA.ogl)}, ostatnie z {dK(OSTATNIA.ogl)} Średnie ceny na stacjach i ceny w innych krajach Unii pochodzą z Weekly Oil Bulletin Komisji Europejskiej (ostatni tydzień: od {d(WOB_OST.d)}). Stawki VAT, akcyzy i opłaty paliwowej przepisaliśmy z Dziennika Ustaw i Monitora Polskiego {dK(P.retrieved_at)}</p>
     <h2>Jak powstaje cena maksymalna</h2>
     <p>Art. 34a ust. 2 ustawy o zapasach, dodany ustawą z 27 marca 2026 r. (Dz.U. 2026 poz. 415): cena maksymalna netto = średnia hurtowa cena pięciu największych dostawców z poprzedniego dnia roboczego, z akcyzą i opłatą paliwową, + {n(P.cena_maksymalna.koszty_operacyjne, 2)} zł za litr kosztów stacji. Cena brutto to netto powiększone o VAT. Cena maksymalna obowiązuje tylko w okresach obniżonej stawki VAT na paliwa: {okr}. Poza nimi stacje ustalają ceny swobodnie.</p>
     <h2>W jakie dni obowiązuje dana cena</h2>
@@ -49,7 +51,7 @@ const faqs = pl ? [
     </tbody></table></div>
     <p>Przewaga reguły, jeśli jest, wynosi ułamek grosza. Traktuj prognozę jako wskazówkę kierunku, a widełki jako rzeczywistą niepewność. Hurtowych cen ORLEN nie używamy: ich warunki nie pozwalają na ponowne wykorzystanie.</p>
     <h2>Skład ceny</h2>
-    <p>Z ostatniej ceny netto w Monitorze Polskim (M.P. 2026 poz. {OSTATNIA_MP.poz}) odejmujemy {n(P.cena_maksymalna.koszty_operacyjne, 2)} zł kosztów stacji, akcyzę (obniżoną do {n(P.akcyza.pb_obnizona)} zł za 1000 l benzyny i {n(P.akcyza.on_obnizona)} zł za 1000 l oleju napędowego do {d(P.akcyza.obnizona_do)}) oraz opłatę paliwową 2026 ({n(P.oplata_paliwowa.pb_2026, 2)} i {n(P.oplata_paliwowa.on_2026, 2)} zł za 1000 l). Reszta to cena hurtowa paliwa, w której są też opłata emisyjna i koszt zapasów obowiązkowych. Scenariusz na 2027 r. stosuje tę samą cenę hurtową, akcyzę ustawową ({n(P.akcyza.pb_ustawowa)} i {n(P.akcyza.on_ustawowa)} zł), opłatę paliwową 2027 i VAT 23 %.</p>
+    <p>Z ceny netto ostatniego ogłoszenia (z Monitora Polskiego, a gdy ogłoszenie jest dopiero na gov.pl: cena z VAT podzielona przez 1,08) odejmujemy {n(P.cena_maksymalna.koszty_operacyjne, 2)} zł kosztów stacji, akcyzę (obniżoną do {n(P.akcyza.pb_obnizona)} zł za 1000 l benzyny i {n(P.akcyza.on_obnizona)} zł za 1000 l oleju napędowego do {d(P.akcyza.obnizona_do)}) oraz opłatę paliwową 2026 ({n(P.oplata_paliwowa.pb_2026, 2)} i {n(P.oplata_paliwowa.on_2026, 2)} zł za 1000 l). Reszta to cena hurtowa paliwa, w której są też opłata emisyjna i koszt zapasów obowiązkowych. Scenariusz na 2027 r. stosuje tę samą cenę hurtową, akcyzę ustawową ({n(P.akcyza.pb_ustawowa)} i {n(P.akcyza.on_ustawowa)} zł), opłatę paliwową 2027 i VAT 23 %.</p>
     <h2>Średnie z Weekly Oil Bulletin</h2>
     <p>Biuletyn podaje ceny w euro za 1000 litrów i kurs złotego z tego samego tygodnia. Przeliczamy: zł/l = euro za 1000 l ÷ kurs ÷ 1000; dziś 1 € = {n(PLN_ZA_EUR, 3)} zł. Mamy {n(WOB.pl.length)} tygodni dla Polski i ostatni tydzień dla {n(WOB.kraje.length)} krajów. To średnie krajowe z poniedziałku, przekazywane przez państwa członkowskie, nie ceny konkretnej stacji.</p>
     <h2>Czego serwis nie liczy</h2>
@@ -76,7 +78,7 @@ const faqs = pl ? [
     </tbody></table></div>
     <p>The rule’s edge, where there is one, is a fraction of a grosz (1 grosz = PLN 0.01). Read the forecast as a hint of direction and the range as the real uncertainty. We do not use ORLEN wholesale prices: their terms do not allow reuse.</p>
     <h2>Price breakdown</h2>
-    <p>From the latest net price in Monitor Polski (M.P. 2026 item {OSTATNIA_MP.poz}) we subtract PLN {n(P.cena_maksymalna.koszty_operacyjne, 2)} of station costs, excise (cut to PLN {n(P.akcyza.pb_obnizona)} per 1,000 l of petrol and PLN {n(P.akcyza.on_obnizona)} per 1,000 l of diesel until {d(P.akcyza.obnizona_do)}) and the 2026 fuel levy (PLN {n(P.oplata_paliwowa.pb_2026, 2)} and {n(P.oplata_paliwowa.on_2026, 2)} per 1,000 l). The rest is the wholesale fuel price, which also carries the emission fee and the cost of compulsory stocks. The 2027 scenario uses the same wholesale price, statutory excise (PLN {n(P.akcyza.pb_ustawowa)} and {n(P.akcyza.on_ustawowa)}), the 2027 fuel levy and 23% VAT.</p>
+    <p>From the net price of the latest notice (from Monitor Polski or, while the notice is only on gov.pl, the VAT-inclusive price divided by 1.08) we subtract PLN {n(P.cena_maksymalna.koszty_operacyjne, 2)} of station costs, excise (cut to PLN {n(P.akcyza.pb_obnizona)} per 1,000 l of petrol and PLN {n(P.akcyza.on_obnizona)} per 1,000 l of diesel until {d(P.akcyza.obnizona_do)}) and the 2026 fuel levy (PLN {n(P.oplata_paliwowa.pb_2026, 2)} and {n(P.oplata_paliwowa.on_2026, 2)} per 1,000 l). The rest is the wholesale fuel price, which also carries the emission fee and the cost of compulsory stocks. The 2027 scenario uses the same wholesale price, statutory excise (PLN {n(P.akcyza.pb_ustawowa)} and {n(P.akcyza.on_ustawowa)}), the 2027 fuel levy and 23% VAT.</p>
     <h2>Weekly Oil Bulletin averages</h2>
     <p>The bulletin gives prices in euros per 1,000 litres and the zloty rate for the same week. We convert: PLN/l = euros per 1,000 l ÷ rate ÷ 1,000; today €1 = PLN {n(PLN_ZA_EUR, 3)}. We hold {n(WOB.pl.length)} weeks for Poland and the latest week for {n(WOB.kraje.length)} countries. These are Monday national averages reported by member states, not the price at a given station.</p>
     <h2>What the site does not calculate</h2>

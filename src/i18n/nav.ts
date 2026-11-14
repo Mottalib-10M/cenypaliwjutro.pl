@@ -7,7 +7,7 @@ const CORE: Record<Locale, Record<string, string>> = {
   en: { home: 'Fuel prices today and tomorrow', method: 'Method and sources', about: 'About', widget: 'Embed the calculator', contact: 'Contact', editorial: 'Editorial policy', privacy: 'Privacy', terms: 'Legal notice', cookies: 'Cookies' },
 };
 export const GROUP_LABEL: Record<Locale, Record<Group, string>> = {
-  pl: { ceny: 'Ceny i prognoza', koszty: 'Koszty jazdy', podatki: 'Podatki i CPN' },
+  pl: { ceny: 'Ceny i prognoza', koszty: 'Koszty jazdy', podatki: 'Podatki i obniżki cen' },
   en: { ceny: 'Prices and outlook', koszty: 'Driving costs', podatki: 'Taxes and the CPN' },
 };
 export const label = (id: string, lang: Locale) => CORE[lang][id] ?? pageById(id)?.[lang].nav ?? id;

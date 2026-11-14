@@ -25,8 +25,14 @@ export interface Helpers {
   pct: (x: number, decimals?: number) => string;
   /** Date ISO en toutes lettres (« 13 listopada 2026 r. » / « 13 November 2026 »). */
   date: (iso: string) => string;
+  /** Date en fin de phrase, point compris (« 31 grudnia 2026 r. », jamais « r.. »). */
+  dateK: (iso: string) => string;
   /** Date sans l'année, jour de la semaine si wd. */
   dzien: (iso: string, wd?: boolean) => string;
+  /** « piątku 13 listopada » (dopełniacz, après od / do) ; en : « Friday 13 November ». */
+  dzienD: (iso: string) => string;
+  /** « marzec 2026 » / « March 2026 » à partir de « 2026-03 ». */
+  miesiac: (ym: string) => string;
   table: (headers: string[], rows: Array<Array<string | number>>, caption?: string, align?: Array<'l' | 'r'>) => string;
   src: (key: SourceKey, text?: string) => string;
   /** Lien vers le PDF d'une position du Monitor Polski 2026. */

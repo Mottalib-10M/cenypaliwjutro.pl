@@ -24,7 +24,7 @@ export default function JutroCalc({ lang, ost, widelki, bak, paliwo = 'pb95', me
   return <Frame form={form} result={
     <ResultPanel lang={lang} head={T(lang, `${NAZWY.pl[p]}: następna cena maksymalna`, `${NAZWY.en[p]}: next maximum price`)} value={`${litr(lo, lang)} – ${litr(hi, lang)}`}
       sub={T(lang, `widełki z ${nr(w.n, lang)} zmian od kwietnia 2026 r. (8 na 10 przypadków)`, `range from ${nr(w.n, lang)} changes since April 2026 (8 cases out of 10)`)}
-      alert={juzZnana ? T(lang, `Cena na ${dzien(ost.od, lang, true)} jest już ogłoszona: ${litr(c, lang)}.`, `The price for ${dzien(ost.od, lang, true)} is already announced: ${litr(c, lang)}.`) : undefined}
+      alert={juzZnana ? T(lang, `Cena obowiązująca od ${dzien(ost.od, lang, false)} jest już ogłoszona: ${litr(c, lang)}.`, `The price from ${dzien(ost.od, lang, false)} is already announced: ${litr(c, lang)}.`) : undefined}
       rows={[
         { label: T(lang, `Ostatnia ogłoszona (od ${dzien(ost.od, lang, false)})`, `Latest announced (from ${dzien(ost.od, lang, false)})`), value: litr(c, lang), strong: true },
         { label: T(lang, `Tankowanie ${nr(litry, lang)} l po ostatniej cenie`, `${nr(litry, lang)} l at the latest price`), value: zl(litry * c, lang) },

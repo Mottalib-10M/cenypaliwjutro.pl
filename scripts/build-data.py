@@ -65,7 +65,7 @@ def obwieszczenia():
         curl('https://api.sejm.gov.pl/eli/acts/MP/2026', lst)
     items = [i for i in json.load(open(lst))['items'] if 'maksymalnej ceny paliw' in i['title']]
     rows = []
-    for i in sorted(items, key=lambda x: x['pos']):
+    for i in sorted(items, key=lambda x: x['pos']):  # trié ensuite par date lue dans le texte
         f = os.path.join(RAW, 'mp', f"{i['pos']}.pdf")
         if FETCH and not os.path.exists(f):
             curl(f"https://api.sejm.gov.pl/eli/acts/MP/2026/{i['pos']}/text.pdf", f)
@@ -75,11 +75,17 @@ def obwieszczenia():
             sys.exit(f"M.P. 2026 poz. {i['pos']} : 3 prix attendus, {len(v)} lus")
         if 'art. 34a ust. 5' not in t:
             sys.exit(f"M.P. 2026 poz. {i['pos']} : base légale art. 34a ust. 5 absente")
+        # Date de l'obwieszczenie lue dans le texte officiel (« z dnia 12 czerwca 2026 r. ») : la date d'annonce de
+        # l'API ELI est parfois celle d'une autre position (poz. 552, 557, 601, 1036), ce qui faussait les périodes.
+        z = re.search(r'OBWIESZCZENIE MINISTRA ENERGII\s*\d?\)?\s*z dnia (\d{1,2}) (\w+) (\d{4}) r\.', t)
+        if not z or z.group(2) not in MOIS:
+            sys.exit(f"M.P. 2026 poz. {i['pos']} : date « z dnia … » illisible")
+        ogl = f"{z.group(3)}-{MOIS[z.group(2)]:02d}-{int(z.group(1)):02d}"
         net = {k: pl_num(a) for k, (a, _) in zip(('pb95', 'pb98', 'on'), v)}
         gross = {k: pl_num(b) for k, (_, b) in zip(('pb95', 'pb98', 'on'), v)}
-        rows.append({'src': 'mp', 'poz': i['pos'], 'ogl': i['announcementDate'], 'net': net, 'brutto': gross,
+        rows.append({'src': 'mp', 'poz': i['pos'], 'ogl': ogl, 'net': net, 'brutto': gross,
                      'url': f"https://api.sejm.gov.pl/eli/acts/MP/2026/{i['pos']}/text.pdf"})
-    return rows
+    return sorted(rows, key=lambda r: (r['ogl'], r['poz']))
 
 
 # ---------------------------------------------------------------- 2. gov.pl (annonces pas encore dans l'API ELI)
@@ -143,6 +149,8 @@ def ważność(rows):
         fin = o['do'] if o else od
         r['do'] = min(nxt, fin) if nxt else None  # None : en vigueur jusqu'à l'annonce suivante
         r['okres'] = OKRESY.index(o) if o else None
+        if r['do'] is not None and r['do'] < r['od']:
+            sys.exit(f"période impossible : annonce du {r['ogl']} ({r['url']}) du {r['od']} au {r['do']}")
     return rows
 
 

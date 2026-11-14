@@ -1,5 +1,5 @@
 {
-"odczyt": "2026-11-13",
+"odczyt": "2026-11-14",
 "okresy": [
 {
 "od": "2026-03-31",
@@ -904,14 +904,14 @@
 },
 "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/545/text.pdf",
 "od": "2026-06-02",
-"do": "2026-06-03",
+"do": "2026-06-02",
 "okres": 0,
 "ogl_dzien": "2026-06-01"
 },
 {
 "src": "mp",
 "poz": 552,
-"ogl": "2026-06-03",
+"ogl": "2026-06-02",
 "net": {
 "pb95": 5.51,
 "pb98": 6.06,
@@ -923,15 +923,15 @@
 "on": 6.4
 },
 "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/552/text.pdf",
-"od": "2026-06-04",
-"do": "2026-06-04",
+"od": "2026-06-03",
+"do": "2026-06-03",
 "okres": 0,
-"ogl_dzien": "2026-06-03"
+"ogl_dzien": "2026-06-02"
 },
 {
 "src": "mp",
 "poz": 557,
-"ogl": "2026-06-04",
+"ogl": "2026-06-03",
 "net": {
 "pb95": 5.5,
 "pb98": 6.03,
@@ -943,10 +943,10 @@
 "on": 6.4
 },
 "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/557/text.pdf",
-"od": "2026-06-05",
+"od": "2026-06-04",
 "do": "2026-06-05",
 "okres": 0,
-"ogl_dzien": "2026-06-04"
+"ogl_dzien": "2026-06-03"
 },
 {
 "src": "mp",
@@ -1044,14 +1044,14 @@
 },
 "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/589/text.pdf",
 "od": "2026-06-12",
-"do": "2026-06-11",
+"do": "2026-06-12",
 "okres": 0,
 "ogl_dzien": "2026-06-11"
 },
 {
 "src": "mp",
 "poz": 601,
-"ogl": "2026-06-11",
+"ogl": "2026-06-12",
 "net": {
 "pb95": 5.59,
 "pb98": 6.09,
@@ -1063,10 +1063,10 @@
 "on": 6.4
 },
 "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/601/text.pdf",
-"od": "2026-06-12",
+"od": "2026-06-13",
 "do": "2026-06-15",
 "okres": 0,
-"ogl_dzien": "2026-06-11"
+"ogl_dzien": "2026-06-12"
 },
 {
 "src": "mp",
@@ -1824,14 +1824,14 @@
 },
 "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1034/text.pdf",
 "od": "2026-10-24",
-"do": "2026-10-23",
+"do": "2026-10-26",
 "okres": 2,
 "ogl_dzien": "2026-10-23"
 },
 {
 "src": "mp",
 "poz": 1036,
-"ogl": "2026-10-23",
+"ogl": "2026-10-26",
 "net": {
 "pb95": 6.09,
 "pb98": 6.73,
@@ -1843,10 +1843,10 @@
 "on": 8.18
 },
 "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1036/text.pdf",
-"od": "2026-10-24",
+"od": "2026-10-27",
 "do": "2026-10-27",
 "okres": 2,
-"ogl_dzien": "2026-10-23"
+"ogl_dzien": "2026-10-26"
 },
 {
 "src": "mp",
@@ -2069,20 +2069,40 @@
 "ogl_dzien": "2026-11-10"
 },
 {
-"src": "govpl",
-"poz": null,
+"src": "mp",
+"poz": 1134,
 "ogl": "2026-11-12",
-"net": null,
+"net": {
+"pb95": 5.61,
+"pb98": 6.18,
+"on": 6.98
+},
 "brutto": {
 "pb95": 6.06,
 "pb98": 6.68,
 "on": 7.54
 },
-"url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-13-listopada-2026-r",
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1134/text.pdf",
 "od": "2026-11-13",
-"do": null,
+"do": "2026-11-13",
 "okres": 2,
 "ogl_dzien": "2026-11-12"
+},
+{
+"src": "govpl",
+"poz": null,
+"ogl": "2026-11-13",
+"net": null,
+"brutto": {
+"pb95": 6.02,
+"pb98": 6.66,
+"on": 7.52
+},
+"url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-w-dniach-14-16-listopada-2026-r",
+"od": "2026-11-14",
+"do": null,
+"okres": 2,
+"ogl_dzien": "2026-11-13"
 }
 ]
 }

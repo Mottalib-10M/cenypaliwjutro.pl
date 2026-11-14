@@ -12,7 +12,7 @@ export default function CpnCalc({ lang, sklad, s2026bez, km: k0, spalanie, paliw
   const p = (['pb95', 'pb98', 'on'].includes(v.p as string) ? v.p : 'pb95') as Paliwo;
   const km = v.km as number, s = v.s as number;
   const k = sklad[p];
-  const bez = cenaZ(k.hurt, s2026bez[p]);
+  const bez = Math.round(cenaZ(k.hurt, s2026bez[p]) * 100) / 100;
   const litry = (km * s) / 100;
   const roznica = bez - k.brutto;
   const form = (
@@ -20,13 +20,13 @@ export default function CpnCalc({ lang, sklad, s2026bez, km: k0, spalanie, paliw
       <SelectField id="cp-p" label={T(lang, 'Paliwo', 'Fuel')} value={p} onChange={(x) => { set('p')(x); set('s')(spalanie[x as Paliwo]); }} options={opcje(lang, ['pb95', 'pb98', 'on'])} />
       <div className="grid gap-x-4 sm:grid-cols-2">
         <NumberField id="cp-km" label={T(lang, 'Kilometry rocznie', 'Kilometres a year')} value={km} onChange={set('km')} unit="km" min={0} max={300000} lang={lang} />
-        <NumberField id="cp-s" label={T(lang, 'Spalanie', 'Consumption')} value={s} onChange={set('s')} unit="l/100 km" min={1} max={40} decimals={1} lang={lang} />
+        <NumberField id="cp-s" label={T(lang, 'Spalanie (litry na 100 km)', 'Consumption (litres per 100 km)')} value={s} onChange={set('s')} unit="l/100 km" min={1} max={40} decimals={1} lang={lang} />
       </div>
     </>
   );
   return <Frame form={form} result={
     <ResultPanel lang={lang} head={T(lang, `${NAZWY.pl[p]}: ile daje CPN przy Twoim przebiegu`, `${NAZWY.en[p]}: what the CPN saves at your mileage`)} value={T(lang, `${zl(roznica * litry / 12, lang, 0)} / mies.`, `${zl(roznica * litry / 12, lang, 0)} a month`)}
-      sub={T(lang, `${gr(roznica, lang)} na litrze · ${zl(roznica * litry, lang, 0)} na rok`, `${gr(roznica, lang)} per litre · ${zl(roznica * litry, lang, 0)} a year`)}
+      sub={T(lang, `oszczędność ${nr(Math.round(roznica * 100), lang)} gr na każdym litrze · ${zl(roznica * litry, lang, 0)} na rok`, `a saving of ${nr(Math.round(roznica * 100), lang)} gr on every litre · ${zl(roznica * litry, lang, 0)} a year`)}
       rows={[
         { label: T(lang, 'Cena maksymalna z CPN', 'Maximum price with the CPN'), value: litr(k.brutto, lang), strong: true },
         { label: T(lang, 'Ta sama hurtowa bez CPN (VAT 23 %, pełna akcyza)', 'Same wholesale without the CPN (23% VAT, full excise)'), value: litr(bez, lang) },

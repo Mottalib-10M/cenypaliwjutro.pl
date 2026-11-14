@@ -10,6 +10,14 @@ const esc = (s: string | number) => String(s).replace(/&(?!(?:[a-z]+|#\d+);)/g, 
 
 export const zlTxt = (n: number, lang: Locale, d = 0) => (lang === 'pl' ? `${formatNumber(n, d, lang)} zł` : `PLN ${formatNumber(n, d, lang)}`);
 
+const DOP = ['niedzieli', 'poniedziałku', 'wtorku', 'środy', 'czwartku', 'piątku', 'soboty'];
+/** Jour de la semaine au génitif polonais, après « od » et « do » (« od piątku 13 listopada », jamais « od piątek »). */
+export const dzienDop = (iso: string, lang: Locale) => {
+  const d = new Date(`${iso}T12:00:00Z`);
+  const dm = d.toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' });
+  return lang === 'pl' ? `${DOP[d.getUTCDay()]} ${dm}` : `${d.toLocaleDateString('en-GB', { weekday: 'long', timeZone: 'UTC' })} ${dm}`;
+};
+
 export function helpers(lang: Locale): Helpers {
   const num = (n: number, d = 0) => formatNumber(n, d, lang);
   return {
@@ -21,9 +29,12 @@ export function helpers(lang: Locale): Helpers {
     num,
     pct: (x, d = 1) => formatPercent(x, d, lang),
     date: (iso) => (lang === 'pl' ? `${displayDate(iso, 'pl')} r.` : displayDate(iso, 'en')),
+    dateK: (iso) => (lang === 'pl' ? `${displayDate(iso, 'pl')} r.` : `${displayDate(iso, 'en')}.`),
     dzien: (iso, wd = false) => new Date(`${iso}T12:00:00Z`).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-GB', { ...(wd ? { weekday: 'long' } : {}), day: 'numeric', month: 'long', timeZone: 'UTC' }),
+    dzienD: (iso) => dzienDop(iso, lang),
+    miesiac: (ym) => new Date(`${ym}-15T12:00:00Z`).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
     src: (key: SourceKey, text?: string) => { const s = P.sources[key]; return `<a href="${s.url}" target="_blank" rel="nofollow noopener noreferrer">${text ?? s.label[lang]}</a>`; },
-    mp: (poz) => `<a href="https://api.sejm.gov.pl/eli/acts/MP/2026/${poz}/text.pdf" target="_blank" rel="nofollow noopener noreferrer">M.P. 2026 ${lang === 'pl' ? 'poz.' : 'item'} ${poz}</a>`,
+    mp: (poz) => `<a href="https://api.sejm.gov.pl/eli/acts/MP/2026/${poz}/text.pdf" target="_blank" rel="nofollow noopener noreferrer">Monitor Polski 2026, ${lang === 'pl' ? 'poz.' : 'item'} ${poz}</a>`,
     fn: (p) => D.NAZWA[lang][p],
     table: (headers, rows, caption, align = []) => {
       const al = (i: number) => (align[i] === 'r' ? 'text-right' : 'text-left');

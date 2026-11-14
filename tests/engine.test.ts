@@ -29,9 +29,18 @@ describe('annonces du Monitor Polski', () => {
     expect(naDzien(LISTA, '2026-08-17')!.ogl).toBe('2026-08-14');
     expect(naDzien(LISTA, '2026-08-16')).toBeNull();
   });
-  it('dernière annonce : son jour seulement (pas de prolongation au-delà du premier jour ouvré)', () => {
-    expect(OSTATNIA.ogl).toBe('2026-11-12');
-    expect(ostatniDzienOtwartej(OSTATNIA)).toBe('2026-11-13');
+  it('dernière annonce : annoncée un vendredi, elle couvre samedi, dimanche et lundi (gov.pl « w dniach 14-16 listopada »)', () => {
+    expect(OSTATNIA.ogl).toBe('2026-11-13');
+    expect(OSTATNIA.od).toBe('2026-11-14');
+    expect(ostatniDzienOtwartej(OSTATNIA)).toBe('2026-11-16');
+  });
+  it('date lue dans le texte officiel, jamais de période qui finit avant de commencer (test naïf du 2026-11-14)', () => {
+    for (const o of LISTA) if (o.do !== null) expect(o.do >= o.od).toBe(true);
+    // poz. 1034 (23 octobre) : 24-26 octobre ; poz. 1036 (26 octobre) : 27 octobre ; poz. 601 (12 juin) : 13-15 juin
+    expect(naDzien(LISTA, '2026-10-25')!.poz).toBe(1034);
+    expect(naDzien(LISTA, '2026-10-27')!.poz).toBe(1036);
+    expect(naDzien(LISTA, '2026-06-14')!.poz).toBe(601);
+    expect(naDzien(LISTA, '2026-06-05')!.poz).toBe(557);
   });
 });
 

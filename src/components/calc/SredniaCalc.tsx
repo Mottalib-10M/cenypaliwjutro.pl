@@ -24,7 +24,7 @@ export default function SredniaCalc({ lang, tyg, methodHref }: Props) {
       sub={mx != null ? T(lang, `Cena maksymalna w poniedziałek: ${litr(mx, lang)} (${gr(sr - mx, lang)})`, `Maximum price on the Monday: ${litr(mx, lang)} (${gr(sr - mx, lang)})`) : T(lang, 'Tego dnia nie było ceny maksymalnej', 'No maximum price applied that day')}
       rows={[
         { label: T(lang, 'LPG, średnia tygodnia', 'LPG, weekly average'), value: litr(w.lpg, lang) },
-        { label: T(lang, `Średnio poniżej limitu (${zMax.length} tyg.)`, `Average gap under the cap (${zMax.length} wks)`), value: gr(-ponizej, lang), strong: true },
+        { label: T(lang, `Średnio poniżej limitu (z ${zMax.length} tygodni)`, `Average gap under the cap (over ${zMax.length} weeks)`), value: gr(-ponizej, lang), strong: true },
       ]}
       hyp={T(lang, 'Średnia krajowa z Weekly Oil Bulletin Komisji Europejskiej (dane przekazane przez Polskę, CC BY 4.0), przeliczona z euro po kursie podanym w biuletynie. Porównanie z ceną maksymalną obowiązującą w poniedziałek danego tygodnia.', 'National average from the European Commission Weekly Oil Bulletin (data reported by Poland, CC BY 4.0), converted from euros at the rate given in the bulletin. Compared with the maximum price in force on that week\'s Monday.')}
       methodHref={methodHref} copyText={`${w.d} ${NAZWY[lang][p]}: ${litr(sr, lang)}`} />} />;

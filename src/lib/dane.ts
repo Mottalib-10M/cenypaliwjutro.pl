@@ -45,8 +45,9 @@ export const STAWKI_2027: Record<Paliwo, Stawki> = {
   pb98: { vat: P.vat.podstawowy, akcyza: L(P.akcyza.pb_ustawowa), oplata: L(P.oplata_paliwowa.pb_2027), marza: P.cena_maksymalna.koszty_operacyjne },
   on: { vat: P.vat.podstawowy, akcyza: L(P.akcyza.on_ustawowa), oplata: L(P.oplata_paliwowa.on_2027), marza: P.cena_maksymalna.koszty_operacyjne },
 };
-/** Composition du dernier prix maximal connu avec son netto officiel (dernière position du Monitor Polski). */
-export const skladOstatni = (p: Paliwo) => sklad(OSTATNIA_MP.brutto[p], STAWKI_CPN[p], OSTATNIA_MP.net?.[p]);
+/** Composition du prix maximal en vigueur (le même partout sur le site, test naïf du 2026-11-14) : netto officiel
+ *  quand l'annonce est déjà au Monitor Polski, sinon netto = prix TTC ÷ (1 + TVA 8 %), formule de l'art. 34a ust. 2. */
+export const skladOstatni = (p: Paliwo) => sklad(OSTATNIA.brutto[p], STAWKI_CPN[p], OSTATNIA.net?.[p]);
 
 /* ——— Weekly Oil Bulletin (CC BY 4.0) ——— */
 export interface WobPl { d: string; kurs: number; pb95: number; on: number; lpg: number; pb95_bez: number | null; on_bez: number | null; lpg_bez: number | null; ue95: number }

@@ -1,5 +1,5 @@
 /** Props (build) de chaque calculateur, tirées des données officielles : un seul endroit pour les pages et l'accueil. */
-import { LISTA, OSTATNIA, POPRZEDNIA, OSTATNIA_MP, OKRESY, WOB, WOB_OST, LPG_ZL, zlL, wobZl, maxWTygodniu, prog, widelki, skladOstatni, STAWKI_CPN, STAWKI_2027, mies, KRAJE_PL, PLN_ZA_EUR, type Paliwo } from './dane';
+import { LISTA, OSTATNIA, POPRZEDNIA, OKRESY, WOB, WOB_OST, LPG_ZL, zlL, wobZl, maxWTygodniu, prog, widelki, skladOstatni, STAWKI_CPN, STAWKI_2027, mies, KRAJE_PL, PLN_ZA_EUR, type Paliwo } from './dane';
 import { ostatniDzienOtwartej } from './engine/ceny';
 import { P } from './params';
 
@@ -13,6 +13,8 @@ export type Wiersz = [string, string, number, number, number, number, string, st
 export const wiersze = (): Wiersz[] => LISTA.map((o) => [o.od, o.do ?? '', o.brutto.pb95, o.brutto.pb98, o.brutto.on, o.poz ?? 0, o.ogl, o.url]);
 
 export const ostatnia = () => ({ od: OSTATNIA.od, doDnia: ostatniDzienOtwartej(OSTATNIA), ogl: OSTATNIA.ogl, poz: OSTATNIA.poz, url: OSTATNIA.url, ceny: OSTATNIA.brutto, poprzednie: POPRZEDNIA.brutto });
+/** Litres par mois de l'exemple du site (15 000 km par an à 6,5 l/100 km), pas un chiffre inventé de 150 l. */
+export const LITRY_MIES = Math.round((P.przyklady.km_rok * P.przyklady.spalanie_pb) / 100 / 12);
 export const lpg = () => ({ cena: r2(LPG_ZL), tydzien: WOB_OST.d });
 export const przyklady = () => P.przyklady;
 
@@ -21,7 +23,7 @@ export function toolProps(tool: string) {
     case 'dzis': return { ost: ostatnia(), lpg: lpg(), bak: P.przyklady.bak_l };
     case 'data': return { wiersze: wiersze(), okresy: OKRESY.map((o) => [o.od, o.do]) as Array<[string, string]>, pierwszy: LISTA[0].od, ost: ostatnia() };
     case 'jutro': return { ost: ostatnia(), widelki: per((p) => widelki(p, 1)), bak: P.przyklady.bak_l };
-    case 'prognoza': return { ost: ostatnia(), w1: per((p) => widelki(p, 1)), w5: per((p) => widelki(p, 5)), prog: per((p) => { const f = prog(p); return { zmiana: f.zmiana, cena: f.cena, pub: f.publikowana, mae: r4(f.ocena.mae), mae0: r4(f.ocena.maeStale), n: f.ocena.n, k: f.ocena.k, alfa: f.ocena.alfa }; }), litry: 150 };
+    case 'prognoza': return { ost: ostatnia(), w1: per((p) => widelki(p, 1)), w5: per((p) => widelki(p, 5)), prog: per((p) => { const f = prog(p); return { zmiana: f.zmiana, cena: f.cena, pub: f.publikowana, mae: r4(f.ocena.mae), mae0: r4(f.ocena.maeStale), n: f.ocena.n, k: f.ocena.k, alfa: f.ocena.alfa }; }), litry: LITRY_MIES };
     case 'koszt': return { ceny: { ...OSTATNIA.brutto, lpg: r2(LPG_ZL) }, spalanie: { pb95: P.przyklady.spalanie_pb, pb98: P.przyklady.spalanie_pb, on: P.przyklady.spalanie_on, lpg: P.przyklady.spalanie_lpg }, km: P.przyklady.km_rok, bak: P.przyklady.bak_l, od: OSTATNIA.od };
     case 'roznica': return { ceny: OSTATNIA.brutto, km: P.przyklady.km_rok, spalanie: P.przyklady.spalanie_pb, od: OSTATNIA.od };
     case 'lpg': return { pb95: OSTATNIA.brutto.pb95, lpg: r2(LPG_ZL), tydzien: WOB_OST.d, km: 20000, spalaniePb: P.przyklady.spalanie_pb, spalanieLpg: P.przyklady.spalanie_lpg };
@@ -29,9 +31,9 @@ export function toolProps(tool: string) {
     case 'cpn': return {
       sklad: per((p) => { const s = skladOstatni(p); return { brutto: s.brutto, netto: r4(s.netto), hurt: r4(s.hurt), akcyza: s.akcyza, oplata: r4(s.oplata), marza: s.marza, vat: s.vat }; }),
       cpn: STAWKI_CPN, s2027: STAWKI_2027, s2026bez: per((p) => ({ ...STAWKI_2027[p], oplata: STAWKI_CPN[p].oplata })),
-      poz: OSTATNIA_MP.poz, ogl: OSTATNIA_MP.ogl, km: P.przyklady.km_rok, spalanie: { pb95: P.przyklady.spalanie_pb, pb98: P.przyklady.spalanie_pb, on: P.przyklady.spalanie_on },
+      poz: OSTATNIA.poz, ogl: OSTATNIA.ogl, litry: LITRY_MIES, km: P.przyklady.km_rok, spalanie: { pb95: P.przyklady.spalanie_pb, pb98: P.przyklady.spalanie_pb, on: P.przyklady.spalanie_on },
     };
-    case 'sklad': return { sklad: per((p) => { const s = skladOstatni(p); return { brutto: s.brutto, netto: r4(s.netto), hurt: r4(s.hurt), akcyza: s.akcyza, oplata: r4(s.oplata), marza: s.marza, vat: r4(s.vat) }; }), poz: OSTATNIA_MP.poz, ogl: OSTATNIA_MP.ogl };
+    case 'sklad': return { sklad: per((p) => { const s = skladOstatni(p); return { brutto: s.brutto, netto: r4(s.netto), hurt: r4(s.hurt), akcyza: s.akcyza, oplata: r4(s.oplata), marza: s.marza, vat: r4(s.vat) }; }), poz: OSTATNIA.poz, ogl: OSTATNIA.ogl };
     case 'trasa': return { ceny: { ...OSTATNIA.brutto, lpg: r2(LPG_ZL) }, km: P.przyklady.trasa_km, spalanie: { pb95: P.przyklady.spalanie_pb, pb98: P.przyklady.spalanie_pb, on: P.przyklady.spalanie_on, lpg: P.przyklady.spalanie_lpg } };
     case 'europa': return {
       tydzien: WOB.tydzien, kurs: r4(PLN_ZA_EUR),
