@@ -18,7 +18,7 @@ export default function CpnCalc({ lang, sklad, s2026bez, km: k0, spalanie, paliw
   const form = (
     <>
       <SelectField id="cp-p" label={T(lang, 'Paliwo', 'Fuel')} value={p} onChange={(x) => { set('p')(x); set('s')(spalanie[x as Paliwo]); }} options={opcje(lang, ['pb95', 'pb98', 'on'])} />
-      <div className="grid gap-x-4 sm:grid-cols-2">
+      <div className="grid gap-x-4 gap-y-5 sm:grid-cols-2">
         <NumberField id="cp-km" label={T(lang, 'Kilometry rocznie', 'Kilometres a year')} value={km} onChange={set('km')} unit="km" min={0} max={300000} lang={lang} />
         <NumberField id="cp-s" label={T(lang, 'Spalanie (litry na 100 km)', 'Consumption (litres per 100 km)')} value={s} onChange={set('s')} unit="l/100 km" min={1} max={40} decimals={1} lang={lang} />
       </div>

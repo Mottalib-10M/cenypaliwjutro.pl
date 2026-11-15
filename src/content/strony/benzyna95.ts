@@ -7,20 +7,20 @@ export default defineStrona({
   related: ['benzyna98', 'jutro', 'trasa', 'lpg'],
   sources: ['mpObw', 'ustawa415', 'wob'],
   pl: {
-    slug: 'cena-benzyny-95', nav: 'Cena benzyny 95', card: 'Cena maksymalna Pb95, koszt baku i roczny budżet na benzynę.',
+    slug: 'cena-benzyny-95', nav: 'Cena benzyny 95', card: 'Cena maksymalna benzyny 95, koszt baku i roczny budżet na benzynę.',
     title: 'Cena benzyny 95 dziś: limit, koszt baku i roku jazdy',
     description: 'Cena benzyny 95 dziś: cena maksymalna z ostatniego obwieszczenia, zmiana wobec poprzedniego, koszt pełnego baku i roczny budżet na paliwo przy Twoim przebiegu.',
     h1: 'Cena benzyny 95 dziś i koszt tankowania',
     intro: (h) => `Cena benzyny 95 dziś to najwyżej ${h.l(O.brutto.pb95)} (${h.gr(zm('pb95'), true)} wobec poprzedniego ogłoszenia), ważne ${kiedy(h, O)}.`,
     resume: (h) => {
       const s = h.D.stat('pb95'), r = rok('pb95'), sr = h.D.zlL(h.D.WOB_OST.pb95);
-      return `Benzyna bezołowiowa 95 (Pb95) kosztuje dziś najwyżej ${h.l(O.brutto.pb95)}: tyle wynosi cena maksymalna z VAT z obwieszczenia ogłoszonego ${h.dateK(O.ogl)} Pełny bak 50 litrów to ${h.zl(O.brutto.pb95 * 50, 2)}, a przy ${h.num(EX.km_rok)} km rocznie i spalaniu ${h.num(EX.spalanie_pb, 1)} l/100 km benzyna kosztuje ${h.zl(r.koszt)} na rok, czyli ${h.zl(r.miesiac)} miesięcznie. Od pierwszego obwieszczenia cena maksymalna benzyny 95 wahała się od ${h.l(s.min)} do ${h.l(s.max)}, średnio ${h.l(s.srednia)} w ${h.num(s.n)} ogłoszeniach. Faktyczna średnia na stacjach w tygodniu od ${h.date(h.D.WOB_OST.d)} według Weekly Oil Bulletin wynosiła ${h.l(sr)}, czyli ${h.gr(sr - (h.D.maxWTygodniu(h.D.WOB_OST.d, 'pb95') ?? O.brutto.pb95), true)} wobec limitu z tego poniedziałku. Kalkulator liczy koszt tankowania i roczny budżet przy Twoim spalaniu i przebiegu. Limit dotyczy wszystkich stacji w kraju, także przy autostradach, a stacje mogą sprzedawać taniej, ale nigdy drożej.`;
+      return `Benzyna bezołowiowa 95 (Pb95) kosztuje dziś najwyżej ${h.l(O.brutto.pb95)}: tyle wynosi cena maksymalna z VAT z obwieszczenia ogłoszonego ${h.dateK(O.ogl)} Pełny bak 50 litrów to ${h.zl(O.brutto.pb95 * 50, 2)}, a przy ${h.num(EX.km_rok)} km rocznie i spalaniu ${h.num(EX.spalanie_pb, 1)} l/100 km benzyna kosztuje ${h.zl(r.koszt)} na rok, czyli ${h.zl(r.miesiac)} miesięcznie. Od pierwszego obwieszczenia cena maksymalna benzyny 95 wahała się od ${h.l(s.min)} do ${h.l(s.max)}, średnio ${h.l(s.srednia)} w ${h.num(s.n)} ogłoszeniach. Faktyczna średnia na stacjach w tygodniu od ${h.date(h.D.WOB_OST.d)} według tygodniowego biuletynu cen paliw Komisji Europejskiej wynosiła ${h.l(sr)}, czyli ${h.gr(sr - (h.D.maxWTygodniu(h.D.WOB_OST.d, 'pb95') ?? O.brutto.pb95), true)} wobec limitu z tego poniedziałku. Kalkulator liczy koszt tankowania i roczny budżet przy Twoim spalaniu i przebiegu. Limit dotyczy wszystkich stacji w kraju, także przy autostradach, a stacje mogą sprzedawać taniej, ale nigdy drożej.`;
     },
     faqs: (h) => [
-      { q: 'Czy benzyna 95 z E10 kosztuje tyle samo?', a: 'Tak. Od 2024 r. standardowa benzyna 95 na polskich stacjach to E10, z dodatkiem do 10 % bioetanolu, i właśnie jej dotyczy cena maksymalna. Starsze samochody, które nie tolerują E10, mogą tankować benzynę 98, sprzedawaną jako E5; jej limit jest wyższy.' },
+      { q: 'Czy benzyna 95 E10 (z bioetanolem) kosztuje tyle samo?', a: 'Tak. Od 2024 r. standardowa benzyna 95 na polskich stacjach to E10, z dodatkiem do 10 % bioetanolu, i właśnie jej dotyczy cena maksymalna. Starsze samochody, które nie tolerują E10, mogą tankować benzynę 98, sprzedawaną jako E5; jej limit jest wyższy.' },
       { q: 'Ile kosztuje 1 km jazdy na benzynie 95?', a: `Przy spalaniu ${h.num(EX.spalanie_pb, 1)} l/100 km i dzisiejszym limicie ${h.l(O.brutto.pb95)} kilometr kosztuje ${h.zl(rok('pb95').naKm, 2)}, a 100 km ${h.zl(rok('pb95').na100, 2)}. Wpisz swoje spalanie w kalkulator, bo różnica między małym autem miejskim a SUV-em to często dwukrotność. Koszt kilometra rośnie proporcjonalnie do spalania i ceny litra.` },
-      { q: 'Ile będzie kosztować benzyna 95 w 2027 r.?', a: `Jeśli pakiet CPN wygaśnie, a hurt się nie zmieni, około ${h.l(po2027('pb95'))}, czyli o ${h.gr(po2027('pb95') - sk('pb95').brutto)} więcej na litrze. To scenariusz z VAT 23 % i pełną akcyzą, a nie prognoza rynku; liczy go strona ${h.a('po2027', 'ceny paliw 2027')}. Wyższy hurt w styczniu zwiększyłby tę różnicę.` },
-      { q: 'Czy na stacji benzyna 95 może być tańsza niż limit?', a: `Tak, limit to cena najwyższa. Średnia z Weekly Oil Bulletin pokazuje, że w wielu tygodniach przeciętna cena była nieco niższa niż cena maksymalna. Porównanie tydzień po tygodniu znajdziesz na stronie ${h.a('srednia', 'średnie ceny paliw')}. Taniej często sprzedają stacje przy marketach i duże sieci, które konkurują ceną.` },
+      { q: 'Ile będzie kosztować benzyna 95 w 2027 r.?', a: `Jeśli pakiet „Ceny Paliw Niżej” (CPN) wygaśnie, a hurt się nie zmieni, około ${h.l(po2027('pb95'))}, czyli o ${h.gr(po2027('pb95') - sk('pb95').brutto)} więcej na litrze. To scenariusz z VAT 23 % i pełną akcyzą, a nie prognoza rynku; liczy go strona ${h.a('po2027', 'ceny paliw 2027')}. Wyższy hurt w styczniu zwiększyłby tę różnicę.` },
+      { q: 'Czy na stacji benzyna 95 może być tańsza niż limit?', a: `Tak, limit to cena najwyższa. Średnia z biuletynu Komisji Europejskiej pokazuje, że w wielu tygodniach przeciętna cena była nieco niższa niż cena maksymalna. Porównanie tydzień po tygodniu znajdziesz na stronie ${h.a('srednia', 'średnie ceny paliw')}. Taniej często sprzedają stacje przy marketach i duże sieci, które konkurują ceną.` },
     ],
     body: (h) => {
       const tab = [4, 5, 6, 7, 8, 10].map((sp) => { const r = rocznie(EX.km_rok, sp, O.brutto.pb95); return [`${h.num(sp, 1)} l/100 km`, h.zl(r.na100, 2), h.zl(r.miesiac), h.zl(r.koszt)]; });
@@ -29,8 +29,9 @@ export default defineStrona({
 <p>Ten sam przebieg ${h.num(EX.km_rok)} km rocznie przy różnym spalaniu, wyceniony po dzisiejszej cenie maksymalnej ${h.l(O.brutto.pb95)}.</p>
 ${h.table(['Spalanie', '100 km', 'Miesiąc', 'Rok'], tab, `Benzyna 95 po cenie maksymalnej z ${h.date(O.ogl)}`, ['l', 'r', 'r', 'r'])}
 <h2>Średnia cena maksymalna benzyny 95 w kolejnych miesiącach</h2>
+<p>W miesiącach, których brak w tabeli (na przykład w lipcu i we wrześniu 2026 r.), ceny maksymalnej nie było: rząd nie obniżył wtedy VAT na paliwa.</p>
 ${h.table(['Miesiąc', 'Średnia', 'Najniższa', 'Najwyższa', 'Ogłoszenia'], m.map((x) => [h.miesiac(x.m), h.l(x.srednia), h.l(x.min), h.l(x.max), x.n]), 'Średnia z ogłoszeń, które zaczęły obowiązywać w danym miesiącu', ['l', 'r', 'r', 'r', 'r'])}
-<p>Miesiące bez ogłoszeń to okresy bez obniżonego VAT, gdy limitu nie było. Dzienną historię pokazuje ${h.a('historia', 'historia cen paliw')}, a koszt konkretnej trasy ${h.a('trasa', 'koszt przejazdu')}.</p>`;
+<p>Dzienną historię pokazuje ${h.a('historia', 'historia cen paliw')}, a koszt konkretnej trasy ${h.a('trasa', 'koszt przejazdu')}.</p>`;
     },
   },
   en: {
@@ -56,8 +57,9 @@ ${h.table(['Miesiąc', 'Średnia', 'Najniższa', 'Najwyższa', 'Ogłoszenia'], m
 <p>The same ${h.num(EX.km_rok)} km a year at different consumption, priced at today’s cap of ${h.l(O.brutto.pb95)}.</p>
 ${h.table(['Consumption', '100 km', 'Month', 'Year'], tab, `Petrol 95 at the maximum price of ${h.date(O.ogl)}`, ['l', 'r', 'r', 'r'])}
 <h2>Average petrol 95 maximum price by month</h2>
+<p>Months missing from the table had no maximum price: the government had not cut VAT on fuel then.</p>
 ${h.table(['Month', 'Average', 'Lowest', 'Highest', 'Notices'], m.map((x) => [h.miesiac(x.m), h.l(x.srednia), h.l(x.min), h.l(x.max), x.n]), 'Average of notices that took effect in the month', ['l', 'r', 'r', 'r', 'r'])}
-<p>Months with no notices are periods without reduced VAT, when there was no cap. The daily history is in the ${h.a('historia', 'fuel price history')}, and the cost of a given journey in ${h.a('trasa', 'trip fuel cost')}.</p>`;
+<p>The daily history is in the ${h.a('historia', 'fuel price history')}, and the cost of a given journey in ${h.a('trasa', 'trip fuel cost')}.</p>`;
     },
   },
 });

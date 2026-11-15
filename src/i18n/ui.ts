@@ -4,7 +4,7 @@ const pl = {
   updatedOn: 'Aktualizacja', editorialPolicy: 'Polityka redakcyjna', contactLabel: 'Kontakt', reviewedBy: 'Opracowanie',
   skipToContent: 'Przejdź do treści', mainNav: 'Menu główne', breadcrumbLabel: 'Ścieżka', breadcrumbHome: 'Start', menuOpen: 'Otwórz menu',
   faqTitle: 'Najczęstsze pytania', relatedCalculators: 'Powiązane strony i kalkulatory', sourcesTitle: 'Źródła tej strony', writtenBy: 'Opracowanie',
-  asOf: 'Stan na', lastUpdated: 'aktualizacja', footerValidated: 'Źródła: obwieszczenia Ministra Energii w Monitorze Polskim, Dziennik Ustaw, Weekly Oil Bulletin Komisji Europejskiej',
+  asOf: 'Stan na', lastUpdated: 'aktualizacja', footerValidated: 'Źródła: obwieszczenia Ministra Energii w Monitorze Polskim, Dziennik Ustaw, tygodniowy biuletyn cen paliw Komisji Europejskiej',
   footerBrowser: 'Obliczenia w Twojej przeglądarce · nic nie wysyłamy · bez konta, bez telefonu, bez formularza',
   footerDisclaimer: 'Ceny Paliw Jutro to niezależny serwis Radif Partners, niezwiązany z Ministerstwem Energii, Krajową Administracją Skarbową, Komisją Europejską ani z żadną stacją czy koncernem paliwowym. Ceny maksymalne przepisujemy z obwieszczeń w Monitorze Polskim i podajemy z numerem pozycji; średnie tygodniowe pochodzą z biuletynu Komisji Europejskiej; widełki na kolejne dni i scenariusz na 2027 r. to nasze obliczenia, nigdy cena urzędowa. Wyniki mają charakter szacunkowy i nie stanowią doradztwa prawnego ani podatkowego: wiąże cena z obwieszczenia i cena na dystrybutorze.',
   footerPopular: 'Najczęściej odwiedzane', notFound: 'Pod tym adresem nie ma strony. Na stronie głównej znajdziesz maksymalną cenę paliw na dziś i koszt tankowania.', readMore: 'Czytaj dalej',

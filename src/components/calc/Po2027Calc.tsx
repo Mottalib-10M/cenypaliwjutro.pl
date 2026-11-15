@@ -17,11 +17,14 @@ export default function Po2027Calc({ lang, sklad, s2027, ogl, litry: l0 = 80, pa
   const form = (
     <>
       <SelectField id="po-p" label={T(lang, 'Paliwo', 'Fuel')} value={p} onChange={(x) => { set('p')(x); set('h')(sklad[x as Paliwo].hurt); }} options={opcje(lang, ['pb95', 'pb98', 'on'])} />
-      <div className="grid gap-x-4 sm:grid-cols-2">
-        <NumberField id="po-h" label={T(lang, 'Cena hurtowa bez akcyzy i opłaty', 'Wholesale price before excise and levy')} value={h} onChange={set('h')} unit="zł/l" min={0.5} max={15} decimals={2} lang={lang} help={T(lang, `Wyliczona z obwieszczenia z ${dzien(ogl, lang, false)}`, `Worked out from the notice of ${dzien(ogl, lang, false)}`)} />
-        <NumberField id="po-m" label={T(lang, 'Marża stacji', 'Station margin')} value={m} onChange={set('m')} unit="zł/l" min={0} max={3} decimals={2} lang={lang} help={T(lang, 'Ustawa o CPN liczy 0,30 zł/l kosztów', 'The CPN law counts PLN 0.30/l of costs')} />
-        <NumberField id="po-l" label={T(lang, 'Litry w miesiącu', 'Litres a month')} value={l} onChange={set('l')} unit="l" min={1} max={100000} lang={lang} help={T(lang, `Np. ${nr(l0, lang)} l: 15 000 km rocznie przy 6,5 l/100 km`, `E.g. ${nr(l0, lang)} l: 15,000 km a year at 6.5 l/100 km`)} />
-      </div>
+      <NumberField id="po-l" label={T(lang, 'Ile litrów tankujesz w miesiącu', 'Litres you buy a month')} value={l} onChange={set('l')} unit="l" min={1} max={100000} lang={lang} help={T(lang, `Np. ${nr(l0, lang)} l: 15 000 km rocznie przy spalaniu 6,5 litra na 100 km`, `E.g. ${nr(l0, lang)} l: 15,000 km a year at 6.5 litres per 100 km`)} />
+      <details className="rounded-lg border border-navy-200 px-3 py-2">
+        <summary className="cursor-pointer text-sm font-medium text-navy-800">{T(lang, 'Zaawansowane: cena hurtowa i marża (nie musisz zmieniać)', 'Advanced: wholesale price and margin (no need to change)')}</summary>
+        <div className="mt-3 grid gap-x-4 gap-y-5 sm:grid-cols-2">
+          <NumberField id="po-h" label={T(lang, 'Cena hurtowa paliwa (przed podatkami)', 'Wholesale fuel price (before taxes)')} value={h} onChange={set('h')} unit="zł/l" min={0.5} max={15} decimals={2} lang={lang} help={T(lang, `Wyliczona z ogłoszenia z ${dzien(ogl, lang, false)}; zostaw, jeśli nie wiesz`, `Worked out from the notice of ${dzien(ogl, lang, false)}; leave it if unsure`)} />
+          <NumberField id="po-m" label={T(lang, 'Koszty i marża stacji', 'Station costs and margin')} value={m} onChange={set('m')} unit="zł/l" min={0} max={3} decimals={2} lang={lang} help={T(lang, 'Ustawa przyjmuje 0,30 zł/l; bez limitu stacja ustala ją sama', 'The law uses PLN 0.30/l; without a cap the station sets it')} />
+        </div>
+      </details>
     </>
   );
   return <Frame form={form} result={

@@ -1,6 +1,6 @@
 /** Historique : moyenne, minimum et maximum d'un mois, et les annonces du mois avec leur source. */
 import SelectField from '../ui/SelectField';
-import { Frame, ResultPanel, T, litr, gr, opcje, useStan, NAZWY, dzien, type L, type Paliwo } from './kit';
+import { Frame, ResultPanel, T, litr, gr, nr, opcje, useStan, NAZWY, dzien, type L, type Paliwo } from './kit';
 import type { Wiersz } from '../../lib/tool-props';
 
 type M = [string, number, number, number, number];
@@ -17,7 +17,7 @@ export default function HistoriaCalc({ lang, mies, wiersze, paliwo = 'pb95', met
   const prev = i > 0 ? lista[i - 1] : null;
   const ogl = wiersze.filter((w) => w[0].startsWith(m[0]));
   const form = (
-    <div className="grid gap-x-4 sm:grid-cols-2">
+    <div className="grid gap-x-4 gap-y-5 sm:grid-cols-2">
       <SelectField id="hi-p" label={T(lang, 'Paliwo', 'Fuel')} value={p} onChange={set('p')} options={opcje(lang, ['pb95', 'pb98', 'on'])} />
       <SelectField id="hi-m" label={T(lang, 'Miesiąc', 'Month')} value={m[0]} onChange={set('m')} options={lista.map((x) => ({ value: x[0], label: nazwaMies(x[0], lang) }))} />
     </div>
@@ -26,9 +26,9 @@ export default function HistoriaCalc({ lang, mies, wiersze, paliwo = 'pb95', met
     <div className="mt-6 overflow-x-auto">
       <table className="w-full text-sm">
         <caption className="mb-2 text-left font-semibold text-navy-800">{T(lang, `Ceny obowiązujące w miesiącu: ${nazwaMies(m[0], lang)}`, `Prices in force in ${nazwaMies(m[0], lang)}`)}</caption>
-        <thead><tr className="border-b border-navy-300 text-left"><th scope="col" className="py-1 pr-3">{T(lang, 'Od', 'From')}</th><th scope="col" className="py-1 pr-3 text-right">Pb95</th><th scope="col" className="py-1 pr-3 text-right">Pb98</th><th scope="col" className="py-1 pr-3 text-right">ON</th><th scope="col" className="py-1">{T(lang, 'Źródło', 'Source')}</th></tr></thead>
+        <thead><tr className="border-b border-navy-300 text-left"><th scope="col" className="py-1 pr-3">{T(lang, 'Od', 'From')}</th><th scope="col" className="py-1 pr-3 text-right">{T(lang, 'Benzyna 95', 'Petrol 95')}</th><th scope="col" className="py-1 pr-3 text-right">{T(lang, 'Benzyna 98', 'Petrol 98')}</th><th scope="col" className="py-1 pr-3 text-right">{T(lang, 'Olej napędowy', 'Diesel')}</th><th scope="col" className="py-1">{T(lang, 'Źródło', 'Source')}</th></tr></thead>
         <tbody className="divide-y divide-navy-100">
-          {ogl.map((w) => <tr key={w[0]}><td className="py-1 pr-3">{dzien(w[0], lang, false)}{w[1] && w[1] !== w[0] ? ` – ${dzien(w[1], lang, false)}` : ''}</td><td className="tabular-nums py-1 pr-3 text-right">{w[2].toFixed(2)}</td><td className="tabular-nums py-1 pr-3 text-right">{w[3].toFixed(2)}</td><td className="tabular-nums py-1 pr-3 text-right">{w[4].toFixed(2)}</td><td className="py-1"><a className="underline" href={w[7]} target="_blank" rel="nofollow noopener noreferrer">{w[5] ? `M.P. ${w[5]}` : 'gov.pl'}</a></td></tr>)}
+          {ogl.map((w) => <tr key={w[0]}><td className="py-1 pr-3">{dzien(w[0], lang, false)}{w[1] && w[1] !== w[0] ? ` – ${dzien(w[1], lang, false)}` : ''}</td><td className="tabular-nums py-1 pr-3 text-right">{nr(w[2], lang, 2)}</td><td className="tabular-nums py-1 pr-3 text-right">{nr(w[3], lang, 2)}</td><td className="tabular-nums py-1 pr-3 text-right">{nr(w[4], lang, 2)}</td><td className="py-1"><a className="underline" href={w[7]} target="_blank" rel="nofollow noopener noreferrer">{w[5] ? `Monitor Polski, ${T(lang, 'poz.', 'item')} ${w[5]}` : 'gov.pl'}</a></td></tr>)}
         </tbody>
       </table>
     </div>

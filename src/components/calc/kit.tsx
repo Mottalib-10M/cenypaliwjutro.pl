@@ -93,14 +93,34 @@ export function Frame({ form, result, after }: { form: ReactNode; result: ReactN
   );
 }
 
-/** Champ date (AAAA-MM-JJ), même hauteur que les autres champs (48 px). */
-export function DateField({ id, label, value, onChange, min, max, help }: { id: string; label: string; value: string; onChange: (v: string) => void; min?: string; max?: string; help?: string }) {
+/** Champ date en texte, au format du pays (« 14.11.2026 ») : le champ natif `type="date"` s'affichait « 11/14/2026 »
+ *  (format américain) sur un téléphone réglé en anglais (test naïf du 2026-11-14, 3e tour, trois testeurs sur trois).
+ *  La valeur interne reste AAAA-MM-JJ ; on accepte « 14.11.2026 », « 14,11,2026 », « 14/11/2026 » ou « 14-11-2026 ». */
+const isoNaTekst = (iso: string, l: L) => { const [y, m, d] = iso.split('-'); return l === 'en' ? `${d}/${m}/${y}` : `${d}.${m}.${y}`; };
+export function DateField({ id, label, value, onChange, min, max, help, lang = 'pl' }: { id: string; label: string; value: string; onChange: (v: string) => void; min?: string; max?: string; help?: string; lang?: L }) {
+  const [raw, setRaw] = useState(isoNaTekst(value, lang));
+  const [blad, setBlad] = useState('');
+  useEffect(() => { setRaw((r) => (parse(r) === value ? r : isoNaTekst(value, lang))); }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
+  function parse(t: string): string | null {
+    const m = t.trim().match(/^(\d{1,2})\s*[.,/\- ]\s*(\d{1,2})\s*[.,/\- ]\s*(\d{4})$/);
+    if (!m) return null;
+    const iso = `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+    const d = new Date(`${iso}T12:00:00Z`);
+    return Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== iso ? null : iso;
+  }
+  const zmiana = (t: string) => {
+    setRaw(t);
+    const iso = parse(t);
+    if (!iso) { setBlad(t.replace(/\D/g, '').length >= 8 ? T(lang, 'Nie ma takiej daty. Wpisz np. 14.11.2026', 'No such date. Type e.g. 14/11/2026') : ''); return; }
+    if ((min && iso < min) || (max && iso > max)) { setBlad(T(lang, `Wpisz datę od ${isoNaTekst(min ?? iso, lang)} do ${isoNaTekst(max ?? iso, lang)}`, `Type a date from ${isoNaTekst(min ?? iso, lang)} to ${isoNaTekst(max ?? iso, lang)}`)); return; }
+    setBlad(''); onChange(iso);
+  };
   return (
     <div className="grid grid-rows-subgrid row-span-3 content-start gap-y-0">
       <label htmlFor={id} className="mb-1 block text-sm font-medium text-navy-700">{label}</label>
-      <input id={id} type="date" value={value} min={min} max={max} onChange={(e) => e.target.value && onChange(e.target.value)} aria-describedby={help ? `${id}-help` : undefined}
+      <input id={id} type="text" inputMode="decimal" autoComplete="off" placeholder={T(lang, 'dd.mm.rrrr', 'dd/mm/yyyy')} value={raw} onChange={(e) => zmiana(e.target.value)} aria-describedby={`${id}-help`}
         className="tabular-nums h-12 w-full rounded-lg border border-navy-300 bg-white px-4 text-lg text-navy-900 focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20" />
-      {help ? <p id={`${id}-help`} className="mt-1 text-xs text-navy-500">{help}</p> : <span />}
+      {blad ? <p id={`${id}-help`} role="status" className="mt-1 text-xs font-medium text-amber-700">{blad}</p> : <p id={`${id}-help`} className="mt-1 text-xs text-navy-500">{help}</p>}
     </div>
   );
 }

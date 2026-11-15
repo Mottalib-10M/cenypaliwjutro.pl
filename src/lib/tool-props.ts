@@ -26,14 +26,14 @@ export function toolProps(tool: string) {
     case 'prognoza': return { ost: ostatnia(), w1: per((p) => widelki(p, 1)), w5: per((p) => widelki(p, 5)), prog: per((p) => { const f = prog(p); return { zmiana: f.zmiana, cena: f.cena, pub: f.publikowana, mae: r4(f.ocena.mae), mae0: r4(f.ocena.maeStale), n: f.ocena.n, k: f.ocena.k, alfa: f.ocena.alfa }; }), litry: LITRY_MIES };
     case 'koszt': return { ceny: { ...OSTATNIA.brutto, lpg: r2(LPG_ZL) }, spalanie: { pb95: P.przyklady.spalanie_pb, pb98: P.przyklady.spalanie_pb, on: P.przyklady.spalanie_on, lpg: P.przyklady.spalanie_lpg }, km: P.przyklady.km_rok, bak: P.przyklady.bak_l, od: OSTATNIA.od };
     case 'roznica': return { ceny: OSTATNIA.brutto, km: P.przyklady.km_rok, spalanie: P.przyklady.spalanie_pb, od: OSTATNIA.od };
-    case 'lpg': return { pb95: OSTATNIA.brutto.pb95, lpg: r2(LPG_ZL), tydzien: WOB_OST.d, km: 20000, spalaniePb: P.przyklady.spalanie_pb, spalanieLpg: P.przyklady.spalanie_lpg };
+    case 'lpg': return { pb95: OSTATNIA.brutto.pb95, lpg: r2(LPG_ZL), tydzien: WOB_OST.d, km: P.przyklady.km_rok, spalaniePb: P.przyklady.spalanie_pb, spalanieLpg: P.przyklady.spalanie_lpg };
     case 'po2027':
     case 'cpn': return {
       sklad: per((p) => { const s = skladOstatni(p); return { brutto: s.brutto, netto: r4(s.netto), hurt: r4(s.hurt), akcyza: s.akcyza, oplata: r4(s.oplata), marza: s.marza, vat: s.vat }; }),
       cpn: STAWKI_CPN, s2027: STAWKI_2027, s2026bez: per((p) => ({ ...STAWKI_2027[p], oplata: STAWKI_CPN[p].oplata })),
       poz: OSTATNIA.poz, ogl: OSTATNIA.ogl, litry: LITRY_MIES, km: P.przyklady.km_rok, spalanie: { pb95: P.przyklady.spalanie_pb, pb98: P.przyklady.spalanie_pb, on: P.przyklady.spalanie_on },
     };
-    case 'sklad': return { sklad: per((p) => { const s = skladOstatni(p); return { brutto: s.brutto, netto: r4(s.netto), hurt: r4(s.hurt), akcyza: s.akcyza, oplata: r4(s.oplata), marza: s.marza, vat: r4(s.vat) }; }), poz: OSTATNIA.poz, ogl: OSTATNIA.ogl };
+    case 'sklad': return { sklad: per((p) => { const s = skladOstatni(p); return { brutto: s.brutto, netto: r4(s.netto), hurt: r4(s.hurt), akcyza: s.akcyza, oplata: r4(s.oplata), marza: s.marza, vat: r4(s.vat) }; }), poz: OSTATNIA.poz, ogl: OSTATNIA.ogl, litry: Math.round((P.przyklady.km_rok * P.przyklady.spalanie_pb) / 100) };
     case 'trasa': return { ceny: { ...OSTATNIA.brutto, lpg: r2(LPG_ZL) }, km: P.przyklady.trasa_km, spalanie: { pb95: P.przyklady.spalanie_pb, pb98: P.przyklady.spalanie_pb, on: P.przyklady.spalanie_on, lpg: P.przyklady.spalanie_lpg } };
     case 'europa': return {
       tydzien: WOB.tydzien, kurs: r4(PLN_ZA_EUR),

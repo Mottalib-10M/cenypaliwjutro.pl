@@ -1,0 +1,9 @@
+01 / → /pl/
+02 menu ☰ ouvert (rubriques dépliées)
+03 /pl/akcyza-i-podatki-w-cenie-paliwa/
+04 /pl/cena-benzyny-95/
+05 /pl/cena-benzyny-98/
+06 /pl/cena-diesla/
+07 /pl/cena-lpg/
+08 /pl/cena-maksymalna-paliw/
+09 /pl/ceny-paliw-2027/

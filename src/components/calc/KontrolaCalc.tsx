@@ -18,8 +18,8 @@ export default function KontrolaCalc({ lang, wiersze, pierwszy, ost, kara, metho
   const w = znajdz(wiersze, d, ost.doDnia);
   const form = (
     <>
-      <div className="grid gap-x-4 sm:grid-cols-2">
-        <DateField id="ko-d" label={T(lang, 'Data z paragonu', 'Date on the receipt')} value={d} onChange={set('d')} min={pierwszy} max="2026-12-31" />
+      <div className="grid gap-x-4 gap-y-5 sm:grid-cols-2">
+        <DateField id="ko-d" label={T(lang, 'Data z paragonu', 'Date on the receipt')} value={d} onChange={set('d')} min={pierwszy} max="2026-12-31" lang={lang} help={T(lang, 'Dzień.miesiąc.rok, np. 14.11.2026', 'Day/month/year, e.g. 14/11/2026')} />
         <SelectField id="ko-p" label={T(lang, 'Paliwo', 'Fuel')} value={p} onChange={set('p')} options={opcje(lang, ['pb95', 'pb98', 'on'])} />
         <NumberField id="ko-c" label={T(lang, 'Cena za litr z paragonu', 'Price per litre on the receipt')} value={c} onChange={set('c')} unit="zł/l" min={1} max={20} decimals={2} lang={lang} />
         <NumberField id="ko-l" label={T(lang, 'Litry', 'Litres')} value={l} onChange={set('l')} unit="l" min={0.1} max={2000} decimals={2} lang={lang} />

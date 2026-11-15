@@ -19,7 +19,7 @@ export default function EuropaCalc({ lang, tydzien, kurs, kraje, bak, methodHref
   const miejsce = ranking.findIndex((x) => x.k === 'PL') + 1;
   const form = (
     <>
-      <div className="grid gap-x-4 sm:grid-cols-2">
+      <div className="grid gap-x-4 gap-y-5 sm:grid-cols-2">
         <SelectField id="eu-k" label={T(lang, 'Kraj', 'Country')} value={kraj.k} onChange={set('k')} options={lista.map((x) => ({ value: x.k, label: lang === 'pl' ? x.pl : x.en }))} />
         <SelectField id="eu-p" label={T(lang, 'Paliwo', 'Fuel')} value={p} onChange={set('p')} options={(['pb95', 'on', 'lpg'] as P[]).map((x) => ({ value: x, label: NAZWY[lang][x] }))} />
       </div>
@@ -36,6 +36,6 @@ export default function EuropaCalc({ lang, tydzien, kurs, kraje, bak, methodHref
         { label: T(lang, 'Różnica na tankowaniu', 'Difference on the fill'), value: zl((cK - cP) * l, lang), strong: true },
         { label: T(lang, `Polska w UE (od najtańszego)`, `Poland in the EU (cheapest first)`), value: `${miejsce} / ${ranking.length}`, note: true },
       ]}
-      hyp={T(lang, `Średnie ceny detaliczne z podatkami z Weekly Oil Bulletin Komisji Europejskiej (licencja CC BY 4.0), przeliczone po kursie z biuletynu: 1 € = ${nr(kurs, lang, 3)} zł. To średnie krajowe z poniedziałku, nie ceny konkretnej stacji.`, `Average pump prices with taxes from the European Commission Weekly Oil Bulletin (CC BY 4.0 licence), converted at the bulletin's rate: €1 = PLN ${nr(kurs, lang, 3)}. These are Monday national averages, not the price at a given station.`)}
+      hyp={T(lang, `Średnie ceny detaliczne z podatkami z tygodniowego biuletynu cen paliw Komisji Europejskiej, przeliczone po kursie z biuletynu: 1 € = ${nr(kurs, lang, 3)} zł. To średnie krajowe z poniedziałku, nie ceny konkretnej stacji.`, `Average pump prices with taxes from the European Commission Weekly Oil Bulletin (CC BY 4.0 licence), converted at the bulletin's rate: €1 = PLN ${nr(kurs, lang, 3)}. These are Monday national averages, not the price at a given station.`)}
       methodHref={methodHref} copyText={`${nazwa} ${NAZWY[lang][p]}: ${litr(cK, lang)}`} />} />;
 }

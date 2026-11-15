@@ -3,7 +3,7 @@ import { O, EX, euZl, rok } from '../wspolne';
 import { P } from '../../lib/params';
 import { lpg as lpgCalc } from '../../lib/engine/koszty';
 
-const tyg = (h: any, n: number) => h.D.WOB.pl.slice(-n).reverse().map((w: any) => { const z = h.D.wobZl(w); return { d: w.d, lpg: z.lpg, pb95: z.pb95 }; });
+const tyg = (h: any, n: number) => h.D.WOB.pl.slice(-n).reverse().map((w: any) => { const z = h.D.wobZl(w); return { d: w.d, lpg: z.lpg, pb95: z.pb95, max95: h.D.maxWTygodniu(w.d, 'pb95') }; });
 
 export default defineStrona({
   id: 'lpg', group: 'koszty', order: 3, tool: 'lpg',
@@ -16,19 +16,20 @@ export default defineStrona({
     h1: 'Cena LPG i opłacalność instalacji gazowej',
     intro: (h) => `Cena LPG nie ma limitu: średnia krajowa autogazu w tygodniu od ${h.date(h.D.WOB_OST.d)} to ${h.l(h.D.LPG_ZL)}, wobec ${h.l(O.brutto.pb95)} limitu benzyny 95.`,
     resume: (h) => {
-      const r = lpgCalc(20000, EX.spalanie_pb, O.brutto.pb95, EX.spalanie_lpg, h.D.LPG_ZL, 0);
-      return `LPG (liquefied petroleum gas), czyli autogaz, nie jest objęty ceną maksymalną, więc jego cenę ustalają stacje. Średnią krajową podaje co tydzień Weekly Oil Bulletin Komisji Europejskiej na podstawie danych przekazanych przez Polskę: w tygodniu od ${h.date(h.D.WOB_OST.d)} wynosiła ${h.l(h.D.LPG_ZL)}, czyli ${h.pct(h.D.LPG_ZL / O.brutto.pb95, 0)} ceny maksymalnej benzyny 95. Silnik na gazie spala więcej litrów: przy ${h.num(EX.spalanie_lpg, 1)} l/100 km LPG zamiast ${h.num(EX.spalanie_pb, 1)} l/100 km benzyny 100 km kosztuje ${h.zl(EX.spalanie_lpg * h.D.LPG_ZL, 2)} wobec ${h.zl(EX.spalanie_pb * O.brutto.pb95, 2)}. Przy ${h.num(20000)} km rocznie oszczędność na paliwie to ${h.zl(r.oszczednosc)} na rok. Kalkulator dzieli koszt instalacji z oferty warsztatu przez tę oszczędność i podaje, po ilu miesiącach i kilometrach instalacja się zwraca. Ceny autogazu na stacjach mogą różnić się od średniej o kilkadziesiąt groszy, więc warto wpisać cenę ze swojej stacji.`;
+      const r = lpgCalc(EX.km_rok, EX.spalanie_pb, O.brutto.pb95, EX.spalanie_lpg, h.D.LPG_ZL, 0);
+      return `LPG, czyli autogaz (gaz płynny do samochodów), nie jest objęty ceną maksymalną, więc jego cenę ustalają stacje. Średnią krajową podaje co tydzień tygodniowy biuletyn cen paliw Komisji Europejskiej, na podstawie danych przekazanych przez Polskę: w tygodniu od ${h.date(h.D.WOB_OST.d)} wynosiła ${h.l(h.D.LPG_ZL)}, czyli ${h.pct(h.D.LPG_ZL / O.brutto.pb95, 0)} ceny maksymalnej benzyny 95. Silnik na gazie spala więcej litrów: przy ${h.num(EX.spalanie_lpg, 1)} l/100 km LPG zamiast ${h.num(EX.spalanie_pb, 1)} l/100 km benzyny 100 km kosztuje ${h.zl(EX.spalanie_lpg * h.D.LPG_ZL, 2)} wobec ${h.zl(EX.spalanie_pb * O.brutto.pb95, 2)}. Przy ${h.num(EX.km_rok)} km rocznie oszczędność na paliwie to ${h.zl(r.oszczednosc)} na rok. Kalkulator dzieli koszt instalacji z oferty warsztatu przez tę oszczędność i podaje, po ilu miesiącach i kilometrach instalacja się zwraca. Ceny autogazu na stacjach mogą różnić się od średniej o kilkadziesiąt groszy, więc warto wpisać cenę ze swojej stacji.`;
     },
     faqs: (h) => [
-      { q: 'Dlaczego LPG nie ma ceny maksymalnej?', a: 'Art. 34a ustawy o zapasach obejmuje benzyny silnikowe i olej napędowy. Gaz płynny LPG nie jest w nim wymieniony, więc obwieszczenia ministra go nie dotyczą. Obniżony VAT 8 % w pakiecie CPN (Ceny Paliw Niżej) również dotyczy wymienionych w rozporządzeniu paliw silnikowych; sprawdź aktualny zakres w Dzienniku Ustaw.' },
-      { q: 'Skąd średnia cena LPG, skoro stacje ustalają ją same?', a: 'Z Weekly Oil Bulletin, w którym państwa Unii co tydzień podają przeciętne ceny detaliczne paliw z podatkami. To średnia z poniedziałku dla całego kraju. Na konkretnej stacji, szczególnie przy autostradzie, autogaz bywa droższy, a na stacjach przy marketach tańszy. Datę tygodnia podajemy przy każdej liczbie.' },
+      { q: 'Dlaczego LPG nie ma ceny maksymalnej?', a: 'Art. 34a ustawy o zapasach obejmuje benzyny silnikowe i olej napędowy. Gaz płynny LPG nie jest w nim wymieniony, więc obwieszczenia ministra go nie dotyczą. Obniżony VAT 8 % w pakiecie „Ceny Paliw Niżej” (CPN) również dotyczy wymienionych w rozporządzeniu paliw silnikowych; sprawdź aktualny zakres w Dzienniku Ustaw.' },
+      { q: 'Skąd średnia cena LPG, skoro stacje ustalają ją same?', a: 'Z tygodniowego biuletynu cen paliw Komisji Europejskiej, w którym państwa Unii co tydzień podają przeciętne ceny detaliczne paliw z podatkami. To średnia z poniedziałku dla całego kraju. Na konkretnej stacji, szczególnie przy autostradzie, autogaz bywa droższy, a na stacjach przy marketach tańszy. Datę tygodnia podajemy przy każdej liczbie.' },
       { q: 'Ile wynosi opłata paliwowa od LPG?', a: `W 2026 r. ${h.zl(P.oplata_paliwowa.lpg_2026_za_1000kg, 2)} za 1000 kg gazu, w 2027 r. ${h.zl(P.oplata_paliwowa.lpg_2027_za_1000kg, 2)}. Stawki ogłasza Minister Infrastruktury w Monitorze Polskim. W przeliczeniu na litr to kilkanaście groszy, bo litr autogazu waży znacznie mniej niż kilogram. Opłata jest już zawarta w średniej cenie autogazu z biuletynu, więc nie dodajemy jej osobno.` },
       { q: 'Czy LPG opłaca się przy małym przebiegu?', a: 'Rzadko. Oszczędność rośnie z każdym kilometrem, a koszt instalacji jest stały, więc przy kilku tysiącach kilometrów rocznie zwrot trwa latami. Wpisz w kalkulator swój przebieg i cenę instalacji z oferty; uwzględnij też przeglądy instalacji gazowej. Wynik zmienia się od razu po wpisaniu nowych liczb.' },
     ],
     body: (h) => {
       const t = tyg(h, 8);
       return `<h2>Cena LPG w ostatnich tygodniach</h2>
-${h.table(['Tydzień od', 'LPG', 'Benzyna 95 (średnia)', 'LPG / Pb95'], t.map((x: any) => [h.date(x.d), h.l(x.lpg), h.l(x.pb95), h.pct(x.lpg / x.pb95, 0)]), 'Średnie krajowe z podatkami, Weekly Oil Bulletin (CC BY 4.0)', ['l', 'r', 'r', 'r'])}
+<p>Średnie to ceny faktycznie płacone na stacjach w całym kraju. W tygodniach bez ceny maksymalnej („brak” w ostatniej kolumnie) benzyna 95 była wyraźnie droższa. Gdy limit obowiązuje, średnia z tygodnia może być o kilka groszy wyższa od dzisiejszego limitu, bo limit zmieniał się w ciągu tygodnia.</p>
+${h.table(['Tydzień od', 'LPG', 'Benzyna 95, średnia', 'LPG w % ceny benzyny 95', 'Benzyna 95, cena maksymalna w poniedziałek'], t.map((x: any) => [h.date(x.d), h.l(x.lpg), h.l(x.pb95), h.pct(x.lpg / x.pb95, 0), x.max95 ? h.l(x.max95) : 'brak']), 'Średnie krajowe z podatkami z tygodniowego biuletynu cen paliw Komisji Europejskiej', ['l', 'r', 'r', 'r', 'r'])}
 <h2>LPG w Polsce i u sąsiadów</h2>
 <p>W tym samym tygodniu średnia cena autogazu w Niemczech wynosiła ${h.l(euZl('DE', 'lpg') ?? 0)}, w Czechach ${h.l(euZl('CZ', 'lpg') ?? 0)}, na Litwie ${h.l(euZl('LT', 'lpg') ?? 0)}. Pełne zestawienie jest na stronie ${h.a('europa', 'ceny paliw w Europie')}.</p>
 <h2>Benzyna czy gaz przy Twoim przebiegu</h2>
@@ -42,8 +43,8 @@ ${h.table(['Tydzień od', 'LPG', 'Benzyna 95 (średnia)', 'LPG / Pb95'], t.map((
     h1: 'LPG price in Poland and gas conversion payback',
     intro: (h) => `The LPG price in Poland has no cap: the national autogas average in the week of ${h.date(h.D.WOB_OST.d)} is ${h.l(h.D.LPG_ZL)}, against a petrol 95 cap of ${h.l(O.brutto.pb95)}.`,
     resume: (h) => {
-      const r = lpgCalc(20000, EX.spalanie_pb, O.brutto.pb95, EX.spalanie_lpg, h.D.LPG_ZL, 0);
-      return `LPG (liquefied petroleum gas), or autogas, is not covered by the maximum price, so stations set its price. The European Commission Weekly Oil Bulletin gives the national average every week from data reported by Poland: in the week of ${h.date(h.D.WOB_OST.d)} it was ${h.l(h.D.LPG_ZL)}, ${h.pct(h.D.LPG_ZL / O.brutto.pb95, 0)} of the petrol 95 maximum price. An engine on gas burns more litres: at ${h.num(EX.spalanie_lpg, 1)} l/100 km of LPG instead of ${h.num(EX.spalanie_pb, 1)} l/100 km of petrol, 100 km costs ${h.zl(EX.spalanie_lpg * h.D.LPG_ZL, 2)} against ${h.zl(EX.spalanie_pb * O.brutto.pb95, 2)}. At ${h.num(20000)} km a year the fuel saving is ${h.zl(r.oszczednosc)} a year. The calculator divides the installation cost from a workshop quote by that saving and gives the months and kilometres to pay it back. Autogas prices at stations can differ from the average by several dozen grosze, so it is worth entering your own station’s price.`;
+      const r = lpgCalc(EX.km_rok, EX.spalanie_pb, O.brutto.pb95, EX.spalanie_lpg, h.D.LPG_ZL, 0);
+      return `LPG, or autogas, is not covered by the maximum price, so stations set its price. The European Commission Weekly Oil Bulletin gives the national average every week from data reported by Poland: in the week of ${h.date(h.D.WOB_OST.d)} it was ${h.l(h.D.LPG_ZL)}, ${h.pct(h.D.LPG_ZL / O.brutto.pb95, 0)} of the petrol 95 maximum price. An engine on gas burns more litres: at ${h.num(EX.spalanie_lpg, 1)} l/100 km of LPG instead of ${h.num(EX.spalanie_pb, 1)} l/100 km of petrol, 100 km costs ${h.zl(EX.spalanie_lpg * h.D.LPG_ZL, 2)} against ${h.zl(EX.spalanie_pb * O.brutto.pb95, 2)}. At ${h.num(EX.km_rok)} km a year the fuel saving is ${h.zl(r.oszczednosc)} a year. The calculator divides the installation cost from a workshop quote by that saving and gives the months and kilometres to pay it back. Autogas prices at stations can differ from the average by several dozen grosze, so it is worth entering your own station’s price.`;
     },
     faqs: (h) => [
       { q: 'Why does LPG have no maximum price?', a: 'Article 34a of the Stocks Act covers motor petrol and diesel. Liquefied petroleum gas is not listed, so the minister’s notices do not apply to it. The reduced 8% VAT in the CPN (Lower Fuel Prices) package also covers the motor fuels listed in the regulation; check the current scope in the Journal of Laws.' },
@@ -54,7 +55,8 @@ ${h.table(['Tydzień od', 'LPG', 'Benzyna 95 (średnia)', 'LPG / Pb95'], t.map((
     body: (h) => {
       const t = tyg(h, 8);
       return `<h2>LPG price over recent weeks</h2>
-${h.table(['Week of', 'LPG', 'Petrol 95 (average)', 'LPG / Pb95'], t.map((x: any) => [h.date(x.d), h.l(x.lpg), h.l(x.pb95), h.pct(x.lpg / x.pb95, 0)]), 'National averages with taxes, Weekly Oil Bulletin (CC BY 4.0)', ['l', 'r', 'r', 'r'])}
+<p>The averages are prices actually paid at stations across the country. In weeks without a maximum price (“none” in the last column) petrol 95 was clearly dearer. While the cap applies, the weekly average can sit a few grosze above today’s cap, because the cap changed during the week.</p>
+${h.table(['Week of', 'LPG', 'Petrol 95, average', 'LPG as % of petrol 95', 'Petrol 95, Monday maximum price'], t.map((x: any) => [h.date(x.d), h.l(x.lpg), h.l(x.pb95), h.pct(x.lpg / x.pb95, 0), x.max95 ? h.l(x.max95) : 'none']), 'National averages with taxes from the European Commission Weekly Oil Bulletin', ['l', 'r', 'r', 'r', 'r'])}
 <h2>LPG in Poland and its neighbours</h2>
 <p>In the same week the average autogas price was ${h.l(euZl('DE', 'lpg') ?? 0)} in Germany, ${h.l(euZl('CZ', 'lpg') ?? 0)} in Czechia and ${h.l(euZl('LT', 'lpg') ?? 0)} in Lithuania. The full table is on the ${h.a('europa', 'fuel prices in Europe')} page.</p>
 <h2>Petrol or gas at your mileage</h2>

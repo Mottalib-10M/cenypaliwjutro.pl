@@ -12,18 +12,18 @@ export default defineStrona({
   related: ['prognoza', 'cena-maksymalna', 'benzyna95', 'diesel'],
   sources: ['mpObw', 'ustawa415', 'govplEnergia'],
   pl: {
-    slug: 'ceny-paliw-jutro', nav: 'Ceny paliw jutro', card: 'Kiedy minister ogłasza jutrzejszą cenę i o ile zwykle się zmienia.',
+    slug: 'ceny-paliw-jutro', nav: 'Ceny paliw jutro: kiedy nowa cena', card: 'Kiedy minister ogłasza jutrzejszą cenę i o ile zwykle się zmienia.',
     title: 'Ceny paliw jutro: kiedy ogłoszenie i o ile zmiana ceny',
     description: 'Ceny paliw jutro: kiedy Minister Energii ogłasza cenę maksymalną na następny dzień, w jakie dni obowiązuje i w jakich widełkach zmieniała się dotąd cena.',
     h1: 'Ceny paliw jutro: ogłoszenie i widełki',
-    intro: (h) => `Ceny paliw jutro poznasz po ogłoszeniu ministra; dziś obowiązuje Pb95 ${h.l(O.brutto.pb95)} i ON ${h.l(O.brutto.on)}, ważne ${kiedy(h, O)}.`,
+    intro: (h) => `Ceny paliw jutro poznasz po ogłoszeniu ministra; dziś obowiązuje benzyna 95 ${h.l(O.brutto.pb95)} i olej napędowy ${h.l(O.brutto.on)}, ważne ${kiedy(h, O)}.`,
     resume: (h) => {
       const w = h.D.widelki('pb95', 1), wo = h.D.widelki('on', 1), z = zmianyN('pb95');
       return `Jutrzejszą cenę maksymalną paliw ogłasza Minister Energii w Monitorze Polskim w dzień roboczy poprzedzający jej obowiązywanie. Ostatnie ogłoszenie, z ${h.date(O.ogl)}, ustala ${h.l(O.brutto.pb95)} za benzynę 95 i ${h.l(O.brutto.on)} za olej napędowy i obowiązuje ${kiedy(h, O)}. Na kolejny dzień ceny jeszcze nie ma, więc pokazujemy, jak duże były dotąd zmiany. Spośród ${h.num(z.n)} zmian benzyny 95 między kolejnymi ogłoszeniami ${h.num(z.w)} to podwyżki, ${h.num(z.s)} obniżki, a ${h.num(z.b)} razy cena się nie zmieniła. W 8 przypadkach na 10 nowa cena benzyny 95 różniła się od poprzedniej o ${h.gr(w.dol, true)} do ${h.gr(w.gora, true)}, a oleju napędowego o ${h.gr(wo.dol, true)} do ${h.gr(wo.gora, true)} na litrze. Kalkulator przelicza te widełki na koszt Twojego tankowania. Ogłoszenie z piątku obejmuje zwykle sobotę, niedzielę i poniedziałek, więc w weekend nowej ceny nie będzie.`;
     },
     faqs: (h) => [
       { q: 'O której godzinie minister ogłasza cenę na jutro?', a: 'Ustawa nie podaje godziny. Obwieszczenie musi ukazać się w Monitorze Polskim dzień przed obowiązywaniem ceny; w praktyce komunikat na gov.pl pojawia się po południu, a pozycja w dzienniku urzędowym tego samego dnia. Serwis odczytuje oba źródła i podaje, z którego pochodzi cena.' },
-      { q: 'Czy w weekend obowiązuje ta sama cena?', a: `Tak. Cena ogłoszona w piątek obowiązuje w sobotę, niedzielę i poniedziałek, a ogłoszona przed świętem także w dni świąteczne i w pierwszy dzień roboczy po nich (art. 34a ust. 6). Dlatego ostatnią cenę pokazujemy do ${h.dzienD(OST_DO)}. Święta nie są wpisane w kalkulator.` },
+      { q: 'Czy w weekend obowiązuje ta sama cena?', a: `Tak. Cena ogłoszona w piątek obowiązuje w sobotę, niedzielę i poniedziałek, a ogłoszona przed świętem także w dni świąteczne i w pierwszy dzień roboczy po nich. Dlatego ostatnią cenę pokazujemy do ${h.dzienD(OST_DO)}. Święta nie są wpisane w kalkulator.` },
       { q: 'Czy warto czekać z tankowaniem do jutra?', a: `Zwykle różnica jest niewielka: na baku 50 litrów zmiana o ${h.gr(h.D.widelki('pb95', 1).gora)} to ${h.zl(h.D.widelki('pb95', 1).gora * 50, 2)}. Czekanie ma sens, gdy hurt wyraźnie spada kilka dni z rzędu, co widać po kolejnych obniżkach. Kierunek i to, jak często trafiał, pokazuje ${h.a('prognoza', 'prognoza cen paliw')}. Zwykle nie warto.` },
       { q: 'Skąd stacje wiedzą o nowej cenie?', a: 'Z tego samego obwieszczenia. Cena maksymalna jest publiczna i jednakowa dla całego kraju, więc stacje nie dostają osobnej informacji. Zmieniają ceny na pylonach nocą albo rano; od północy nie mogą już sprzedawać drożej niż nowy limit. Kierowcy mogą przeczytać to samo obwieszczenie na gov.pl albo tutaj.' },
     ],
@@ -44,7 +44,7 @@ ${h.table(['Dzień ogłoszenia', 'Liczba ogłoszeń'], [1, 2, 3, 4, 5, 6, 0].map
     title: 'Fuel prices tomorrow in Poland: notice time and range',
     description: 'Fuel prices tomorrow in Poland: when the Minister of Energy announces the next day’s maximum price, which days it covers and how far prices have moved.',
     h1: 'Fuel prices tomorrow in Poland: notice and range',
-    intro: (h) => `Fuel prices tomorrow in Poland are known once the minister announces them; today Pb95 is capped at ${h.l(O.brutto.pb95)} and diesel at ${h.l(O.brutto.on)}, valid ${kiedy(h, O)}.`,
+    intro: (h) => `Fuel prices tomorrow in Poland are known once the minister announces them; today petrol 95 is capped at ${h.l(O.brutto.pb95)} and diesel at ${h.l(O.brutto.on)}, valid ${kiedy(h, O)}.`,
     resume: (h) => {
       const w = h.D.widelki('pb95', 1), wo = h.D.widelki('on', 1), z = zmianyN('pb95');
       return `Tomorrow’s maximum fuel price is announced by the Minister of Energy in Monitor Polski, the official gazette, on the working day before it applies. The latest notice, of ${h.date(O.ogl)}, sets ${h.l(O.brutto.pb95)} for petrol 95 and ${h.l(O.brutto.on)} for diesel and applies ${kiedy(h, O)}. There is no price yet for the following day, so we show how large changes have been. Of ${h.num(z.n)} petrol 95 changes between consecutive notices, ${h.num(z.w)} were rises, ${h.num(z.s)} were cuts and ${h.num(z.b)} times the price stayed put. 8 times out of 10 the new petrol 95 price differed from the previous one by ${h.gr(w.dol, true)} to ${h.gr(w.gora, true)} a litre, and diesel by ${h.gr(wo.dol, true)} to ${h.gr(wo.gora, true)} (1 grosz, gr, is PLN 0.01). The calculator turns that range into the cost of your fill.`;

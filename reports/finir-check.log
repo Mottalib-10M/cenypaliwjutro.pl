@@ -1,0 +1,129 @@
+
+> cenypaliwjutro.pl@0.1.0 check
+> npm run build && npx vitest run && node scripts/typo-nbsp.mjs dist --check && node scripts/check-legal.mjs && python3 scripts/check-seo.py . && python3 scripts/check-unique.py . && python3 scripts/check-trame.py . && python3 scripts/check-liens.py . && node scripts/check-layout.mjs . && node scripts/check-sources.mjs . && python3 scripts/check-simulateurs.py . && python3 scripts/check-hreflang.py . && python3 scripts/check-anglais.py . && python3 scripts/check-portefeuille.py . && python3 scripts/check-cookies.py . && node scripts/check-url-propre.mjs . && node scripts/check-premier-ecran.mjs . && node scripts/check-droits.mjs . && node scripts/check-copie.mjs . && node scripts/check-nombres.mjs . && node scripts/check-contraste.mjs . && node scripts/check-saisie.mjs . && python3 scripts/check-regles.py . && python3 scripts/check-motcle.py .
+
+
+> cenypaliwjutro.pl@0.1.0 build
+> astro build && node scripts/typo-nbsp.mjs && python3 scripts/check-snippets.py dist
+
+00:26:59 [types] Generated 119ms
+00:26:59 [build] output: "static"
+00:26:59 [build] mode: "static"
+00:26:59 [build] directory: /Users/mottalib/Documents/GitHub/a-publier/Mottalib-10M/cenypaliwjutro.pl/dist/
+00:26:59 [build] Collecting build info...
+00:26:59 [build] ✓ Completed in 138ms.
+00:26:59 [build] Building static entrypoints...
+00:27:01 [vite] ✓ built in 1.57s
+00:27:01 [vite] ✓ built in 816ms
+00:27:01 [build] Rearranging server assets...
+
+ generating static routes 
+00:27:01   ├─ /404.html (+14ms) 
+00:27:01   ├─ /embed/ceny-paliw/index.html (+25ms) 
+00:27:02   ├─ /embed/fuel-prices/index.html (+10ms) 
+00:27:02   ├─ /en/about/index.html (+12ms) 
+00:27:02   ├─ /en/contact/index.html (+8ms) 
+00:27:02   ├─ /en/cookies/index.html (+6ms) 
+00:27:02   ├─ /en/editorial-policy/index.html (+4ms) 
+00:27:02   ├─ /en/legal-notice/index.html (+4ms) 
+00:27:02   ├─ /en/method/index.html (+22ms) 
+00:27:02   ├─ /en/privacy/index.html (+6ms) 
+00:27:02   ├─ /en/widget/index.html (+5ms) 
+00:27:02   ├─ /en/maximum-fuel-price/index.html (+19ms) 
+00:27:02   ├─ /en/fuel-prices-2027/index.html (+8ms) 
+00:27:02   ├─ /en/trip-fuel-cost/index.html (+8ms) 
+00:27:02   ├─ /en/cpn-package/index.html (+6ms) 
+00:27:02   ├─ /en/fuel-prices-tomorrow/index.html (+7ms) 
+00:27:02   ├─ /en/fuel-tax-breakdown/index.html (+6ms) 
+00:27:02   ├─ /en/lpg-price/index.html (+6ms) 
+00:27:02   ├─ /en/fuel-price-forecast/index.html (+16ms) 
+00:27:02   ├─ /en/petrol-95-price/index.html (+9ms) 
+00:27:02   ├─ /en/fuel-prices-europe/index.html (+8ms) 
+00:27:02   ├─ /en/petrol-98-price/index.html (+7ms) 
+00:27:02   ├─ /en/diesel-price/index.html (+7ms) 
+00:27:02   ├─ /en/fuel-price-history/index.html (+18ms) 
+00:27:02   ├─ /en/station-above-maximum-price/index.html (+15ms) 
+00:27:02   ├─ /en/average-fuel-prices/index.html (+15ms) 
+00:27:02   ├─ /en/index.html (+14ms) 
+00:27:02   ├─ /pl/cookies/index.html (+3ms) 
+00:27:02   ├─ /pl/kontakt/index.html (+3ms) 
+00:27:02   ├─ /pl/metodologia/index.html (+15ms) 
+00:27:02   ├─ /pl/nota-prawna/index.html (+3ms) 
+00:27:02   ├─ /pl/o-nas/index.html (+3ms) 
+00:27:02   ├─ /pl/polityka-prywatnosci/index.html (+3ms) 
+00:27:02   ├─ /pl/polityka-redakcyjna/index.html (+3ms) 
+00:27:02   ├─ /pl/widget/index.html (+3ms) 
+00:27:02   ├─ /pl/cena-maksymalna-paliw/index.html (+7ms) 
+00:27:02   ├─ /pl/ceny-paliw-2027/index.html (+5ms) 
+00:27:02   ├─ /pl/koszt-przejazdu/index.html (+3ms) 
+00:27:02   ├─ /pl/pakiet-cpn/index.html (+4ms) 
+00:27:02   ├─ /pl/ceny-paliw-jutro/index.html (+5ms) 
+00:27:02   ├─ /pl/akcyza-i-podatki-w-cenie-paliwa/index.html (+6ms) 
+00:27:02   ├─ /pl/cena-lpg/index.html (+7ms) 
+00:27:02   ├─ /pl/prognoza-cen-paliw/index.html (+12ms) 
+00:27:02   ├─ /pl/cena-benzyny-95/index.html (+5ms) 
+00:27:02   ├─ /pl/ceny-paliw-w-europie/index.html (+8ms) 
+00:27:02   ├─ /pl/cena-benzyny-98/index.html (+6ms) 
+00:27:02   ├─ /pl/cena-diesla/index.html (+7ms) 
+00:27:02   ├─ /pl/historia-cen-paliw/index.html (+22ms) 
+00:27:02   ├─ /pl/stacja-drozej-niz-cena-maksymalna/index.html (+7ms) 
+00:27:02   ├─ /pl/srednie-ceny-paliw/index.html (+13ms) 
+00:27:02   ├─ /pl/index.html (+13ms) 
+00:27:02   ├─ /index.html (+7ms) 
+00:27:02 ✓ Completed in 521ms.
+
+00:27:02 [build] ✓ Completed in 2.96s.
+00:27:02 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+00:27:02 [build] 52 page(s) built in 3.14s
+00:27:02 [build] Complete!
+typo-nbsp: 59 espace(s) rendue(s) insécable(s) dans 12 page(s)
+check-snippets : 36 pages indexables, titres 50-60, descriptions 150-160, ordre des mots et unicite conformes
+
+ RUN  v4.1.12 /Users/mottalib/Documents/GitHub/a-publier/Mottalib-10M/cenypaliwjutro.pl
+
+
+ Test Files  2 passed (2)
+      Tests  47 passed (47)
+   Start at  00:27:04
+   Duration  776ms (transform 571ms, setup 0ms, import 709ms, tests 144ms, environment 0ms)
+
+typo-nbsp: 0 espace(s) à corriger dans 0 page(s)
+typo-nbsp: 0 décimale(s) avec un point dans une langue à virgule
+typo-nbsp: 0 pourcentage(s) écrit(s) mal placé(s) : « 20 % » là où la langue écrit « 20% », ou après le nombre en turc, qui écrit « %20 » (souvent dans un composant React : corriger la source)
+typo-nbsp: 0 mot(s) français sans accent ou avec un accent faux
+Identité légale complète, aucune mention provisoire.
+. : 36 pages indexables, 0 à corriger
+
+. : 36 pages comparées, 0 paire(s) trop proches, 0 question(s) recyclée(s)
+
+. : 51 pages, 0 à corriger, 0 question(s) de FAQ recyclée(s)
+. : 55 pages, 0 cible(s) morte(s), 0 lien(s) a corriger, 0 route(s) vide(s)
+check-layout: 36 pages × 4 largeurs, 0 défaut(s)
+check-sources: 289 source(s), 0 morte(s), 2 injoignable(s), 0 bloquée(s) aux robots
+  ~ connexion https://matomo.www.gov.pl/analytics/js/container_68lYTZ79.js  (serveur en panne ? à revérifier)
+  ~ connexion https://www.mobywatel.gov.pl/mObywatel  (serveur en panne ? à revérifier)
+. : 32 page(s) de contenu, 0 sans simulateur
+. : 36 pages, 36 avec hreflang, 0 à corriger
+. : 18 page(s) en langue locale, 0 sans version anglaise
+check-portefeuille : 0 paragraphe(s) copiés, 0 site(s) du portefeuille liés, 60 sites comparés.
+check-cookies : 0 défaut (53 pages, Clarity sur 49, GA4 G-VRC6V2GHM6 sur 49, langues en, pl)
+check-url-propre: 36 page(s) du sitemap, 0 défaut(s)
+check-premier-ecran : 0 page(s) fautive(s) sur 32 page(s) à simulateur (36 pages lues)
+check-droits : 51 page(s) lues dans dist ; licences citées : CC BY ; workflow planifié : oui
+  (a) liens soumis à autorisation (citer l’organisme sans lien : titre, adresse en texte, date) : 0
+  (b) relais juridique présenté comme officiel (lien vers le texte officiel, ou « relais non officiel ») : 0
+  (c) copie web.archive.org présentée comme officielle (écrire « copie archivée du JJ/MM/AAAA ») : 0
+  (d) attribution de licence absente du pied de page : 0
+  (e) promesse de mise à jour sans workflow planifié (écrire « lu le JJ/MM/AAAA, mise à jour manuelle ») : 0
+check-droits : 0 défaut
+check-copie : sans objet (pas de data/textes-sources/*.txt)
+  36 page(s), 0 champ(s) mal formaté(s)
+check-contraste: 36 page(s), 0 texte(s) sous le seuil
+check-saisie: 20 page(s) à calculateur, 0 défaut(s)
+  trame        ok         site le plus proche : combustiveishojept.com (48 % de blocs en commun)
+  chiffres     ok         date de mise à jour visible · 3 source(s) officielle(s) liée(s)
+  credibilite  ok         À propos lié · méthode liée
+  reseau       ok         liens vers : aucun site du portefeuille
+  publicite    ok         0 emplacement(s) publicitaire(s) sur l’accueil
+check-regles : 292 accueils comparés, 0 règle(s) KO ou à revoir
+check-motcle : 0/32 page(s) où le terme-clé du titre manque {}

@@ -8,7 +8,7 @@ export default defineStrona({
   related: ['jutro', 'po2027', 'historia', 'srednia'],
   sources: ['mpObw', 'eliMp', 'ustawa415'],
   pl: {
-    slug: 'prognoza-cen-paliw', nav: 'Prognoza cen paliw', card: 'Kierunek następnej zmiany, jak często trafiał i w jakich granicach zwykle jest nowa cena.',
+    slug: 'prognoza-cen-paliw', nav: 'Prognoza: kierunek następnej zmiany', card: 'Kierunek następnej zmiany, jak często trafiał i w jakich granicach zwykle jest nowa cena.',
     title: 'Prognoza cen paliw: kierunek zmiany i błąd w teście',
     description: 'Prognoza cen paliw na następne ogłoszenie i pięć ogłoszeń naprzód: widełki z rzeczywistych zmian i kierunek tylko tam, gdzie wygrał z założeniem „bez zmian”.',
     h1: 'Prognoza cen paliw na kolejne ogłoszenia',
@@ -21,7 +21,7 @@ export default defineStrona({
       { q: 'Dlaczego prognoza myli się tak często?', a: 'Bo cena maksymalna idzie za hurtem z poprzedniego dnia, a hurt za notowaniami ropy i kursem dolara, których nikt nie zna z wyprzedzeniem. Ruch z ostatnich dni trochę się powtarza, ale niewiele. Dlatego wynik testu publikujemy obok prognozy i nie pokazujemy jej, gdy przegrywa z założeniem „bez zmian”.' },
       { q: 'Czy uwzględniacie cenę ropy Brent i kurs dolara?', a: 'Nie. Hurtowe ceny ORLEN, które najlepiej opisują jutrzejszą cenę, mają warunki zabraniające ponownego wykorzystania, a notowań Brent nie mamy z otwartego, urzędowego źródła. Prognoza korzysta wyłącznie z serii cen maksymalnych ogłoszonych przez ministra, żeby każdy mógł ją sprawdzić. Każdy punkt testu da się odtworzyć.' },
       { q: 'Co znaczy „8 przypadków na 10”?', a: `Dolna granica widełek to zmiana, poniżej której było 10 % przypadków, górna to zmiana, powyżej której było kolejne 10 %. Pomiędzy mieści się 8 zmian na 10. Dla benzyny 95 widełki na następne ogłoszenie policzyliśmy z ${h.num(h.D.widelki('pb95', 1).n)} zmian. Widełki przeliczamy po każdym nowym ogłoszeniu.` },
-      { q: 'Jak daleko w przód sięga prognoza?', a: 'Na jedno ogłoszenie i na pięć ogłoszeń naprzód, czyli mniej więcej tydzień w dniach roboczych. Dalej widełki robią się tak szerokie, że nic nie mówią. Na scenariusz po końcu pakietu CPN, czyli od 1 stycznia 2027 r., jest osobna strona. Liczby przeliczamy po każdym ogłoszeniu.' },
+      { q: 'Jak daleko w przód sięga prognoza?', a: 'Na jedno ogłoszenie i na pięć ogłoszeń naprzód, czyli mniej więcej tydzień w dniach roboczych. Dalej widełki robią się tak szerokie, że nic nie mówią. Na scenariusz po końcu pakietu „Ceny Paliw Niżej” (CPN), czyli od 1 stycznia 2027 r., jest osobna strona. Liczby przeliczamy po każdym ogłoszeniu.' },
     ],
     body: (h) => {
       const rows = (['pb95', 'pb98', 'on'] as const).map((p) => { const f = h.D.prog(p), w1 = h.D.widelki(p, 1), w5 = h.D.widelki(p, 5); return [h.fn(p), h.l(O.brutto[p]), gr1(h, f.ocena.mae), gr1(h, f.ocena.maeStale), f.publikowana ? 'tak' : 'nie', `${h.gr(w1.dol, true)} / ${h.gr(w1.gora, true)}`, `${h.gr(w5.dol, true)} / ${h.gr(w5.gora, true)}`]; });

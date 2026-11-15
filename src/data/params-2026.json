@@ -54,49 +54,49 @@
     "eliMp": {
       "url": "https://api.sejm.gov.pl/eli/acts/MP/2026",
       "label": {
-        "pl": "Kancelaria Sejmu, API ELI: wykaz pozycji Monitora Polskiego 2026",
+        "pl": "Kancelaria Sejmu, baza aktów prawnych (API ELI): wykaz pozycji Monitora Polskiego 2026",
         "en": "Chancellery of the Sejm, ELI API: list of Monitor Polski 2026 items"
       }
     },
     "ustawa415": {
       "url": "https://api.sejm.gov.pl/eli/acts/DU/2026/415/text.pdf",
       "label": {
-        "pl": "Ustawa z 27 marca 2026 r. (Dz.U. 2026 poz. 415): art. 34a ustawy o zapasach, cena maksymalna paliw",
+        "pl": "Ustawa z 27 marca 2026 r. (Dziennik Ustaw 2026, poz. 415): art. 34a ustawy o zapasach, cena maksymalna paliw",
         "en": "Act of 27 March 2026 (Journal of Laws 2026 item 415): Article 34a of the Stocks Act, maximum fuel price"
       }
     },
     "vat1288": {
       "url": "https://api.sejm.gov.pl/eli/acts/DU/2026/1288/text.pdf",
       "label": {
-        "pl": "Rozporządzenie MFiG z 2 października 2026 r. (Dz.U. 2026 poz. 1288): VAT 8 % na paliwa do 31 grudnia 2026 r.",
+        "pl": "Rozporządzenie Ministra Finansów i Gospodarki z 2 października 2026 r. (Dziennik Ustaw 2026, poz. 1288): VAT 8 % na paliwa do 31 grudnia 2026 r.",
         "en": "Finance Minister regulation of 2 October 2026 (Journal of Laws 2026 item 1288): 8% VAT on fuel until 31 December 2026"
       }
     },
     "akcyza1289": {
       "url": "https://api.sejm.gov.pl/eli/acts/DU/2026/1289/text.pdf",
       "label": {
-        "pl": "Rozporządzenie MFiG z 2 października 2026 r. (Dz.U. 2026 poz. 1289): obniżona akcyza na benzynę i olej napędowy",
+        "pl": "Rozporządzenie Ministra Finansów i Gospodarki z 2 października 2026 r. (Dziennik Ustaw 2026, poz. 1289): obniżona akcyza na benzynę i olej napędowy",
         "en": "Finance Minister regulation of 2 October 2026 (Journal of Laws 2026 item 1289): reduced excise on petrol and diesel"
       }
     },
     "akcyzaUstawa": {
       "url": "https://api.sejm.gov.pl/eli/acts/DU/2026/412/text.pdf",
       "label": {
-        "pl": "Ustawa o podatku akcyzowym, tekst jednolity (Dz.U. 2026 poz. 412), art. 89 ust. 1: stawki na paliwa",
+        "pl": "Ustawa o podatku akcyzowym, tekst jednolity (Dziennik Ustaw 2026, poz. 412), art. 89 ust. 1: stawki na paliwa",
         "en": "Excise Duty Act, consolidated text (Journal of Laws 2026 item 412), Article 89(1): fuel rates"
       }
     },
     "oplata2026": {
       "url": "https://api.sejm.gov.pl/eli/acts/MP/2025/1238/text.pdf",
       "label": {
-        "pl": "Obwieszczenie Ministra Infrastruktury (M.P. 2025 poz. 1238): opłata paliwowa na rok 2026",
+        "pl": "Obwieszczenie Ministra Infrastruktury (Monitor Polski 2025, poz. 1238): opłata paliwowa na rok 2026",
         "en": "Minister of Infrastructure notice (Monitor Polski 2025 item 1238): fuel levy for 2026"
       }
     },
     "oplata2027": {
       "url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1132/text.pdf",
       "label": {
-        "pl": "Obwieszczenie Ministra Infrastruktury (M.P. 2026 poz. 1132): opłata paliwowa na rok 2027",
+        "pl": "Obwieszczenie Ministra Infrastruktury (Monitor Polski 2026, poz. 1132): opłata paliwowa na rok 2027",
         "en": "Minister of Infrastructure notice (Monitor Polski 2026 item 1132): fuel levy for 2027"
       }
     },
@@ -110,7 +110,7 @@
     "wob": {
       "url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
       "label": {
-        "pl": "Komisja Europejska, Weekly Oil Bulletin: tygodniowe ceny paliw w państwach UE (CC BY 4.0)",
+        "pl": "Komisja Europejska, tygodniowy biuletyn cen paliw (Weekly Oil Bulletin): ceny w państwach UE (licencja CC BY 4.0)",
         "en": "European Commission, Weekly Oil Bulletin: weekly fuel prices in EU countries (CC BY 4.0)"
       }
     },

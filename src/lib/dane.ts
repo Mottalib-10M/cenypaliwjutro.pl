@@ -58,7 +58,8 @@ export const WOB_OST = WOB.pl[WOB.pl.length - 1];
 export const zlL = (eur1000: number, kurs = WOB_OST.kurs) => eur1000 / kurs / 1000;
 export const PLN_ZA_EUR = 1 / WOB_OST.kurs;
 export const wobZl = (w: WobPl) => ({ d: w.d, pb95: zlL(w.pb95, w.kurs), on: zlL(w.on, w.kurs), lpg: zlL(w.lpg, w.kurs), ue95: zlL(w.ue95, w.kurs) });
-export const LPG_ZL = zlL(WOB_OST.lpg);
+/** Arrondie au grosz comme à l'écran : « 100 km kosztuje 33,49 zł » dans le texte et dans le calculateur (test naïf 2026-11-14). */
+export const LPG_ZL = Math.round(zlL(WOB_OST.lpg) * 100) / 100;
 
 /** Prix maximal en vigueur le lundi d'une semaine du bulletin (pour comparer moyenne réelle et plafond). */
 export function maxWTygodniu(d: string, p: Paliwo) {

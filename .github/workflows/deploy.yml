@@ -1,17 +1,19 @@
-name: deploy
+name: Data update and deploy
 
-# Publie le site sur GitHub Pages à chaque push sur main, et après chaque passe de update-data
-# (un push fait avec GITHUB_TOKEN ne relance pas les workflows, d'où workflow_run).
+# Source : prix maximaux du Ministre de l'Énergie, annoncés chaque jour ouvré l'après-midi (communiqué gov.pl/web/energia,
+# puis position du Monitor Polski lue par l'API ELI du Sejm), et Weekly Oil Bulletin de la Commission européenne
+# (hebdomadaire, lundi/mardi). Relecture en semaine à 15 h 30 et 18 h 30 (heure de Varsovie en hiver) ; le script
+# (npm run update-data = scripts/build-data.py --fetch --garder) réécrit src/data/ceny.json et src/data/wob.json, et garde
+# la dernière valeur si une source échoue. Les PDF déjà lus (data-raw/, hors git) sont gardés en cache entre deux passes.
 on:
+  schedule:
+    - cron: "30 14,17 * * 1-5"
   push:
     branches: [main]
-  workflow_run:
-    workflows: [update-data]
-    types: [completed]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,18 +23,62 @@ concurrency:
 
 jobs:
   build:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci --legacy-peer-deps
-      - run: npm run build
+
+      # Seulement si update-data est en Python (sinon supprimer ces deux étapes).
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python packages
+        if: github.event_name != 'push'
+        run: pip install pypdf openpyxl
+
+      - name: Cache of the official files already read (data-raw/, not in git)
+        if: github.event_name != 'push'
+        uses: actions/cache@v4
+        with:
+          path: data-raw
+          key: data-raw-${{ github.run_id }}
+          restore-keys: data-raw-
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Read the official source (scheduled and manual runs)
+        if: github.event_name != 'push'
+        run: npm run update-data
+
+      - name: Tests
+        run: npx vitest run
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit the new readings
+        id: commit
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/ceny.json src/data/wob.json
+          if git diff --cached --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; else
+            git commit -m "Données relues le $(date -u +%F)" && git push && echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -46,8 +92,12 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+      # IndexNow : à chaque push, et après une relecture planifiée seulement si les données ont changé
+      # (pour un cours relu plusieurs fois par jour, mettre : if: github.event_name != 'schedule').
       - name: Checkout (script IndexNow)
+        if: github.event_name != 'schedule' || needs.build.outputs.changed == 'true'
         uses: actions/checkout@v4
       - name: Ping IndexNow
+        if: github.event_name != 'schedule' || needs.build.outputs.changed == 'true'
         continue-on-error: true
         run: bash scripts/indexnow.sh https://cenypaliwjutro.pl

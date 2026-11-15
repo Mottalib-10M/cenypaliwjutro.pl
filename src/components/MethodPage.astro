@@ -1,5 +1,7 @@
 ---
 /** Metodologia (page de confiance, RECETTE §8.2) : sources, règle légale, validité, prévision et son rétro-test, taxes, limites. */
+import { zrodla } from '../lib/zrodla';
+import type { SourceKey } from '../lib/params';
 import PageLayout from '../layouts/PageLayout.astro';
 import { route, type Locale } from '../i18n/routes';
 import { P } from '../lib/params';
@@ -21,7 +23,8 @@ const h1 = pl ? 'Metodologia i źródła' : 'Method and sources';
 const path = route('method', lang);
 const mp = LISTA.filter((o) => o.src === 'mp').length, gov = LISTA.length - mp;
 const linhas = PALIWA.map((p) => ({ p, f: prog(p), w1: widelki(p, 1), w5: widelki(p, 5) }));
-const sources = Object.values(P.sources);
+const srcPl = zrodla(Object.keys(P.sources) as SourceKey[], 'pl');
+const srcEn = zrodla(Object.keys(P.sources) as SourceKey[], 'en');
 const okr = OKRESY.map((o) => `${displayDate(o.od, lang)} – ${displayDate(o.do, lang)}`).join(pl ? '; ' : '; ');
 const faqs = pl ? [
   { q: 'Dlaczego nie podajecie prognozy dla benzyny 98 i oleju napędowego?', a: 'Bo w teście wstecznym prosta reguła myliła się bardziej niż założenie, że cena się nie zmieni. Publikujemy przewidywany kierunek tylko wtedy, gdy wygrywa z tym punktem odniesienia. Zamiast niego zawsze pokazujemy widełki: o ile zmieniała się cena w ośmiu przypadkach na dziesięć.' },
@@ -37,7 +40,7 @@ const faqs = pl ? [
   <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">{h1}</h1></header>
   {pl ? (
   <div class="prose prose-slate max-w-none">
-    <p>Ceny Paliw Jutro opiera się na trzech rodzajach źródeł. Ceny maksymalne to obwieszczenia Ministra Energii wydawane na podstawie art. 34a ustawy o zapasach ropy naftowej, produktów naftowych i gazu ziemnego. Wykaz pozycji Monitora Polskiego pobieramy przez API ELI Kancelarii Sejmu, a z każdego pliku PDF odczytujemy cenę netto i cenę z VAT dla benzyny 95, benzyny 98 i oleju napędowego. Mamy {n(mp)} obwieszczeń z Monitora Polskiego i {n(gov)} {gov === 1 ? 'komunikat' : 'komunikaty'} z gov.pl, opublikowane przed wpisem do dziennika; pierwsze ogłoszenie pochodzi z {d(PIERWSZA.ogl)}, ostatnie z {dK(OSTATNIA.ogl)} Średnie ceny na stacjach i ceny w innych krajach Unii pochodzą z Weekly Oil Bulletin Komisji Europejskiej (ostatni tydzień: od {d(WOB_OST.d)}). Stawki VAT, akcyzy i opłaty paliwowej przepisaliśmy z Dziennika Ustaw i Monitora Polskiego {dK(P.retrieved_at)}</p>
+    <p>Ceny Paliw Jutro opiera się na trzech rodzajach źródeł. Ceny maksymalne to obwieszczenia Ministra Energii wydawane na podstawie art. 34a ustawy o zapasach ropy naftowej, produktów naftowych i gazu ziemnego. Wykaz pozycji Monitora Polskiego pobieramy przez API ELI Kancelarii Sejmu, a z każdego pliku PDF odczytujemy cenę netto i cenę z VAT dla benzyny 95, benzyny 98 i oleju napędowego. Mamy {n(mp)} obwieszczeń z Monitora Polskiego i {n(gov)} {gov === 1 ? 'komunikat' : 'komunikaty'} z gov.pl, opublikowane przed wpisem do dziennika; pierwsze ogłoszenie pochodzi z {d(PIERWSZA.ogl)}, ostatnie z {dK(OSTATNIA.ogl)} Średnie ceny na stacjach i ceny w innych krajach Unii pochodzą z tygodniowego biuletynu cen paliw Komisji Europejskiej, Weekly Oil Bulletin (ostatni tydzień: od {d(WOB_OST.d)}). Stawki VAT, akcyzy i opłaty paliwowej przepisaliśmy z Dziennika Ustaw i Monitora Polskiego {dK(P.retrieved_at)}</p>
     <h2>Jak powstaje cena maksymalna</h2>
     <p>Art. 34a ust. 2 ustawy o zapasach, dodany ustawą z 27 marca 2026 r. (Dz.U. 2026 poz. 415): cena maksymalna netto = średnia hurtowa cena pięciu największych dostawców z poprzedniego dnia roboczego, z akcyzą i opłatą paliwową, + {n(P.cena_maksymalna.koszty_operacyjne, 2)} zł za litr kosztów stacji. Cena brutto to netto powiększone o VAT. Cena maksymalna obowiązuje tylko w okresach obniżonej stawki VAT na paliwa: {okr}. Poza nimi stacje ustalają ceny swobodnie.</p>
     <h2>W jakie dni obowiązuje dana cena</h2>
@@ -52,14 +55,14 @@ const faqs = pl ? [
     <p>Przewaga reguły, jeśli jest, wynosi ułamek grosza. Traktuj prognozę jako wskazówkę kierunku, a widełki jako rzeczywistą niepewność. Hurtowych cen ORLEN nie używamy: ich warunki nie pozwalają na ponowne wykorzystanie.</p>
     <h2>Skład ceny</h2>
     <p>Z ceny netto ostatniego ogłoszenia (z Monitora Polskiego, a gdy ogłoszenie jest dopiero na gov.pl: cena z VAT podzielona przez 1,08) odejmujemy {n(P.cena_maksymalna.koszty_operacyjne, 2)} zł kosztów stacji, akcyzę (obniżoną do {n(P.akcyza.pb_obnizona)} zł za 1000 l benzyny i {n(P.akcyza.on_obnizona)} zł za 1000 l oleju napędowego do {d(P.akcyza.obnizona_do)}) oraz opłatę paliwową 2026 ({n(P.oplata_paliwowa.pb_2026, 2)} i {n(P.oplata_paliwowa.on_2026, 2)} zł za 1000 l). Reszta to cena hurtowa paliwa, w której są też opłata emisyjna i koszt zapasów obowiązkowych. Scenariusz na 2027 r. stosuje tę samą cenę hurtową, akcyzę ustawową ({n(P.akcyza.pb_ustawowa)} i {n(P.akcyza.on_ustawowa)} zł), opłatę paliwową 2027 i VAT 23 %.</p>
-    <h2>Średnie z Weekly Oil Bulletin</h2>
+    <h2>Średnie z biuletynu Komisji Europejskiej</h2>
     <p>Biuletyn podaje ceny w euro za 1000 litrów i kurs złotego z tego samego tygodnia. Przeliczamy: zł/l = euro za 1000 l ÷ kurs ÷ 1000; dziś 1 € = {n(PLN_ZA_EUR, 3)} zł. Mamy {n(WOB.pl.length)} tygodni dla Polski i ostatni tydzień dla {n(WOB.kraje.length)} krajów. To średnie krajowe z poniedziałku, przekazywane przez państwa członkowskie, nie ceny konkretnej stacji.</p>
     <h2>Czego serwis nie liczy</h2>
     <p>Rabatów z kart i aplikacji, cen dla flot, oleju opałowego, cen na stacjach przy autostradach w podziale na operatora ani cen w województwach: nie ma oficjalnego, otwartego źródła z takimi danymi. Wszystkie wyniki mają charakter informacyjny; wiążące są obwieszczenie i cena na dystrybutorze.</p>
     <h2>Aktualizacja</h2>
     <p>Dane odświeżamy skryptem, który ponownie czyta wykaz Monitora Polskiego i biuletyn; strona pokazuje datę ostatniego ogłoszenia, które faktycznie odczytaliśmy. Nie obiecujemy aktualizacji co do minuty: przed tankowaniem sprawdź datę.</p>
     <h2>Źródła</h2>
-    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.pl}</a></li>)}</ul>
+    <ul>{srcPl.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.name}</a></li>)}</ul>
     <p>Widzisz błąd? Napisz: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
   </div>
   ) : (
@@ -86,7 +89,7 @@ const faqs = pl ? [
     <h2>Updates</h2>
     <p>Data are refreshed by a script that re-reads the Monitor Polski list and the bulletin; pages show the date of the latest notice actually read. We do not promise minute-by-minute updates: check the date before you fill up.</p>
     <h2>Sources</h2>
-    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.en}</a></li>)}</ul>
+    <ul>{srcEn.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.name}</a></li>)}</ul>
     <p>Spotted an error? Write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
   </div>
   )}

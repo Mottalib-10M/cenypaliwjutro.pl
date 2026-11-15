@@ -13,23 +13,23 @@ export default defineStrona({
     intro: (h) => `Cena diesla dziś to najwyżej ${h.l(O.brutto.on)} oleju napędowego (${h.gr(zm('on'), true)} wobec poprzedniej ceny), ważne ${kiedy(h, O)}.`,
     resume: (h) => {
       const s = h.D.stat('on'), r = rok('on');
-      return `Olej napędowy (ON) kosztuje dziś najwyżej ${h.l(O.brutto.on)}, o ${h.gr(O.brutto.on - O.brutto.pb95)} więcej niż benzyna 95. To cena maksymalna z VAT z obwieszczenia ogłoszonego ${h.dateK(O.ogl)} Pełny bak 50 litrów kosztuje ${h.zl(O.brutto.on * 50, 2)}. Samochód z silnikiem diesla spalający ${h.num(EX.spalanie_on, 1)} l/100 km przy ${h.num(EX.km_rok)} km rocznie zużyje paliwa za ${h.zl(r.koszt)}, czyli ${h.zl(r.miesiac)} miesięcznie. Od pierwszego obwieszczenia cena maksymalna diesla wahała się od ${h.l(s.min)} do ${h.l(s.max)}, średnio ${h.l(s.srednia)}. Olej napędowy jest droższy z dwóch powodów: cena hurtowa oleju napędowego wynika z obwieszczenia jako ${h.l(sk('on').hurt)} wobec ${h.l(sk('pb95').hurt)} dla benzyny, a opłata paliwowa od litra ON wynosi ${h.l(sk('on').oplata)} wobec ${h.l(sk('pb95').oplata)} od benzyny. Kalkulator liczy koszt tankowania i roczny budżet. Limit obowiązuje także na stacjach przy autostradach.`;
+      return `Olej napędowy (ON) kosztuje dziś najwyżej ${h.l(O.brutto.on)}, o ${h.gr(O.brutto.on - O.brutto.pb95)} więcej niż benzyna 95. To cena maksymalna z VAT z obwieszczenia ogłoszonego ${h.dateK(O.ogl)} Pełny bak 50 litrów kosztuje ${h.zl(O.brutto.on * 50, 2)}. Samochód z silnikiem diesla spalający ${h.num(EX.spalanie_on, 1)} l/100 km przy ${h.num(EX.km_rok)} km rocznie zużyje paliwa za ${h.zl(r.koszt)}, czyli ${h.zl(r.miesiac)} miesięcznie. Od pierwszego obwieszczenia cena maksymalna diesla wahała się od ${h.l(s.min)} do ${h.l(s.max)}, średnio ${h.l(s.srednia)}. Olej napędowy jest droższy z dwóch powodów: cena hurtowa oleju napędowego wynika z ogłoszenia jako ${h.l(sk('on').hurt)} wobec ${h.l(sk('pb95').hurt)} dla benzyny, a opłata paliwowa od litra ON wynosi ${h.l(sk('on').oplata)} wobec ${h.l(sk('pb95').oplata)} od benzyny. Kalkulator liczy koszt tankowania i roczny budżet. Limit obowiązuje także na stacjach przy autostradach.`;
     },
     faqs: (h) => [
       { q: 'Czy olej napędowy zimowy kosztuje więcej?', a: 'Nie w zakresie limitu. Cena maksymalna dotyczy oleju napędowego bez względu na klasę, więc olej przejściowy i zimowy, sprzedawany od jesieni, mają ten sam limit. Paliwa premium sprzedawane pod własnymi nazwami handlowymi także muszą się w nim zmieścić, jeśli są olejem napędowym.' },
       { q: 'Czy firmy transportowe płacą tę samą cenę?', a: 'Cena maksymalna dotyczy sprzedaży detalicznej na stacjach. Duzi odbiorcy kupujący w hurcie, z bazy albo na kartach flotowych z rabatem płacą według własnych umów. Przedsiębiorca może odliczyć VAT od paliwa na zasadach ogólnych, więc dla niego liczy się cena netto z obwieszczenia.' },
       { q: 'Ile będzie kosztował diesel w 2027 r.?', a: `Jeśli VAT wróci do 23 %, akcyza do stawki ustawowej, a hurt zostanie na dzisiejszym poziomie, około ${h.l(po2027('on'))}, o ${h.gr(po2027('on') - sk('on').brutto)} więcej na litrze. Scenariusz uwzględnia też wyższą opłatę paliwową na 2027 r.; liczy go strona ${h.a('po2027', 'ceny paliw 2027')}.` },
-      { q: 'Gdzie w Europie diesel jest tańszy?', a: `Według Weekly Oil Bulletin średnia cena diesla w Polsce wynosiła ${h.l(h.D.zlL(h.D.WOB_OST.on))}, w Niemczech ${h.l(euZl('DE', 'on') ?? 0)}, w Czechach ${h.l(euZl('CZ', 'on') ?? 0)}. Pełne porównanie 27 krajów jest na stronie ${h.a('europa', 'ceny paliw w Europie')}. Wszystkie liczby to średnie krajowe z poniedziałku, przeliczone po kursie podanym w biuletynie.` },
+      { q: 'Gdzie w Europie diesel jest tańszy?', a: `Według tygodniowego biuletynu cen paliw Komisji Europejskiej średnia cena diesla w Polsce wynosiła ${h.l(h.D.zlL(h.D.WOB_OST.on))}, w Niemczech ${h.l(euZl('DE', 'on') ?? 0)}, w Czechach ${h.l(euZl('CZ', 'on') ?? 0)}. Pełne porównanie 27 krajów jest na stronie ${h.a('europa', 'ceny paliw w Europie')}. Wszystkie liczby to średnie krajowe z poniedziałku, przeliczone po kursie podanym w biuletynie.` },
     ],
     body: (h) => {
       const d = sk('on'), b = sk('pb95');
       const m = h.D.mies('on');
       return `<h2>Cena diesla a benzyny: skąd różnica</h2>
-<p>Tabela rozkłada obie ceny maksymalne z ostatniego obwieszczenia w Monitorze Polskim na te same składniki. Akcyza od oleju napędowego jest niższa niż od benzyny, ale opłata paliwowa i cena hurtowa są wyższe.</p>
-${h.table(['Składnik na litrze', 'Olej napędowy', 'Benzyna 95'], [['Cena hurtowa paliwa', h.l(d.hurt), h.l(b.hurt)], ['Akcyza', h.l(d.akcyza), h.l(b.akcyza)], ['Opłata paliwowa', h.l(d.oplata), h.l(b.oplata)], ['Koszty stacji', h.l(d.marza), h.l(b.marza)], ['VAT', h.l(d.vat), h.l(b.vat)], ['Cena maksymalna', h.l(d.brutto), h.l(b.brutto)]], `Skład ceny maksymalnej z ogłoszenia z ${h.date(O.ogl)}`, ['l', 'r', 'r'])}
+<p>Tabela rozkłada obie ceny maksymalne z ostatniego ogłoszenia ministra na te same składniki. Akcyza od oleju napędowego jest niższa niż od benzyny, ale opłata paliwowa i cena hurtowa są wyższe.</p>
+${h.table(['Składnik na litrze', 'Olej napędowy', 'Benzyna 95'], [['Cena hurtowa paliwa', h.l(d.hurt), h.l(b.hurt)], ['Akcyza', h.l(d.akcyza), h.l(b.akcyza)], ['Opłata paliwowa', h.l(d.oplata), h.l(b.oplata)], ['Koszty i marża stacji', h.l(d.marza), h.l(b.marza)], ['VAT', h.l(d.vat), h.l(b.vat)], ['Cena maksymalna', h.l(d.brutto), h.l(b.brutto)]], `Skład ceny maksymalnej z ogłoszenia z ${h.date(O.ogl)}`, ['l', 'r', 'r'])}
 <h2>Średnia cena maksymalna diesla w kolejnych miesiącach</h2>
+<p>W miesiącach, których brak w tabeli, ceny maksymalnej nie było: rząd nie obniżył wtedy VAT na paliwa.</p>
 ${h.table(['Miesiąc', 'Średnia', 'Najniższa', 'Najwyższa', 'Ogłoszenia'], m.map((x) => [h.miesiac(x.m), h.l(x.srednia), h.l(x.min), h.l(x.max), x.n]), 'Olej napędowy: średnia z ogłoszeń, które zaczęły obowiązywać w danym miesiącu', ['l', 'r', 'r', 'r', 'r'])}
-<p>Brakujące miesiące to okresy bez obniżonego VAT, gdy ceny maksymalnej nie było.</p>
 <p>Pełny opis podatków jest na stronie ${h.a('akcyza', 'akcyza i podatki w cenie paliwa')}.</p>`;
     },
   },
@@ -53,11 +53,11 @@ ${h.table(['Miesiąc', 'Średnia', 'Najniższa', 'Najwyższa', 'Ogłoszenia'], m
       const d = sk('on'), b = sk('pb95');
       const m = h.D.mies('on');
       return `<h2>Diesel price in Poland today against petrol: the gap</h2>
-<p>The table splits both maximum prices from the latest Monitor Polski notice into the same parts. Excise on diesel is lower than on petrol, but the fuel levy and the wholesale price are higher.</p>
+<p>The table splits both maximum prices from the minister’s latest notice into the same parts. Excise on diesel is lower than on petrol, but the fuel levy and the wholesale price are higher.</p>
 ${h.table(['Part of a litre', 'Diesel', 'Petrol 95'], [['Wholesale fuel', h.l(d.hurt), h.l(b.hurt)], ['Excise', h.l(d.akcyza), h.l(b.akcyza)], ['Fuel levy', h.l(d.oplata), h.l(b.oplata)], ['Station costs', h.l(d.marza), h.l(b.marza)], ['VAT', h.l(d.vat), h.l(b.vat)], ['Maximum price', h.l(d.brutto), h.l(b.brutto)]], `Breakdown of the maximum price in the notice of ${h.date(O.ogl)}`, ['l', 'r', 'r'])}
 <h2>Average diesel maximum price by month</h2>
+<p>Months missing from the table had no maximum price: the government had not cut VAT on fuel then.</p>
 ${h.table(['Month', 'Average', 'Lowest', 'Highest', 'Notices'], m.map((x) => [h.miesiac(x.m), h.l(x.srednia), h.l(x.min), h.l(x.max), x.n]), 'Diesel: average of notices that took effect in the month', ['l', 'r', 'r', 'r', 'r'])}
-<p>Missing months are periods without reduced VAT, when there was no maximum price.</p>
 <p>The full tax picture is on the ${h.a('akcyza', 'fuel tax breakdown')} page.</p>`;
     },
   },

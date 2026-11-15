@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Données du site, reconstruites depuis les sources officielles (rejouable).
 
-Usage : python3 scripts/build-data.py [--fetch]
+Usage : python3 scripts/build-data.py [--fetch] [--garder]
   --fetch   relit les sources en ligne avant de reconstruire (sinon : copies de data-raw/).
+  --garder  relecture planifiée (npm run update-data, GitHub Actions) : si une source échoue (réseau, 403 ou défi
+            anti-robot, format changé, contrôle de cohérence), le fichier de données de cette source n'est pas réécrit :
+            la dernière valeur reste, avec sa date de relevé, et le script sort à 0 avec un avertissement.
+            Un blocage anti-robot n'est jamais contourné (même agent, pas de nouvel essai) : on relit à la main.
 
 Sources
   1. Monitor Polski (Dziennik Urzędowy RP), obwieszczenia Ministra Energii « w sprawie maksymalnej ceny paliw
@@ -30,6 +34,7 @@ RAW = os.path.join(ROOT, 'data-raw')
 OUT = os.path.join(ROOT, 'src', 'data')
 UA = 'Mozilla/5.0 (cenypaliwjutro.pl data build)'
 FETCH = '--fetch' in sys.argv
+GARDER = '--garder' in sys.argv
 
 # Périodes de TVA réduite à 8 % (art. 146ej ustawy o VAT ; § 11, 11a, 11b, 11c du rozporządzenie du 9 décembre 2023,
 # Dz.U. 2026 poz. 417, 573, 642, 699, 771, 1095, 1288) : la cena maksymalna ne vaut que pendant ces périodes (art. 34a ust. 1).
@@ -41,8 +46,12 @@ OKRESY = [
 
 
 def curl(url, out):
+    # --fail : une réponse 403/404/5xx est une erreur (jamais enregistrée comme donnée) ; fichier temporaire puis
+    # renommage : un téléchargement coupé ne laisse pas de PDF tronqué dans le cache.
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    subprocess.run(['curl', '-sSL', '--max-time', '60', '-A', UA, '-o', out, url], check=True)
+    tmp = out + '.part'
+    subprocess.run(['curl', '-sSL', '--fail', '--max-time', '60', '-A', UA, '-o', tmp, url], check=True)
+    os.replace(tmp, out)
 
 
 def pdf_text(path):
@@ -200,20 +209,43 @@ def wob():
     return {'tydzien': last[0].date().isoformat(), 'pl': pl, 'kraje': kraje, 'ue': ue}
 
 
-def main():
+def garde(nom, f):
+    """Exécute une lecture ; avec --garder, un échec laisse le fichier de données précédent en place."""
+    if not GARDER:
+        return f()
+    try:
+        return f()
+    except (Exception, SystemExit) as e:  # sys.exit des contrôles de cohérence compris
+        print(f'::warning::{nom} : lecture impossible ({e}) ; dernière valeur conservée')
+        return None
+
+
+def ceny_rows():
     rows = obwieszczenia()
     ost = rows[-1]['ogl']
     rows += govpl(ost)
     rows = ważność(rows)
     for r in rows:
         r['ogl_dzien'] = r['ogl']
+    return rows
+
+
+def main():
     now = dt.date.today().isoformat()
-    json.dump({'odczyt': now, 'okresy': OKRESY, 'ceny': rows}, open(os.path.join(OUT, 'ceny.json'), 'w'), ensure_ascii=False, indent=0)
-    w = wob()
-    w['odczyt'] = now
-    json.dump(w, open(os.path.join(OUT, 'wob.json'), 'w'), ensure_ascii=False, indent=0)
-    print(f"{len(rows)} annonces (dont {sum(r['src'] == 'govpl' for r in rows)} gov.pl), de {rows[0]['ogl']} à {rows[-1]['ogl']} ;"
-          f" WOB : {len(w['pl'])} semaines PL, dernière {w['tydzien']}, {len(w['kraje'])} pays")
+    rows = garde('Monitor Polski / gov.pl', ceny_rows)
+    if rows is not None:
+        old = os.path.join(OUT, 'ceny.json')
+        prev = json.load(open(old)) if os.path.exists(old) else None
+        if GARDER and prev and len(rows) < len(prev['ceny']):
+            print(f"::warning::moins d'annonces lues ({len(rows)}) que dans les données ({len(prev['ceny'])}) ; dernière valeur conservée")
+        else:
+            json.dump({'odczyt': now, 'okresy': OKRESY, 'ceny': rows}, open(old, 'w'), ensure_ascii=False, indent=0)
+            print(f"{len(rows)} annonces (dont {sum(r['src'] == 'govpl' for r in rows)} gov.pl), de {rows[0]['ogl']} à {rows[-1]['ogl']}")
+    w = garde('Weekly Oil Bulletin', wob)
+    if w is not None:
+        w['odczyt'] = now
+        json.dump(w, open(os.path.join(OUT, 'wob.json'), 'w'), ensure_ascii=False, indent=0)
+        print(f"WOB : {len(w['pl'])} semaines PL, dernière {w['tydzien']}, {len(w['kraje'])} pays")
 
 
 if __name__ == '__main__':

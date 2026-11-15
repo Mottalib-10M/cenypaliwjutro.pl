@@ -16,7 +16,7 @@ export default function TrasaCalc({ lang, ceny, km: k0, spalanie, methodHref }: 
   const form = (
     <>
       <SelectField id="tr-p" label={T(lang, 'Paliwo', 'Fuel')} value={p} onChange={(x) => { set('p')(x); set('s')(spalanie[x as PL]); set('c')(ceny[x as PL]); }} options={opcje(lang, ['pb95', 'pb98', 'on', 'lpg'])} />
-      <div className="grid gap-x-4 sm:grid-cols-2">
+      <div className="grid gap-x-4 gap-y-5 sm:grid-cols-2">
         <NumberField id="tr-km" label={T(lang, 'Długość trasy', 'Trip distance')} value={km} onChange={set('km')} unit="km" min={1} max={20000} lang={lang} />
         <NumberField id="tr-s" label={T(lang, 'Spalanie', 'Consumption')} value={s} onChange={set('s')} unit="l/100 km" min={1} max={40} decimals={1} lang={lang} />
         <NumberField id="tr-c" label={T(lang, 'Cena za litr', 'Price per litre')} value={c} onChange={set('c')} unit="zł/l" min={0.5} max={20} decimals={2} lang={lang} />

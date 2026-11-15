@@ -12,13 +12,15 @@ function labelColor(hex: string): string {
 export default function StackedBar({ segments, total, ariaPrefix, lang }: { segments: Segment[]; total: number; ariaPrefix: string; lang?: string }) {
   const PCT = pctDe(lang ?? LOCALE_TAG);
   if (total <= 0) return null;
+  // Une décimale, virgule en polonais : le même pourcentage que le texte (« 31,5 % » et non « 32 % », test naïf du 2026-11-14).
+  const fmt = (x: number) => x.toLocaleString(/^en/.test(lang ?? LOCALE_TAG) ? 'en-GB' : (lang ?? LOCALE_TAG), { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const desc = segments.filter((s) => s.value / total >= 0.005).map((s) => `${s.label}: ${((s.value / total) * 100).toFixed(1)}${PCT}`).join(', ');
   return (
     <div role="img" aria-label={`${ariaPrefix}: ${desc}`}>
       <div className="flex h-9 overflow-hidden rounded-lg">
         {segments.map((s, i) => {
           const pct = (s.value / total) * 100; if (pct < 0.5) return null;
-          return <div key={i} className="flex items-center justify-center text-xs font-medium" style={{ width: `${pct}%`, backgroundColor: s.color, color: labelColor(s.color), minWidth: pct > 3 ? undefined : '4px' }} title={`${s.label}: ${pct.toFixed(1)}${PCT}`}>{pct > 9 && <span className="truncate px-1">{pct.toFixed(0)}{PCT}</span>}</div>;
+          return <div key={i} className="flex items-center justify-center text-xs font-medium" style={{ width: `${pct}%`, backgroundColor: s.color, color: labelColor(s.color), minWidth: pct > 3 ? undefined : '4px' }} title={`${s.label}: ${pct.toFixed(1)}${PCT}`}>{pct > 9 && <span className="truncate px-1">{fmt(pct)}{PCT}</span>}</div>;
         })}
       </div>
       <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">

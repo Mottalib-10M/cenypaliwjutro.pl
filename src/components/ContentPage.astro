@@ -4,6 +4,7 @@
  * le calculateur (premier écran, §9.3), la ligne de source, puis le corps. FAQ, pages liées, sources et signature
  * viennent du PageLayout.
  */
+import { zrodla } from '../lib/zrodla';
 import PageLayout from '../layouts/PageLayout.astro';
 import Clamp from './Clamp.astro';
 import Narzedzie from './Narzedzie.astro';
@@ -30,7 +31,7 @@ const description = typeof x.description === 'function' ? x.description(H) : x.d
 const jsonLd = [articleSchema({ title: x.h1, description, path, lang }), webPageSchema({ name: x.h1, description, path, lang }), breadcrumbSchema([{ name: ui.breadcrumbHome, path: route('home', lang) }, { name: x.nav, path }]), webApplicationSchema({ name: x.h1, description, path, lang })];
 if (faqs.length) jsonLd.push(faqSchema(faqs, lang));
 const related = page.related.filter((id) => ROUTES.some((r) => r.id === id)).map((id) => ({ href: route(id, lang), name: label(id, lang), description: pageById(id)?.[lang].card ?? '' }));
-const sources = page.sources.map((k) => ({ name: P.sources[k].label[lang], url: P.sources[k].url }));
+const sources = zrodla(page.sources, lang);
 const methodHref = route('method', lang);
 const pl = lang === 'pl';
 const wob = ['europa', 'srednia', 'lpg'].includes(page.tool);
@@ -47,7 +48,7 @@ const wob = ['europa', 'srednia', 'lpg'].includes(page.tool);
     </div>
     <p class="mt-2 text-sm text-navy-600" data-chrome>
       {wob
-        ? <>{pl ? 'Dane: Weekly Oil Bulletin Komisji Europejskiej (CC BY 4.0), tydzień od ' : 'Data: European Commission Weekly Oil Bulletin (CC BY 4.0), week of '}<time datetime={WOB.tydzien}>{H.date(WOB.tydzien)}</time></>
+        ? <>{pl ? 'Dane: tygodniowy biuletyn cen paliw Komisji Europejskiej, tydzień od ' : 'Data: European Commission Weekly Oil Bulletin, week of '}<time datetime={WOB.tydzien}>{H.date(WOB.tydzien)}</time></>
         : <>{pl ? 'Dane: obwieszczenia Ministra Energii, ostatnie ogłoszone ' : 'Data: Minister of Energy notices, latest announced on '}<time datetime={OSTATNIA.ogl}>{H.date(OSTATNIA.ogl)}</time></>}
       {' · '}{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method', lang)}</a>
     </p>

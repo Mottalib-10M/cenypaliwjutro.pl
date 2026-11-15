@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "astro dev --port 5961",
     "build": "astro build && node scripts/typo-nbsp.mjs && python3 scripts/check-snippets.py dist",
+    "update-data": "python3 scripts/build-data.py --fetch --garder",
     "preview": "astro preview --port 5961",
     "astro": "astro",
     "test": "vitest run",

@@ -10,7 +10,7 @@ export default function RoznicaCalc({ lang, ceny, km: k0, spalanie, od, methodHr
   const km = v.km as number, s = v.s as number, a = v.a as number, b = v.b as number;
   const r = doplata(km, s, a, b);
   const form = (
-    <div className="grid gap-x-4 sm:grid-cols-2">
+    <div className="grid gap-x-4 gap-y-5 sm:grid-cols-2">
       <NumberField id="ro-km" label={T(lang, 'Kilometry rocznie', 'Kilometres a year')} value={km} onChange={set('km')} unit="km" min={0} max={300000} lang={lang} />
       <NumberField id="ro-s" label={T(lang, 'Spalanie', 'Consumption')} value={s} onChange={set('s')} unit="l/100 km" min={1} max={40} decimals={1} lang={lang} />
       <NumberField id="ro-a" label={T(lang, 'Cena benzyny 95', 'Petrol 95 price')} value={a} onChange={set('a')} unit="zł/l" min={0.5} max={20} decimals={2} lang={lang} help={T(lang, `Cena maksymalna od ${dzien(od, lang, false)}`, `Maximum price from ${dzien(od, lang, false)}`)} />

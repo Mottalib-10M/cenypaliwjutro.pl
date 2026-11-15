@@ -3,7 +3,7 @@ import { PAGES, pageById, GROUPS } from '../lib/strony';
 import type { Group } from '../lib/strona-typy';
 export interface NavLink { href: string; label: string } export interface NavCategory { label: string; links: NavLink[] }
 const CORE: Record<Locale, Record<string, string>> = {
-  pl: { home: 'Ceny paliw dziś i jutro', method: 'Metodologia i źródła', about: 'O nas', widget: 'Kalkulator na Twoją stronę', contact: 'Kontakt', editorial: 'Polityka redakcyjna', privacy: 'Polityka prywatności', terms: 'Nota prawna', cookies: 'Cookies' },
+  pl: { home: 'Ceny paliw dziś (strona główna)', method: 'Metodologia i źródła', about: 'O nas', widget: 'Kalkulator na Twoją stronę', contact: 'Kontakt', editorial: 'Polityka redakcyjna', privacy: 'Polityka prywatności', terms: 'Nota prawna', cookies: 'Cookies' },
   en: { home: 'Fuel prices today and tomorrow', method: 'Method and sources', about: 'About', widget: 'Embed the calculator', contact: 'Contact', editorial: 'Editorial policy', privacy: 'Privacy', terms: 'Legal notice', cookies: 'Cookies' },
 };
 export const GROUP_LABEL: Record<Locale, Record<Group, string>> = {

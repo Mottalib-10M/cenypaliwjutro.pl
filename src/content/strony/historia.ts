@@ -44,7 +44,7 @@ export default defineStrona({
     },
     faqs: (h) => [
       { q: 'Dlaczego w historii są przerwy?', a: `Bo cena maksymalna obowiązuje tylko wtedy, gdy obowiązuje obniżony VAT na paliwa. Okresy: ${h.D.OKRESY.map((o) => `${h.date(o.od)} – ${h.date(o.do)}`).join('; ').replace(/ r\.$/, ' r')}. W przerwach stacje ustalały ceny same; średnie z tych tygodni pokazuje strona ${h.a('srednia', 'średnie ceny paliw')}.` },
-      { q: 'Czy mogę pobrać historię cen?', a: 'Tabela poniżej zawiera wszystkie ogłoszenia z datami, cenami trzech paliw i odnośnikami do źródeł; możesz ją skopiować do arkusza. Źródłem jest Monitor Polski, a wykaz pozycji udostępnia publicznie API ELI Kancelarii Sejmu. Każdy wiersz ma też numer pozycji, więc łatwo go sprawdzić w źródle.' },
+      { q: 'Czy mogę pobrać historię cen?', a: 'Tabela poniżej zawiera wszystkie ogłoszenia z datami, cenami trzech paliw i odnośnikami do źródeł; możesz ją skopiować do arkusza. Źródłem jest Monitor Polski, a wykaz pozycji udostępnia publicznie Kancelaria Sejmu. Każdy wiersz ma też numer pozycji, więc łatwo go sprawdzić w źródle.' },
       { q: 'Jak liczona jest średnia miesięczna?', a: 'To średnia arytmetyczna cen z ogłoszeń, które zaczęły obowiązywać w danym miesiącu. Każde ogłoszenie liczy się raz, także piątkowe, które obowiązuje trzy dni. Dlatego średnia z kalkulatora może nieco różnić się od średniej ważonej dniami. Obok podajemy najniższą i najwyższą cenę z danego miesiąca.' },
     ],
     body: (h) => {

@@ -16,7 +16,7 @@ export default defineStrona({
     intro: (h) => `Akcyza i podatki w cenie paliwa to dziś ${h.l(podatki('pb95'))} w litrze benzyny 95 (${h.pct(podatki('pb95') / sk('pb95').brutto)} ceny) i ${h.l(podatki('on'))} w oleju napędowym.`,
     resume: (h) => {
       const b = sk('pb95'), d = sk('on');
-      return `Cena maksymalna litra benzyny 95 z ogłoszenia z ${h.date(h.D.OSTATNIA.ogl)}, czyli ${h.l(b.brutto)}, składa się z ceny hurtowej paliwa ${h.l(b.hurt)}, akcyzy ${h.l(b.akcyza)}, opłaty paliwowej ${h.l(b.oplata)}, kosztów stacji ${h.l(b.marza)} i VAT ${h.l(b.vat)}. Podatki i opłaty to razem ${h.l(podatki('pb95'))}, czyli ${h.pct(podatki('pb95') / b.brutto)} ceny. W oleju napędowym za ${h.l(d.brutto)} akcyza wynosi ${h.l(d.akcyza)}, opłata paliwowa ${h.l(d.oplata)}, a VAT ${h.l(d.vat)}; podatki to ${h.pct(podatki('on') / d.brutto)} ceny. Akcyza i opłata paliwowa to stałe kwoty od litra, VAT to procent i rośnie razem z ceną. Przy ${h.num(EX.km_rok)} km rocznie na benzynie 95 płacisz w paliwie ${h.zl(rok('pb95').litry * podatki('pb95'))} podatków na rok. Kalkulator rozkłada litr na części i liczy podatki od Twoich litrów. Liczymy z tej samej ceny maksymalnej, którą pokazuje strona główna.`;
+      return `Cena maksymalna litra benzyny 95 z ogłoszenia z ${h.date(h.D.OSTATNIA.ogl)}, czyli ${h.l(b.brutto)}, składa się z ceny hurtowej paliwa ${h.l(b.hurt)}, akcyzy ${h.l(b.akcyza)}, opłaty paliwowej ${h.l(b.oplata)}, kosztów i marży stacji ${h.l(b.marza)} i VAT ${h.l(b.vat)}. Podatki i opłaty to razem ${h.l(podatki('pb95'))}, czyli ${h.pct(podatki('pb95') / b.brutto)} ceny. W oleju napędowym za ${h.l(d.brutto)} akcyza wynosi ${h.l(d.akcyza)}, opłata paliwowa ${h.l(d.oplata)}, a VAT ${h.l(d.vat)}; podatki to ${h.pct(podatki('on') / d.brutto)} ceny. Akcyza i opłata paliwowa to stałe kwoty od litra, VAT to procent i rośnie razem z ceną. Przy ${h.num(EX.km_rok)} km rocznie na benzynie 95 płacisz w paliwie ${h.zl(rok('pb95').litry * Math.round(podatki('pb95') * 100) / 100)} podatków na rok. Kalkulator rozkłada litr na części i liczy podatki od Twoich litrów. Liczymy z tej samej ceny maksymalnej, którą pokazuje strona główna.`;
     },
     faqs: (h) => [
       { q: 'Czym jest opłata paliwowa?', a: `To opłata od paliw silnikowych, która zasila Krajowy Fundusz Drogowy i fundusz kolejowy. Jej stawki ogłasza co roku Minister Infrastruktury w Monitorze Polskim: w 2026 r. ${h.zl(P.oplata_paliwowa.pb_2026, 2)} za 1000 litrów benzyny i ${h.zl(P.oplata_paliwowa.on_2026, 2)} oleju napędowego. Płaci ją producent lub importer, a trafia do ceny.` },
@@ -29,13 +29,13 @@ ${h.table(['Składnik na litrze', h.fn('pb95'), h.fn('pb98'), h.fn('on')], [
       ['Cena hurtowa paliwa', ...PAL.map((p) => h.l(sk(p).hurt))],
       ['Akcyza', ...PAL.map((p) => h.l(sk(p).akcyza))],
       ['Opłata paliwowa', ...PAL.map((p) => h.l(sk(p).oplata))],
-      ['Koszty stacji', ...PAL.map((p) => h.l(sk(p).marza))],
+      ['Koszty i marża stacji', ...PAL.map((p) => h.l(sk(p).marza))],
       ['VAT 8 %', ...PAL.map((p) => h.l(sk(p).vat))],
       ['Cena maksymalna', ...PAL.map((p) => h.l(sk(p).brutto))],
-      ['Udział podatków', ...PAL.map((p) => h.pct(podatki(p) / sk(p).brutto))],
+      ['Podatki i opłaty razem, % ceny', ...PAL.map((p) => h.pct(podatki(p) / sk(p).brutto))],
     ], `Ogłoszenie z ${h.date(h.D.OSTATNIA.ogl)}`, ['l', 'r', 'r', 'r'])}
 <h2>Stawki akcyzy</h2>
-<p>Ustawa o podatku akcyzowym (art. 89 ust. 1) przewiduje ${h.zl(P.akcyza.pb_ustawowa)} za 1000 litrów benzyny i ${h.zl(P.akcyza.on_ustawowa)} za 1000 litrów oleju napędowego. Rozporządzenie Ministra Finansów (Dz.U. 2026 poz. 1289) obniża je do ${h.zl(P.akcyza.pb_obnizona)} i ${h.zl(P.akcyza.on_obnizona)} do ${h.dateK(P.akcyza.obnizona_do)} Po tym dniu, bez przedłużenia, wraca stawka ustawowa: strona ${h.a('po2027', 'ceny paliw 2027')} liczy skutki.</p>`,
+<p>Ustawa o podatku akcyzowym przewiduje ${h.zl(P.akcyza.pb_ustawowa)} za 1000 litrów benzyny i ${h.zl(P.akcyza.on_ustawowa)} za 1000 litrów oleju napędowego. Rozporządzenie Ministra Finansów (w źródłach na dole strony) obniża je do ${h.zl(P.akcyza.pb_obnizona)} i ${h.zl(P.akcyza.on_obnizona)} do ${h.dateK(P.akcyza.obnizona_do)} Po tym dniu, bez przedłużenia, wraca stawka ustawowa: strona ${h.a('po2027', 'ceny paliw 2027')} liczy skutki.</p>`,
   },
   en: {
     slug: 'fuel-tax-breakdown', nav: 'Fuel tax breakdown', card: 'How much of a litre is excise, fuel levy and VAT, and how much is fuel.',
@@ -45,7 +45,7 @@ ${h.table(['Składnik na litrze', h.fn('pb95'), h.fn('pb98'), h.fn('on')], [
     intro: (h) => `The fuel tax breakdown today: ${h.l(podatki('pb95'))} of a litre of petrol 95 is tax (${h.pct(podatki('pb95') / sk('pb95').brutto)} of the price), and ${h.l(podatki('on'))} of a litre of diesel.`,
     resume: (h) => {
       const b = sk('pb95'), d = sk('on');
-      return `The maximum price of a litre of petrol 95 in the notice of ${h.date(h.D.OSTATNIA.ogl)}, ${h.l(b.brutto)}, is made up of a wholesale fuel price of ${h.l(b.hurt)}, excise of ${h.l(b.akcyza)}, a fuel levy of ${h.l(b.oplata)}, station costs of ${h.l(b.marza)} and VAT of ${h.l(b.vat)}. Taxes and levies come to ${h.l(podatki('pb95'))}, or ${h.pct(podatki('pb95') / b.brutto)} of the price. In diesel at ${h.l(d.brutto)}, excise is ${h.l(d.akcyza)}, the fuel levy ${h.l(d.oplata)} and VAT ${h.l(d.vat)}; taxes are ${h.pct(podatki('on') / d.brutto)} of the price. Excise and fuel levy are fixed amounts per litre; VAT (value added tax) is a percentage and rises with the price. At ${h.num(EX.km_rok)} km a year on petrol 95 you pay ${h.zl(rok('pb95').litry * podatki('pb95'))} of tax in fuel a year. The calculator splits a litre into its parts and works out the tax on your litres.`;
+      return `The maximum price of a litre of petrol 95 in the notice of ${h.date(h.D.OSTATNIA.ogl)}, ${h.l(b.brutto)}, is made up of a wholesale fuel price of ${h.l(b.hurt)}, excise of ${h.l(b.akcyza)}, a fuel levy of ${h.l(b.oplata)}, station costs and margin of ${h.l(b.marza)} and VAT of ${h.l(b.vat)}. Taxes and levies come to ${h.l(podatki('pb95'))}, or ${h.pct(podatki('pb95') / b.brutto)} of the price. In diesel at ${h.l(d.brutto)}, excise is ${h.l(d.akcyza)}, the fuel levy ${h.l(d.oplata)} and VAT ${h.l(d.vat)}; taxes are ${h.pct(podatki('on') / d.brutto)} of the price. Excise and fuel levy are fixed amounts per litre; VAT (value added tax) is a percentage and rises with the price. At ${h.num(EX.km_rok)} km a year on petrol 95 you pay ${h.zl(rok('pb95').litry * Math.round(podatki('pb95') * 100) / 100)} of tax in fuel a year. The calculator splits a litre into its parts and works out the tax on your litres.`;
     },
     faqs: (h) => [
       { q: 'What is the fuel levy?', a: `A charge on motor fuel that funds the National Road Fund and the rail fund. Its rates are announced every year by the Minister of Infrastructure in Monitor Polski: in 2026 ${h.zl(P.oplata_paliwowa.pb_2026, 2)} per 1,000 litres of petrol and ${h.zl(P.oplata_paliwowa.on_2026, 2)} of diesel. The producer or importer pays it and it passes into the price.` },
@@ -58,7 +58,7 @@ ${h.table(['Part of a litre', h.fn('pb95'), h.fn('pb98'), h.fn('on')], [
       ['Wholesale fuel', ...PAL.map((p) => h.l(sk(p).hurt))],
       ['Excise', ...PAL.map((p) => h.l(sk(p).akcyza))],
       ['Fuel levy', ...PAL.map((p) => h.l(sk(p).oplata))],
-      ['Station costs', ...PAL.map((p) => h.l(sk(p).marza))],
+      ['Station costs and margin', ...PAL.map((p) => h.l(sk(p).marza))],
       ['VAT 8%', ...PAL.map((p) => h.l(sk(p).vat))],
       ['Maximum price', ...PAL.map((p) => h.l(sk(p).brutto))],
       ['Tax share', ...PAL.map((p) => h.pct(podatki(p) / sk(p).brutto))],

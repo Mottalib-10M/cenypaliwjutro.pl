@@ -31,7 +31,7 @@ export default function JutroCalc({ lang, ost, widelki, bak, paliwo = 'pb95', me
         { label: T(lang, `To samo w widełkach na kolejną cenę`, 'The same within the next-price range'), value: `${zl(litry * lo, lang)} – ${zl(litry * hi, lang)}` },
         { label: T(lang, 'Kolejna cena bez zmian w', 'Next price unchanged in'), value: T(lang, `${nr(w.bezZmian * 100, lang)} na 100 przypadków`, `${nr(w.bezZmian * 100, lang)} cases in 100`), note: true },
       ]}
-      hyp={T(lang, 'Widełki to zakres, w którym mieściło się 8 na 10 zmian między kolejnymi obwieszczeniami w tym samym okresie CPN. To nie jest cena urzędowa: kolejną cenę minister ogłasza w Monitorze Polskim w dzień roboczy, zwykle po południu, i obowiązuje ona od następnego dnia.', 'The range covers 8 out of 10 changes between consecutive notices within the same CPN period. It is not an official price: the minister publishes the next price in Monitor Polski on a working day, usually in the afternoon, and it applies from the following day.')}
+      hyp={T(lang, 'Widełki to zakres, w którym mieściło się 8 na 10 zmian między kolejnymi obwieszczeniami w tym samym okresie obniżonego VAT. To nie jest cena urzędowa: kolejną cenę minister ogłasza w Monitorze Polskim w dzień roboczy, zwykle po południu, i obowiązuje ona od następnego dnia.', 'The range covers 8 out of 10 changes between consecutive notices within the same CPN period. It is not an official price: the minister publishes the next price in Monitor Polski on a working day, usually in the afternoon, and it applies from the following day.')}
       methodHref={methodHref} copyText={`${NAZWY[lang][p]}: ${litr(lo, lang)} – ${litr(hi, lang)}`}>
       <Zrodlo lang={lang} poz={ost.poz} url={ost.url} ogl={ost.ogl} />
     </ResultPanel>} />;

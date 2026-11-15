@@ -15,9 +15,9 @@ export default function KosztCalc({ lang, ceny, spalanie, km: k0, bak, od, paliw
   const form = (
     <>
       <SelectField id="ko-p" label={T(lang, 'Paliwo', 'Fuel')} value={p} onChange={(x) => { set('p')(x); set('s')(spalanie[x as PL]); set('c')(ceny[x as PL]); }} options={opcje(lang, ['pb95', 'pb98', 'on', 'lpg'])} />
-      <div className="grid gap-x-4 sm:grid-cols-2">
+      <div className="grid gap-x-4 gap-y-5 sm:grid-cols-2">
         <NumberField id="ko-km" label={T(lang, 'Kilometry rocznie', 'Kilometres a year')} value={km} onChange={set('km')} unit="km" min={0} max={300000} lang={lang} />
-        <NumberField id="ko-s" label={T(lang, 'Spalanie', 'Consumption')} value={s} onChange={set('s')} unit="l/100 km" min={1} max={40} decimals={1} lang={lang} />
+        <NumberField id="ko-s" label={T(lang, 'Spalanie (litry na 100 km)', 'Consumption (litres per 100 km)')} value={s} onChange={set('s')} unit="l/100 km" min={1} max={40} decimals={1} lang={lang} help={T(lang, `Nie wiesz? Zostaw przykład ${nr(spalanie[p], lang, 1)}`, `Not sure? Keep the example ${nr(spalanie[p], lang, 1)}`)} />
         <NumberField id="ko-c" label={T(lang, 'Cena za litr', 'Price per litre')} value={c} onChange={set('c')} unit="zł/l" min={0.5} max={20} decimals={2} lang={lang} help={p === 'lpg' ? T(lang, 'Domyślnie: średnia tygodniowa (UE)', 'Default: weekly average (EU)') : T(lang, `Domyślnie: cena maksymalna od ${dzien(od, lang, false)}`, `Default: maximum price from ${dzien(od, lang, false)}`)} />
         <NumberField id="ko-l" label={T(lang, 'Litry na jedno tankowanie', 'Litres per fill')} value={l} onChange={set('l')} unit="l" min={1} max={1000} lang={lang} />
       </div>

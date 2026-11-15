@@ -29,10 +29,12 @@ describe('annonces du Monitor Polski', () => {
     expect(naDzien(LISTA, '2026-08-17')!.ogl).toBe('2026-08-14');
     expect(naDzien(LISTA, '2026-08-16')).toBeNull();
   });
-  it('dernière annonce : annoncée un vendredi, elle couvre samedi, dimanche et lundi (gov.pl « w dniach 14-16 listopada »)', () => {
-    expect(OSTATNIA.ogl).toBe('2026-11-13');
-    expect(OSTATNIA.od).toBe('2026-11-14');
-    expect(ostatniDzienOtwartej(OSTATNIA)).toBe('2026-11-16');
+  it('annonce d’un vendredi : elle couvre samedi, dimanche et lundi (gov.pl « w dniach 14-16 listopada »)', () => {
+    // Retrouvée par sa date (et non comme « dernière annonce ») : la relecture planifiée ajoute des annonces.
+    const o = LISTA.find((x) => x.ogl === '2026-11-13')!;
+    expect(o.od).toBe('2026-11-14');
+    expect(o.do ?? ostatniDzienOtwartej(o)).toBe('2026-11-16');
+    expect(OSTATNIA.ogl >= '2026-11-13').toBe(true);
   });
   it('date lue dans le texte officiel, jamais de période qui finit avant de commencer (test naïf du 2026-11-14)', () => {
     for (const o of LISTA) if (o.do !== null) expect(o.do >= o.od).toBe(true);
