@@ -73,12 +73,21 @@ def obwieszczenia():
     if FETCH:
         curl('https://api.sejm.gov.pl/eli/acts/MP/2026', lst)
     items = [i for i in json.load(open(lst))['items'] if 'maksymalnej ceny paliw' in i['title']]
-    rows = []
+    rows, amend = [], []
     for i in sorted(items, key=lambda x: x['pos']):  # trié ensuite par date lue dans le texte
         f = os.path.join(RAW, 'mp', f"{i['pos']}.pdf")
         if FETCH and not os.path.exists(f):
             curl(f"https://api.sejm.gov.pl/eli/acts/MP/2026/{i['pos']}/text.pdf", f)
         t = pdf_text(f)
+        if 'zmieniające obwieszczenie' in i['title']:
+            # Amending notice (M.P. 2026 poz. 1154): « w pkt 3 … w lit. a wyrazy „6,76 zł” zastępuje się wyrazami „6,96 zł” ».
+            tgt = re.search(r'\(M\.P\. poz\. (\d+)\)', t)
+            ch = re.findall(r'w lit\. ([ab]) wyrazy „(\d+,\d+) zł” zastępuje się wyrazami „(\d+,\d+) zł”', t)
+            pk = re.findall(r'w pkt (\d)', t)
+            if not tgt or not ch or len(set(pk)) != 1 or pk[0] not in '123':
+                sys.exit(f"M.P. 2026 poz. {i['pos']} : obwieszczenie zmieniające illisible")
+            amend.append((int(tgt.group(1)), ('pb95', 'pb98', 'on')[int(pk[0]) - 1], ch, i['pos']))
+            continue
         v = re.findall(r'wynosi (\d+,\d+) zł za 1 dm3, b\) powiększona o podatek od towarów i usług wynosi (\d+,\d+) zł', t)
         if len(v) != 3:
             sys.exit(f"M.P. 2026 poz. {i['pos']} : 3 prix attendus, {len(v)} lus")
@@ -94,6 +103,16 @@ def obwieszczenia():
         gross = {k: pl_num(b) for k, (_, b) in zip(('pb95', 'pb98', 'on'), v)}
         rows.append({'src': 'mp', 'poz': i['pos'], 'ogl': ogl, 'net': net, 'brutto': gross,
                      'url': f"https://api.sejm.gov.pl/eli/acts/MP/2026/{i['pos']}/text.pdf"})
+    for poz, k, ch, by in amend:
+        r = next((x for x in rows if x['poz'] == poz), None)
+        if r is None:
+            sys.exit(f"M.P. 2026 poz. {by} : modifie poz. {poz}, absente")
+        for lit, avant, apres in ch:
+            cle = 'net' if lit == 'a' else 'brutto'
+            if abs(r[cle][k] - pl_num(avant)) > 1e-9:
+                sys.exit(f"M.P. 2026 poz. {by} : {k} {cle} attendu {avant}, lu {r[cle][k]}")
+            r[cle][k] = pl_num(apres)
+        r['zmiana'] = by
     return sorted(rows, key=lambda r: (r['ogl'], r['poz']))
 
 

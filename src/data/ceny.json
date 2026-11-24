@@ -1,5 +1,5 @@
 {
-"odczyt": "2026-11-18",
+"odczyt": "2026-11-24",
 "okresy": [
 {
 "od": "2026-03-31",
@@ -2149,20 +2149,81 @@
 "ogl_dzien": "2026-11-17"
 },
 {
-"src": "govpl",
-"poz": null,
+"src": "mp",
+"poz": 1150,
 "ogl": "2026-11-18",
-"net": null,
+"net": {
+"pb95": 5.53,
+"pb98": 6.13,
+"on": 6.96
+},
 "brutto": {
 "pb95": 5.97,
 "pb98": 6.62,
 "on": 7.51
 },
-"url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-19-listopada-2026-r3",
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1150/text.pdf",
+"zmiana": 1154,
 "od": "2026-11-19",
-"do": null,
+"do": "2026-11-19",
 "okres": 2,
 "ogl_dzien": "2026-11-18"
+},
+{
+"src": "mp",
+"poz": 1155,
+"ogl": "2026-11-19",
+"net": {
+"pb95": 5.49,
+"pb98": 6.09,
+"on": 6.9
+},
+"brutto": {
+"pb95": 5.93,
+"pb98": 6.58,
+"on": 7.45
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1155/text.pdf",
+"od": "2026-11-20",
+"do": "2026-11-20",
+"okres": 2,
+"ogl_dzien": "2026-11-19"
+},
+{
+"src": "mp",
+"poz": 1156,
+"ogl": "2026-11-20",
+"net": {
+"pb95": 5.46,
+"pb98": 6.07,
+"on": 6.85
+},
+"brutto": {
+"pb95": 5.9,
+"pb98": 6.55,
+"on": 7.39
+},
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1156/text.pdf",
+"od": "2026-11-21",
+"do": "2026-11-23",
+"okres": 2,
+"ogl_dzien": "2026-11-20"
+},
+{
+"src": "govpl",
+"poz": null,
+"ogl": "2026-11-23",
+"net": null,
+"brutto": {
+"pb95": 5.9,
+"pb98": 6.56,
+"on": 7.32
+},
+"url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-24-listopada-2026-r",
+"od": "2026-11-24",
+"do": null,
+"okres": 2,
+"ogl_dzien": "2026-11-23"
 }
 ]
 }
