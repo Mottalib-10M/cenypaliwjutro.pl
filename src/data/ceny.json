@@ -2210,20 +2210,40 @@
 "ogl_dzien": "2026-11-20"
 },
 {
-"src": "govpl",
-"poz": null,
+"src": "mp",
+"poz": 1169,
 "ogl": "2026-11-23",
-"net": null,
+"net": {
+"pb95": 5.46,
+"pb98": 6.08,
+"on": 6.77
+},
 "brutto": {
 "pb95": 5.9,
 "pb98": 6.56,
 "on": 7.32
 },
-"url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-24-listopada-2026-r",
+"url": "https://api.sejm.gov.pl/eli/acts/MP/2026/1169/text.pdf",
 "od": "2026-11-24",
-"do": null,
+"do": "2026-11-24",
 "okres": 2,
 "ogl_dzien": "2026-11-23"
+},
+{
+"src": "govpl",
+"poz": null,
+"ogl": "2026-11-24",
+"net": null,
+"brutto": {
+"pb95": 5.84,
+"pb98": 6.51,
+"on": 7.23
+},
+"url": "https://www.gov.pl/web/energia/maksymalna-cena-detaliczna-paliw-obowiazujaca-25-listopada-2026-r",
+"od": "2026-11-25",
+"do": null,
+"okres": 2,
+"ogl_dzien": "2026-11-24"
 }
 ]
 }
