@@ -4,7 +4,7 @@
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('/fonts/inter-var.woff2') format('woff2'); }
 @theme {
   --color-navy-50: #f8fafc; --color-navy-100: #f1f5f9; --color-navy-200: #e2e8f0; --color-navy-300: #cbd5e1; --color-navy-400: #94a3b8; --color-navy-500: #64748b; --color-navy-600: #475569; --color-navy-700: #334155; --color-navy-800: #1e293b; --color-navy-900: #0f172a; --color-navy-950: #020617;
-  --color-accent-50: #fdecef; --color-accent-100: #fbd5dc; --color-accent-200: #f7acb9; --color-accent-300: #f1748a; --color-accent-400: #eb3c5b; --color-accent-500: #B3122E; --color-accent-600: #980f27; --color-accent-700: #7d0d20; --color-accent-800: #640a1a; --color-accent-900: #4f0814;
+  --color-accent-50: #FCF0F2; --color-accent-100: #F8DCE1; --color-accent-200: #F0B3BE; --color-accent-300: #E57D8F; --color-accent-400: #DA4A63; --color-accent-500: #C8102E; --color-accent-600: #AC0E28; --color-accent-700: #900C21; --color-accent-800: #74091B; --color-accent-900: #580714;
   --color-success: #15803d; --color-warning: #b45309; --color-error: #dc2626;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
@@ -125,3 +125,88 @@ p[id$="-help"]:not([role="status"]), [data-fixe], [data-actuellement], [aria-liv
 :where(form, div, fieldset):has(> .grid-rows-subgrid) { align-content: start; }
 /* Dans une grille, le cadre du formulaire s'arrête sous ses champs au lieu de s'étirer à la hauteur du résultat. */
 .grid > form:has(> .grid-rows-subgrid) { align-self: start; }
+
+/* === Charte du pays (refonte d'identité validée par l'éditeur, appliquée le 2026-11-25) ===
+   En-tête plein, bandeau héros, simulateur en carte, sections alternées, chiffres-résultats, boutons et pied
+   aux couleurs du pays ; l'échelle --color-accent-* du @theme porte la couleur forte. */
+/* En-tête sombre, filet de la 2e couleur */
+header nav[aria-label] { background:#14171F !important; border-bottom:5px solid #DC143C !important; backdrop-filter:none !important; }
+header nav[aria-label] > div > a, header nav[aria-label] > div > a span, header nav[aria-label] .nav-dropdown-trigger, #mobile-menu-toggle, header nav[aria-label] a:not(#mobile-menu a):not(.nav-dropdown-panel a), header nav[aria-label] button:not(#mobile-menu button) { color:#fff !important; }
+header nav[aria-label] > div > a { letter-spacing:-0.01em; }
+header nav[aria-label] .nav-dropdown-trigger:hover, header nav[aria-label] > div > div > a:hover { background:rgba(255,255,255,.12) !important; }
+header nav[aria-label] a[class*="border"]:not(#mobile-menu a) { border-color:rgba(255,255,255,.7) !important; }
+header nav[aria-label] img { background:#fff; border-radius:8px; padding:2px; }
+header nav[aria-label] .nav-dropdown-panel, #mobile-menu { background:#fff !important; }
+header nav[aria-label] .nav-dropdown-panel a, #mobile-menu a, #mobile-menu button, #mobile-menu span { color:#111827 !important; }
+#mobile-menu { border-top:4px solid #DC143C !important; }
+/* Bandeau héros : couleur forte pleine largeur, titre serif, trait d'accent, chapeau adouci */
+main header:has(> h1) { background:#1D2230 !important; box-shadow:0 0 0 100vmax #1D2230; clip-path:inset(-3rem -100vmax 0 -100vmax); margin-bottom:0 !important; padding-top:.6rem !important; padding-bottom:.5rem !important; border:0 !important; }
+main header:has(> h1) h1 { font-family:'Source Serif 4', Georgia, serif !important; font-weight:700; letter-spacing:-0.015em; line-height:1.12; color:#fff !important; }
+main header:has(> h1) h1::after { content:""; display:block; width:4.5rem; height:4px; margin-top:.4rem; border-radius:3px; background:#DC143C; }
+main header:has(> h1) h1 * { color:#fff !important; }
+main header:has(> h1) :is(p,li,label,small,span:not([class*="bg-"])) { color:#D9DCE4 !important; }
+main header:has(> h1) strong { color:#fff !important; }
+main header:has(> h1) a { color:#fff !important; text-decoration:underline; text-decoration-color:#DC143C; text-decoration-thickness:2px; text-underline-offset:3px; }
+main header:has(> h1) [class*="bg-"] { background:#fff !important; border-left:5px solid #DC143C !important; border-top:0 !important; border-right:0 !important; border-bottom:0 !important; }
+main header:has(> h1) [class*="bg-"], main header:has(> h1) [class*="bg-"] :is(p,li,label,small,span,strong,b,time,em) { color:#111827 !important; }
+main header:has(> h1) [class*="bg-"] a { color:#1D2230 !important; text-decoration-color:#DC143C; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) { background:#1D2230 !important; box-shadow:0 0 0 100vmax #1D2230; clip-path:inset(0 -100vmax); margin-top:0 !important; margin-bottom:0 !important; padding-top:.35rem; padding-bottom:.5rem; border:0 !important; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]), main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) *:not(main [class*="bg-"] *):not([class*="bg-"]):not(input):not(select):not(textarea):not(option) { color:#D9DCE4 !important; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) :is(a,strong,b) { color:#fff !important; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) a { text-decoration:underline; text-decoration-color:#DC143C; text-decoration-thickness:2px; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) :is(p,span,small,li,div):is([class*="text-navy"],[class*="text-gray"],[class*="text-slate"]):not([class*="bg-"]) { color:#D9DCE4 !important; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) a:is([class*="bg-"],[class*="border-"]), main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) a:is([class*="bg-"],[class*="border-"]) * { color:#1D2230 !important; text-decoration:none !important; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) a:is([class*="bg-"],[class*="border-"]) { background:#fff !important; border:0 !important; border-left:5px solid #DC143C !important; border-radius:10px !important; font-weight:600; padding-top:.5rem !important; padding-bottom:.5rem !important; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) a:is([class*="bg-"],[class*="border-"]):hover { background:#FCF5F6 !important; }
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) a[class*="rounded-full"] { border-left:0 !important; border-radius:999px !important; }
+/* Le simulateur : carte blanche posée à cheval sur le bandeau (la couleur forte s'arrête à mi-hauteur de la carte) */
+main [data-outil] { background:transparent !important; border-image:linear-gradient(#1D2230 0 170px, transparent 170px) fill 0 / 0 / 0 100vmax !important; padding-bottom:1rem !important; margin-bottom:2.5rem !important; border-style:none !important; }
+main [data-outil] [data-chrome]:not([data-chrome] [data-chrome]), main [data-outil][data-chrome] > * { background:#fff !important; border:1px solid #E5E7EB !important; border-top:6px solid #DC143C !important; border-radius:16px !important; }
+main [data-outil][data-chrome] { padding:0 !important; }
+main [data-outil][data-chrome] > * { padding:1.1rem; }
+main [data-outil] [data-chrome] :is(p,label,span,h2,h3,li,dt,dd,td,th,legend,small,strong):not([class*="bg-accent-5"]):not([class*="bg-accent-6"]):not([class*="bg-accent-7"]):not([class*="text-white"]) { color:#111827; }
+main [data-outil][data-chrome] :is(p,label,span,h2,h3,li,dt,dd,td,th,legend,small,strong):not([class*="bg-accent-5"]):not([class*="bg-accent-6"]):not([class*="bg-accent-7"]):not([class*="text-white"]) { color:#111827 !important; }
+main [data-outil] :is([class*="text-navy-4"],[class*="text-navy-5"],[class*="text-gray-4"],[class*="text-gray-5"],[class*="text-slate-4"],[class*="text-slate-5"]) { color:#374151 !important; }
+main [data-outil] label { font-weight:600; }
+main [data-outil] :is(input,select,textarea):focus { outline:3px solid #DC143C; outline-offset:1px; }
+/* Texte posé sur un segment coloré (barres empilées…) : reste blanc */
+#main-content [class*="bg-"][class*="text-white"] :is(span,p,strong,small,b) { color:#fff !important; }
+#main-content [style*="background-color"] :is(span,p,strong,small,b) { color:inherit !important; }
+/* Chiffres-résultats : grands, tabulaires, dans l'accent, sur fond clair */
+main [aria-live] :is([class*="text-2xl"],[class*="text-3xl"],[class*="text-4xl"]):not([class*="text-white"]), main [data-resultat] :is([class*="text-2xl"],[class*="text-3xl"]) { font-size:2.2rem !important; line-height:1.12 !important; color:#C8102E !important; font-variant-numeric:tabular-nums; letter-spacing:-0.02em; }
+main [data-outil] :is([data-chrome],[data-outil]) :is(p,span,div,strong,output,dd):is([class*="text-3xl"],[class*="text-4xl"],[class*="text-5xl"]):not([class*="text-white"]):not([class*="bg-accent-5"]):not([class*="bg-accent-6"]):not([class*="bg-accent-7"]):not(h1), main [data-outil][data-chrome] :is(p,span,div,strong,output,dd):is([class*="text-3xl"],[class*="text-4xl"],[class*="text-5xl"]):not([class*="text-white"]):not([class*="bg-accent-5"]):not([class*="bg-accent-6"]):not([class*="bg-accent-7"]):not(h1) { color:#C8102E !important; }
+main [aria-live]:is([class*="bg-accent-50"],[class*="rounded"]) { background:#FCF5F6 !important; border-left:5px solid #DC143C; }
+/* Sections alternées blanc / teinte, titres serif à trait d'accent */
+main [data-outil] ~ :is(div,section):nth-of-type(odd) { background:#F6F1F2; box-shadow:0 0 0 100vmax #F6F1F2; clip-path:inset(0 -100vmax); padding-top:2rem; padding-bottom:2rem; }
+main .prose h2, main section > h2, main h2.text-2xl { font-family:'Source Serif 4', Georgia, serif; color:#1D2230 !important; letter-spacing:-0.01em; }
+main .prose h2::after, main section > h2::after, main h2.text-2xl::after { content:""; display:block; width:3rem; height:4px; margin-top:.45rem; border-radius:2px; background:#DC143C; }
+main h3 { color:#1D2230; }
+main :is(div,section) :is([class*="text-navy-4"],[class*="text-navy-5"],[class*="text-gray-4"],[class*="text-gray-5"],[class*="text-slate-4"],[class*="text-slate-5"]):not([data-outil] *):not(header *):not(main header:has(> h1) *):not(main header:has(> h1)) { color:#374151 !important; }
+/* Cartes de chiffres-clés (« en bref ») : blanches, filet d'accent, chiffres colorés */
+main section[class*="grid"] > :is(div,a):is([class*="bg-accent-6"],[class*="bg-accent-7"],[class*="bg-accent-8"],[class*="bg-navy-9"],[class*="border-accent"]) { background:#fff !important; border:1px solid #E5E7EB !important; border-top:5px solid #DC143C !important; border-radius:14px !important; }
+main section[class*="grid"] > :is(div,a):is([class*="bg-accent-6"],[class*="bg-accent-7"],[class*="bg-accent-8"],[class*="bg-navy-9"],[class*="border-accent"]) * { color:#374151 !important; }
+main section[class*="grid"] > :is(div,a):is([class*="bg-accent-6"],[class*="bg-accent-7"],[class*="bg-accent-8"],[class*="bg-navy-9"],[class*="border-accent"]) :is([class*="text-2xl"],[class*="text-xl"],[class*="text-3xl"]) { color:#C8102E !important; }
+/* Boutons pleins de la 2e couleur, liens soulignés d'accent */
+main button[type="submit"], main a[class~="bg-accent-500"], main a[class~="bg-accent-600"], main a[class~="bg-accent-700"], main button[class~="bg-accent-500"], main button[class~="bg-accent-600"], main button[class~="bg-accent-700"], main a[class*="bg-brand"], main button[class*="bg-brand"], main a[class*="bg-primary"], main button[class*="bg-primary"] { background:#DC143C !important; color:#FFFFFF !important; border-color:#DC143C !important; border-radius:10px; font-weight:700; }
+main :is(button,a):is([class~="bg-accent-500"],[class~="bg-accent-600"],[class~="bg-accent-700"]) * { color:#FFFFFF !important; }
+main button[type="submit"]:hover, main a[class~="bg-accent-600"]:hover, main a[class~="bg-accent-500"]:hover { background:#B01030 !important; }
+main .prose a, main p > a, main li > a { color:#1D2230 !important; text-decoration:underline; text-decoration-color:#DC143C; text-decoration-thickness:2px; text-underline-offset:3px; }
+main a[class*="border-accent-"]:not(section[class*="grid"] > a):not([class~="bg-accent-500"]):not([class~="bg-accent-600"]):not([class~="bg-accent-700"]) { border-color:transparent !important; background:#fff !important; color:#1D2230 !important; border-radius:999px !important; outline:1.5px solid #F0B3BE; }
+/* Encadrés et tableaux */
+main .bg-accent-50 { background:#FCF5F6 !important; border-left:5px solid #DC143C; }
+main [class*="bg-accent-50/"], main [class*="bg-accent-100/"] { background:#FCF5F6 !important; }
+main :is([class*="bg-[#0"],[class*="bg-[#1"],[class*="bg-navy-9"],[class*="bg-navy-8"],[class*="bg-slate-9"],[class*="bg-gray-9"]) a { color:#fff !important; text-decoration-color:currentColor; text-underline-offset:6px; }
+main table thead th { color:#1D2230 !important; background:#FCF0F2 !important; border-bottom:0 !important; box-shadow:inset 0 -3px 0 #DC143C; font-weight:700; }
+main table tbody tr:nth-child(even) { background:#FCF5F6; }
+main details > summary { color:#1D2230; font-weight:600; }
+@media (max-width: 640px) {
+ main [data-outil] { margin-left:-1rem !important; margin-right:-1rem !important; padding-left:0 !important; padding-right:0 !important; }
+ main [data-outil] > astro-island { display:block; }
+ main [data-outil] [data-chrome]:not([data-chrome] [data-chrome]), main [data-outil][data-chrome] > *, main [data-outil] > astro-island > div { border-radius:0 !important; margin-left:0 !important; margin-right:0 !important; border-left:0 !important; border-right:0 !important; }
+}
+/* Pied de page sombre, filet de la 2e couleur */
+footer { background:#14171F !important; border-top:6px solid #DC143C !important; }
+footer, footer *:not(svg):not(path) { color:#E5E7EB !important; border-color:rgba(255,255,255,.18) !important; }
+footer a { color:#fff !important; text-decoration:underline; text-decoration-color:#DC143C; text-underline-offset:3px; }
+footer [class*="bg-"]:not([aria-hidden]) { background:transparent !important; }
+/* === fin de la charte du pays === */
