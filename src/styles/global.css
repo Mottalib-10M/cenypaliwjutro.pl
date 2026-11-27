@@ -210,3 +210,6 @@ footer, footer *:not(svg):not(path) { color:#E5E7EB !important; border-color:rgb
 footer a { color:#fff !important; text-decoration:underline; text-decoration-color:#DC143C; text-underline-offset:3px; }
 footer [class*="bg-"]:not([aria-hidden]) { background:transparent !important; }
 /* === fin de la charte du pays === */
+/* Fil d'Ariane posé sur le bandeau (pages à propos et légales) : au-dessus de l'aplat et en blanc, sinon recouvert */
+main:has(header > h1) > div:first-child:has(> nav[aria-label]) { position:relative; z-index:1; background:#1D2230; box-shadow:0 0 0 100vmax #1D2230; clip-path:inset(0 -100vmax); }
+main:has(header > h1) > div:first-child > nav[aria-label] :is(a,span,li) { color:#fff !important; }
